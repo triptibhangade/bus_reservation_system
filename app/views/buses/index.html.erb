@@ -12,6 +12,7 @@
         <%= model_class.human_attribute_name(:destination)%>
       </th>
       <th><%= model_class.human_attribute_name(:total_no_of_seats) %></th>
+      <th><%= model_class.human_attribute_name(:available_seats) %></th>
       <% if current_user %>
         <th><%= model_class.human_attribute_name(:registration) %></th>
       <% end %>
@@ -23,6 +24,7 @@
       <tr>
         <td><%= bus.name %></td>
         <td><%= bus.source %> - <%= bus.destination %></td>
+        <td><%= bus.total_no_of_seats %></td>
         <td><%= bus.total_no_of_seats %></td>
         <% if current_user %>
           <td> <%= link_to 'Reserve your seat',new_reservation_path,

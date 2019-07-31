@@ -29,7 +29,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <% if current_user.present?  %> 
+        <% if current_user.present? %> 
+
           <a class="navbar-brand" href="/"> BusReservationSystem </a>
           <a class="navbar-brand" href="#">  </a>
           <div class="navbar-collapse collapse navbar-responsive-collapse">   
@@ -40,7 +41,9 @@
               <%= menu_item current_user.name %>
             <% end %>
           </div>
+
         <% else %>         
+        
           <a class="navbar-brand" href="/"> BusReservationSystem </a>
           <a class="navbar-brand" href="#">  </a>
           <div class="navbar-collapse collapse navbar-responsive-collapse">  
@@ -68,13 +71,13 @@
             
             
 
-            <%= menu_group pull: :right do %>
+            <%#= menu_group pull: :right do %>
               <%#= select_tag "people", options_for_select(@people, "id", "name") %>
-              <%= drop_down "Bus Owner" do %>
-              <%= menu_item "Sign In", new_user_session_path %>
-                <%= menu_item "Sign Up",  new_user_registration_path %>
-              <% end %>
-            <% end %>
+              <%#= drop_down "Bus Owner" do %>
+              <%#= menu_item "Sign In", new_user_session_path %>
+                <%#= menu_item "Sign Up",  new_user_registration_path %>
+              <%# end %>
+            <%# end %>
 
             <%#= menu_group pull: :right do %>
               <%#= drop_down "Bus Owner" do %>
@@ -84,6 +87,7 @@
             <%# end %>
 
           </div>
+
         <% end %>
         </div>
       </div>
