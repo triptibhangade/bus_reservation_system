@@ -5,4 +5,6 @@ class BusOwner < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum status: {active: "active", pending: "pending", suspend: "suspend", ignore: "ignore" }
+
+  has_many :buses
 end

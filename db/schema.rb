@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_144606) do
+ActiveRecord::Schema.define(version: 2019_07_31_091918) do
 
   create_table "bus_owners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +22,20 @@ ActiveRecord::Schema.define(version: 2019_07_30_144606) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "status", default: "pending"
+    t.integer "gst_no"
+    t.string "license"
     t.index ["email"], name: "index_bus_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_bus_owners_on_reset_password_token", unique: true
+  end
+
+  create_table "buses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "registration_no"
+    t.integer "total_no_of_seats"
+    t.bigint "bus_owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bus_owner_id"], name: "index_buses_on_bus_owner_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -34,10 +46,11 @@ ActiveRecord::Schema.define(version: 2019_07_30_144606) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", default: "customer"
+    t.string "role", default: "customer"
     t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "buses", "bus_owners"
 end
