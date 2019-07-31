@@ -1,5 +1,6 @@
-class AddColumnStatusToUser < ActiveRecord::Migration[5.2]
+class AddColumnToUser < ActiveRecord::Migration[5.2]
   def change
-    add_column :users, :status, :string , default: "customer"
+    add_column :users, :role, :string , default: "customer"
   end
 end
+
