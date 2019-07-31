@@ -1,1 +1,6 @@
 <h1>Bus Resevation System</h1>
+
+<%= link_to "Bus", buses_path, :class => 'btn btn-primary' %>
+<% if current_user %>
+  <%= link_to "Reservations", reservation_path(current_user), :class => 'btn btn-primary' %>
+<% end %>

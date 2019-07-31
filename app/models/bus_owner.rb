@@ -7,4 +7,6 @@ class BusOwner < ApplicationRecord
   enum status: {active: "active", pending: "pending", suspend: "suspend", ignore: "ignore" }
 
   has_many :buses
+  has_many :reservations, :through => :buses
+
 end

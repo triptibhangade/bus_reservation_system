@@ -5,24 +5,29 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:registration_no) %></th>
+      <th>
+        <%= model_class.human_attribute_name(:source) %> 
+          to
+        <%= model_class.human_attribute_name(:destination)%>
+      </th>
       <th><%= model_class.human_attribute_name(:total_no_of_seats) %></th>
-      <th><%= model_class.human_attribute_name(:bus_owner_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <% if current_user %>
+        <th><%= model_class.human_attribute_name(:registration) %></th>
+      <% end %>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @buses.each do |bus| %>
       <tr>
-        <td><%= link_to bus.id, bus_path(bus) %></td>
         <td><%= bus.name %></td>
-        <td><%= bus.registration_no %></td>
+        <td><%= bus.source %> - <%= bus.destination %></td>
         <td><%= bus.total_no_of_seats %></td>
-        <td><%= bus.bus_owner_id %></td>
-        <td><%=l bus.created_at %></td>
+        <% if current_user %>
+          <td> <%= link_to 'Reserve your seat',new_reservation_path,
+                               :class => 'btn btn-default btn-xs' %></td>
+        <% end %>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       bus_path(bus), :class => 'btn btn-default btn-xs' %>

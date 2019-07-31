@@ -22,6 +22,22 @@
     </div>
     <%=f.error_span(:name) %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :source, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :source, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:source) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :destination, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :destination, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:destination) %>
+  </div>
   <div class="form-group">
     <%= f.label :registration_no, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
