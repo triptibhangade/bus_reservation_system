@@ -44,6 +44,12 @@
               <%= menu_item current_user.name, profile_path %>
             <% end %>
 
+            <% if current_user.role == 'admin'%>
+              <%= menu_group pull: :right do %>
+                <%= menu_item "Bus Owner", bus_owner_index_path %>
+              <% end %>
+            <% end %>
+
           </div>
 
         <% elsif current_bus_owner.present? %>
