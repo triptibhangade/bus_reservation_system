@@ -27,7 +27,7 @@
         <td><%= bus.total_no_of_seats %></td>
         <td><%= bus.total_no_of_seats %></td>
         <% if current_user %>
-          <td> <%= link_to 'Reserve your seat',new_reservation_path,
+          <td> <%= link_to 'Reserve your seat',new_bus_reservation_path(bus),
                                :class => 'btn btn-default btn-xs' %></td>
         <% end %>
         <td>

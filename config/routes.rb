@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-    resources :buses 
-    resources :reservations
+    resources :buses do
+      resources :reservations
+    end
   
   devise_scope :user do
     get 'user_login', to: 'users/sessions#new'

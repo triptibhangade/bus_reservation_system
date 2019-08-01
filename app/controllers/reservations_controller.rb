@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  # before_action :set_user
-  # before_action :set_bus
+  before_action :set_user_id_into_params, only: [:create]
+  before_action :set_bus, only: [:new, :create]
 
   # GET /reservations
   # GET /reservations.json
@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    @reservation = Reservation.new
+    @reservation = @bus.reservations.new
   end
 
   # GET /reservations/1/edit
@@ -26,7 +26,7 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = @bus.reservations.new(reservation_params)
 
     respond_to do |format|
       if @reservation.save
@@ -69,13 +69,13 @@ class ReservationsController < ApplicationController
       @reservation = Reservation.find(params[:id])
     end
 
-    # def set_user
-    #   @user = User.find(params[:id])
-    # end
+    def set_user_id_into_params
+      params[:reservation][:user_id] = current_user.id if params[:reservation]
+    end
 
-    # def set_bus
-    #   @bus = Bus.find(params[:id])
-    # end
+    def set_bus
+      @bus = Bus.find(params[:bus_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
