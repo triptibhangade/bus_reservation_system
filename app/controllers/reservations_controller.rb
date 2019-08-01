@@ -71,7 +71,12 @@ class ReservationsController < ApplicationController
     end
 
     def set_user_id_into_params
-      params[:reservation][:user_id] = current_user.id if params[:reservation]
+      if current_user
+        params[:reservation][:user_id] = current_user.id if params[:reservation]
+      end
+      # if current_bus_owner
+      #    params[:reservation][:user_id] = current_bus_owner.id if params[:reservation]
+      # end
     end
 
     def set_bus
