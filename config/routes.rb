@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
 
-
- 
     resources :buses 
-     resources :reservations
+    resources :reservations
   
-  
-
-
   devise_scope :user do
     get 'user_login', to: 'users/sessions#new'
     get 'user_signup', to: 'users/registrations#new'
-    get 'user_profile', to: 'users#show'
+    get 'profile_edit', to: 'users/registrations#edit'
+    get 'profile', to: 'users#show'
+    delete 'profile_deactivate', to: 'users#destroy'
+    
   end
   
 
