@@ -6,26 +6,30 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @bus.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:registration_no) %>:</strong></dt>
-  <dd><%= @bus.registration_no %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:total_no_of_seats) %>:</strong></dt>
-  <dd><%= @bus.total_no_of_seats %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:route) %>:</strong></dt>
+  <dd><%= @bus.source %> - <%= @bus.destination %></dd>
   <dt><strong><%= model_class.human_attribute_name(:available_seats) %>:</strong></dt>
-  <dd><%= seat_count(@bus) %></dd>
+  <dd><%= seat_count(@bus) %> seats</dd>
+  <dt><strong><%= model_class.human_attribute_name(:total_no_of_seats) %>:</strong></dt>
+  <dd><%= @bus.total_no_of_seats %> seats </dd>
   <dt><strong><%= model_class.human_attribute_name(:bus_owner_id) %>:</strong></dt>
   <dd><%= @bus.bus_owner.name %></dd>
+  
   <% if !@bus_reservations.blank? %>
     <h3>Reservations<h3>
       <% @bus_reservations.each do |reservation| %>
         <li>
           <%= reservation.user.name %> : <%= reservation.seat %> seats
-          <%# if current_bus_owner.id == @bus.bus_owner_id %>
-            
-            <%= link_to 'Cancel Reservation',
-                bus_reservation_path(reservation.user.id),
-                :method => :delete,
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-xs btn-danger' %>
+          <%# if current_bus_owner.present? %>
+            <%# if current_bus_owner.id == @bus.bus_owner_id %>
+             <%# if current_user.present? || current_bus_owner.present? %>
+
+              <%= link_to 'Cancel Reservation',
+                  bus_reservation_path(reservation.user.id),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-xs btn-danger' %>
+            <%# end %>
           <%# end %>
         </li>
       <% end %>
