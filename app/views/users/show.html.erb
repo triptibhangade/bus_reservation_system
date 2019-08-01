@@ -12,8 +12,9 @@
   <% if !@user_reservations.blank? %>
     <h3>Reservations</h3>
     <% @user_reservations.each do |reservation| %>
-      <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a>
-      <%= link_to 'Cancel Reservation',  , :class => 'btn btn-danger', :method => :delete %><br>
+      <li>
+        <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a> : <%=reservation.seat %> Seats
+      </li>
     <% end %>
   <% end %>
 </dl>

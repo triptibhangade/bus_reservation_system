@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  before_action :set_user_id_into_params, only: [:create]
+  before_action :set_user_id_into_params, only: [:create, :destroy]
   before_action :set_bus, only: [:new, :create]
 
   # GET /reservations
@@ -56,6 +56,7 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
+    binding.pry
     @reservation.destroy
     respond_to do |format|
       format.html { redirect_to buses_url, notice: 'Reservation was successfully destroyed.' }
@@ -66,7 +67,7 @@ class ReservationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
-      @reservation = Reservation.find(params[:id])
+      @reservation = Reservation.find_by(user_id: current_user.id)
     end
 
     def set_user_id_into_params

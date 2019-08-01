@@ -8,13 +8,18 @@
   <dd><%= @bus_owner.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @bus_owner.email %></dd>
-
-  
 </dl>
-
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              buses_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-               profile_edit_path, :class => 'btn btn-default' %>
-<%= link_to "Deactivate My Account", registration_path(@bus_owner), :class => 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
+<div>
+  <h3>My Buses</h3>
+  <% @my_buses.each do |bus| %>
+      <a href="buses/<%=bus.id%>"><%= bus.name %></a><br>
+  <% end %>
+</div>
+&nbsp
+<div>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                buses_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                 profile_edit_path, :class => 'btn btn-default' %>
+  <%= link_to "Deactivate My Account", registration_path(@bus_owner), :class => 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
+</div>
