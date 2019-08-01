@@ -25,7 +25,7 @@
         <td><%= bus.name %></td>
         <td><%= bus.source %> - <%= bus.destination %></td>
         <td><%= bus.total_no_of_seats %></td>
-        <td><%= bus.total_no_of_seats %></td>
+        <td><%= seat_count(bus) %></td>
         <% if current_user %>
           <td> <%= link_to 'Reserve your seat',new_bus_reservation_path(bus),
                                :class => 'btn btn-default btn-xs' %></td>

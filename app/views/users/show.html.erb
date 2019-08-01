@@ -8,6 +8,11 @@
   <dd><%= @user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @user.email %></dd>
+
+
+  <h1>Reservations</h1>
+  <%= user_reservations(@user) %>
+  <% binding.pry %>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

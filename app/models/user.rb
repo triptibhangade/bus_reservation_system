@@ -7,6 +7,6 @@ class User < ApplicationRecord
   enum role: {admin: "admin", customer: "customer"}
 
   has_many :reservations
-  has_many :seats, :through => :reservations
+  # has_many :seats, :through => :reservations
 
 end
