@@ -4,6 +4,6 @@ class BusOwnersController < ApplicationController
   end
 
   def show
-    @bus_owner = BusOwner.find(params[:id])
+    @bus_owner = current_bus_owner
   end
 end

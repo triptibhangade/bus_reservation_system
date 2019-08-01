@@ -13,10 +13,10 @@
       </th>
       <th><%= model_class.human_attribute_name(:total_no_of_seats) %></th>
       <th><%= model_class.human_attribute_name(:available_seats) %></th>
-      <% if current_user %>
-        <th><%= model_class.human_attribute_name(:registration) %></th>
+      <% if current_user || current_bus_owner %>
+        <th><%= model_class.human_attribute_name(:reservation) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
       <% end %>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -26,23 +26,16 @@
         <td><%= bus.source %> - <%= bus.destination %></td>
         <td><%= bus.total_no_of_seats %></td>
         <td><%= seat_count(bus) %></td>
-        <% if current_user %>
+        <% if current_user || current_bus_owner %>
           <td> <%= link_to 'Reserve your seat',new_bus_reservation_path(bus),
-                               :class => 'btn btn-default btn-xs' %></td>
+                                 :class => 'btn btn-default btn-xs' %></td>
+          <td>
+              <%= link_to t('.show', :default => t("helpers.links.show")),
+                            bus_path(bus), :class => 'btn btn-default btn-xs' %>
+                
+          </td>
         <% end %>
-        <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      bus_path(bus), :class => 'btn btn-default btn-xs' %>
-          <% if current_bus_owner %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_bus_path(bus), :class => 'btn btn-default btn-xs' %>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        bus_path(bus),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-xs btn-danger' %>
-          <% end %>
-        </td>
+       
       </tr>
     <% end %>
   </tbody>

@@ -56,7 +56,7 @@
                                     method: :delete %>
             <% end %>
             <%= menu_group pull: :right do %>
-              <%= menu_item current_bus_owner.name %>
+              <%= menu_item current_bus_owner.name, bus_owner_profile_path %>
             <% end %>
           </div>
 

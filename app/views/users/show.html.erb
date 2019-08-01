@@ -9,11 +9,15 @@
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @user.email %></dd>
 
-
-  <h1>Reservations</h1>
-  <%= user_reservations(@user) %>
-  <% binding.pry %>
+  <% if !@user_reservations.blank? %>
+    <h3>Reservations</h3>
+    <% @user_reservations.each do |reservation| %>
+      <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a>
+      <%= link_to 'Cancel Reservation',  , :class => 'btn btn-danger', :method => :delete %><br>
+    <% end %>
+  <% end %>
 </dl>
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               buses_path, :class => 'btn btn-default'  %>

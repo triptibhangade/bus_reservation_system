@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   devise_scope :bus_owner do
     get 'bus_owner_login', to: 'bus_owners/sessions#new'
     get 'bus_owner_signup', to: 'bus_owners/registrations#new'
+    get 'bus_owner_profile_edit', to: 'bus_owners/registrations#edit'
+    get 'bus_owner_profile', to: 'bus_owners#show'
+    delete 'bus_owner_profile_deactivate', to: 'users#destroy'
   end
 
   devise_for :bus_owners
