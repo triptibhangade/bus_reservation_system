@@ -1,6 +1,6 @@
 class BusOwnersController < ApplicationController
   before_action :my_buses, only: [:show]
-  before_action :set_bus_owner, only:[:active]
+  before_action :set_bus_owner, only:[:active, :suspend]
   
   def index
     @bus_owners = BusOwner.all
@@ -11,8 +11,13 @@ class BusOwnersController < ApplicationController
   end
 
   def active
-    binding.pry
     @bus_owner.update(status:"active")
+    @bus_owner.save
+    redirect_to bus_owner_index_path
+  end
+
+  def suspend
+    @bus_owner.update(status:"pending")
     @bus_owner.save
     redirect_to bus_owner_index_path
   end

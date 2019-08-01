@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get 'bus_owner_profile', to: 'bus_owners#show'
     get 'bus_owner_index', to: 'bus_owners#index'
     get 'bus_owner_index_active', to: 'bus_owners#active'
+    get 'bus_owner_index_suspend', to: 'bus_owners#suspend'
     delete 'bus_owner_profile_deactivate', to: 'users#destroy'
   end
 
