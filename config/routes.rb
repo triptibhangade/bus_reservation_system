@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :buses do
-    resources :reservations
-  end
+
+ 
+    resources :buses 
+     resources :reservations
+  
+  
 
 
   devise_scope :user do
     get 'user_login', to: 'users/sessions#new'
     get 'user_signup', to: 'users/registrations#new'
+    get 'user_profile', to: 'users#show'
   end
   
 
@@ -19,6 +23,6 @@ Rails.application.routes.draw do
   devise_for :bus_owners
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "home#index"
+  root to: "buses#index"
 
 end

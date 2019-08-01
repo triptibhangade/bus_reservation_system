@@ -1,5 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  # before_action :set_user
+  # before_action :set_bus
 
   # GET /reservations
   # GET /reservations.json
@@ -14,7 +16,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    @reservation = Reservations.new
+    @reservation = Reservation.new
   end
 
   # GET /reservations/1/edit
@@ -56,7 +58,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to buses_url, notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,6 +68,14 @@ class ReservationsController < ApplicationController
     def set_reservation
       @reservation = Reservation.find(params[:id])
     end
+
+    # def set_user
+    #   @user = User.find(params[:id])
+    # end
+
+    # def set_bus
+    #   @bus = Bus.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params

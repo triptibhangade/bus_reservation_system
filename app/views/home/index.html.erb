@@ -2,5 +2,9 @@
 
 <%= link_to "Bus", buses_path, :class => 'btn btn-primary' %>
 <% if current_user %>
-  <%= link_to "Reservations", reservation_path(current_user), :class => 'btn btn-primary' %>
+  <%= current_user.name%>
+<% end %>
+
+<% if current_bus_owner%>
+  <%= current_bus_owner.name%>
 <% end %>
