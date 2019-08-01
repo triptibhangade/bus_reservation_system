@@ -1,4 +1,10 @@
-<% if current_user.status == 'admin' %>
-<% else current_user.status == 'customer' %>
-  redirect to buses_path
+<h1>Bus Resevation System</h1>
+
+<%= link_to "Bus", buses_path, :class => 'btn btn-primary' %>
+<% if current_user %>
+  <%= current_user.name%>
+<% end %>
+
+<% if current_bus_owner%>
+  <%= current_bus_owner.name%>
 <% end %>

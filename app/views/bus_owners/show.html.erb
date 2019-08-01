@@ -12,7 +12,7 @@
 <div>
   <h3>My Buses</h3>
   <% @my_buses.each do |bus| %>
-      <a href="buses/<%=bus.id%>"><%= bus.name %></a><br>
+      <a href="buses/<%=bus.id%>"><%= bus.name %></a> : <%= bus.source %> - <%= bus.destination %><br>
   <% end %>
 </div>
 &nbsp
