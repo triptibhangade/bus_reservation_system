@@ -21,22 +21,22 @@
   </thead>
   <tbody>
     <% @buses.each do |bus| %>
-      <tr>
-        <td><%= bus.name %></td>
-        <td><%= bus.source %> - <%= bus.destination %></td>
-        <td><%= bus.total_no_of_seats %></td>
-        <td><%= seat_count(bus) %></td>
-        <% if current_user || current_bus_owner %>
-          <td> <%= link_to 'Book Seat',new_bus_reservation_path(bus),
-                                 :class => 'btn btn-default btn-xs' %></td>
-          <td>
-              <%= link_to t('.show', :default => t("helpers.links.show")),
-                            bus_path(bus), :class => 'btn btn-default btn-xs' %>
-                
-          </td>
-        <% end %>
-       
-      </tr>
+      <% if bus.bus_owner.status == 'active' %>
+        <tr>
+          <td><%= bus.name %></td>
+          <td><%= bus.source %> - <%= bus.destination %></td>
+          <td><%= bus.total_no_of_seats %></td>
+          <td><%= seat_count(bus) %></td>
+          <% if current_user || current_bus_owner %>
+            <td> <%= link_to 'Book Seat',new_bus_reservation_path(bus),
+                                   :class => 'btn btn-default btn-xs' %></td>
+            <td>
+                <%= link_to t('.show', :default => t("helpers.links.show")),
+                              bus_path(bus), :class => 'btn btn-default btn-xs' %>        
+            </td>
+          <% end %>
+        </tr>
+      <% end%>
     <% end %>
   </tbody>
 </table>
