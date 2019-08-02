@@ -9,4 +9,6 @@ class BusOwner < ApplicationRecord
   has_many :buses
   has_many :reservations, :through => :buses
 
+  validates :name, :license, :gst_no, presence:true
+
 end
