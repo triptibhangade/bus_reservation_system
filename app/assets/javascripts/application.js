@@ -15,13 +15,3 @@
 //= require turbolinks
 //= require_tree .
 
-
-$("#mySelect").onchange(function(){
-	val = $(this).value();
-	$.ajax({
-		url: '/change_path'
-		data: {
-			path: val;
-		}
-	})
-});
