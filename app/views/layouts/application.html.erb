@@ -76,19 +76,19 @@
             
           
 
-            <%= menu_group pull: :right do %>
-              <%= drop_down "Sign In" do %>
-                <%= menu_item "Customer", user_login_path %>
-                <%= menu_item "Bus Owner",  bus_owner_login_path %>
-              <% end %>
-            <% end %>
+            <%#= menu_group pull: :right do %>
+              <%#= drop_down "Sign In" do %>
+                <%#= menu_item "Customer", user_login_path %>
+                <%#= menu_item "Bus Owner",  bus_owner_login_path %>
+              <%# end %>
+            <%# end %>
 
-            <%= menu_group pull: :right do %>
-              <%= drop_down "Sign Up" do %>
-                <%= menu_item "Customer", user_signup_path %>
-                <%= menu_item "Bus Owner",  bus_owner_signup_path %>
-              <% end %>
-            <% end %>
+            <%#= menu_group pull: :right do %>
+              <%#= drop_down "Sign Up" do %>
+                <%#= menu_item "Customer", user_signup_path %>
+                <%#= menu_item "Bus Owner",  bus_owner_signup_path %>
+              <%# end %>
+            <%# end %>
 
               <!-- =========================================== -->
         
@@ -97,20 +97,20 @@
           <div class="navbar-collapse collapse navbar-responsive-collapse">  
 
             <%= menu_group pull: :right do %>
-              <%= menu_item "User Sign Up",  user_signup_path %>
+              <%= menu_item "Sign Up",  bus_owner_signup_path, :class => 'btn btn-default' %>
             <% end %>
         
             <%= menu_group pull: :right do %>
-              <%= menu_item "User Sign In", user_login_path %>
+              <%= menu_item "Sign In", bus_owner_login_path, :class => 'btn btn-default' %>
             <% end %>
 
-            <%= menu_group pull: :right do %>
-              <%= menu_item "Bus Owner Sign Up", bus_owner_signup_path %>
-            <% end %>
+            <%#= menu_group pull: :right do %>
+              <%#= menu_item "Bus Owner Sign Up", bus_owner_signup_path %>
+            <% #end %>
         
-            <%= menu_group pull: :right do %>
-              <%= menu_item "Bus Owner Sign In", bus_owner_login_path %>
-            <% end %>
+            <%#= menu_group pull: :right do %>
+              <%#= menu_item "Bus Owner Sign In", bus_owner_login_path %>
+            <%# end %>
 
           </div>
 
@@ -127,11 +127,11 @@
         </div>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
+            <h3 align="center">Customer</h3>
             <ul class="nav nav-list">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li>&nbsp</li>
+              <li><%= link_to "Log In", user_login_path, :class => 'btn btn-danger' %></li>
+              <li><%= link_to "Sign Up", user_signup_path, :class => 'btn btn-primary'  %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
