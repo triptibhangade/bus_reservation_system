@@ -22,6 +22,27 @@
       </li>
   <% end %>
 </div>
+
+
+<% if !@bus_owner.reservations.blank?%>
+    <h3>Reservations</h3>
+    <% @bus_owner.reservations.each do |reservation| %>
+      <li>
+        <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a> : <%=reservation.seat %> Seats
+        
+            <%= link_to 'Cancel Reservation',
+                      bus_reservation_path(reservation.bus_id, reservation.bus_owner_id),
+                      :method => :delete, 
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+      </li>
+    <% end %>
+<%end%>
+
+
+
+
+
 &nbsp
 <div>
   <%= link_to t('.back', :default => t("helpers.links.back")),
