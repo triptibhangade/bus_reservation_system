@@ -1,13 +1,5 @@
 <%- model_class = Bus -%>
-<!-- ======================================================== -->
 
-<% form_tag buses_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
-<!-- ========================================================= -->
 
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
