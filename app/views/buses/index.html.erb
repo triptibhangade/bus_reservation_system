@@ -1,4 +1,5 @@
 <%- model_class = Bus -%>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
@@ -22,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @buses.each do |bus| %>
+    <% @busses.each do |bus| %>
       <% if bus.bus_owner.status == 'active' %>
         <tr>
           <td><%= bus.name %></td>

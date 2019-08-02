@@ -1,11 +1,11 @@
 class BusesController < ApplicationController
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
   before_action :bus_reservations, only:[:show]
-
+ 
   # GET /buses
   # GET /buses.json
   def index
-    @buses = Bus.all
+    @busses = Bus.all
   end
 
   # GET /buses/1
@@ -75,7 +75,6 @@ class BusesController < ApplicationController
     def bus_reservations
       @bus_reservations = @bus.reservations
     end
-  
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bus_params
