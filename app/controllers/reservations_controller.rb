@@ -1,6 +1,5 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  before_action :set_user_id_into_params, only: [:create, :destroy]
   before_action :set_bus, only: [:new, :create]
 
   # GET /reservations
@@ -27,16 +26,21 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = @bus.reservations.new(reservation_params)
-    @reservation.user_id = set_user_id_into_params
-  
+    @reservation.user_id = get_user_id
+    @reservation.bus_owner_id = get_bus_owner_id
 
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to buses_path, notice: 'Reservation was successfully created.' }
-        format.json { render :show, status: :created, location: @reservation }
-      else
-        format.html { render :new }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+    if @reservation.seat > @bus.total_no_of_seats
+      flash[:error] = "We have only #{@bus.total_no_of_seats} Seats "
+      redirect_to new_bus_reservation_path
+    else
+      respond_to do |format|
+        if @reservation.save
+          format.html { redirect_to buses_path, notice: 'Reservation was successfully created.' }
+          format.json { render :show, status: :created, location: @reservation }
+        else
+          format.html { render :new }
+          format.json { render json: @reservation.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -58,7 +62,6 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
-    binding.pry
     @reservation.destroy
     respond_to do |format|
       format.html { redirect_to buses_url, notice: 'Reservation was successfully destroyed.' }
@@ -69,20 +72,14 @@ class ReservationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
-      @reservation = Reservation.find_by(user_id: current_user.id)
-    end
-
-    def set_user_id_into_params
       if current_user
-        current_user.id
+        @reservation = Reservation.find_by(user_id: current_user.id)
       else
-        current_bus_owner.id 
-
+        @reservation = Reservation.find_by(bus_owner_id: current_bus_owner.id)
       end
-      # if current_bus_owner
-      #    params[:reservation][:user_id] = current_bus_owner.id if params[:reservation]
-      # end
     end
+
+    
 
     def set_bus
       @bus = Bus.find(params[:bus_id])
@@ -92,4 +89,22 @@ class ReservationsController < ApplicationController
     def reservation_params
       params.require(:reservation).permit(:reservation_date, :bus_id, :seat)
     end
+
+
+    def get_user_id
+      if current_user
+        current_user.id
+      else
+        nil
+      end
+    end
+
+    def get_bus_owner_id
+      if current_bus_owner
+        current_bus_owner.id
+      else
+        nil
+      end
+    end
+    
 end

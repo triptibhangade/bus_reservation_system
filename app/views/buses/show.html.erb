@@ -15,23 +15,28 @@
   <dt><strong><%= model_class.human_attribute_name(:bus_owner_id) %>:</strong></dt>
   <dd><%= @bus.bus_owner.name %></dd>
   
-  <% if !@bus_reservations.blank? %>
+  <% if !@bus.reservations.blank? %>
     <h3>Reservations<h3>
-      <% @bus_reservations.each do |reservation| %>
+      <% @bus.reservations.each do |reservation| %>
         <li>
-          <%= reservation.user.name %> : <%= reservation.seat %> seats
-          <%# if current_bus_owner.present? %>
-            <%# if current_bus_owner.id == @bus.bus_owner_id %>
-             <%# if current_user.present? || current_bus_owner.present? %>
-            <%#if reservation.user == current_bus_owner%>
-              <%= link_to 'Cancel Reservation',
-                  bus_reservation_path(reservation.user.id),
-                  :method => :delete,
-                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                  :class => 'btn btn-xs btn-danger' %>
-            <%#end %>
-            <%# end %>
-          <%# end %>
+          <% if current_bus_owner %>
+            <%= reservation.bus_owner_id %> : <%= reservation.seat %> seats
+            
+                <%= link_to 'Cancel Reservation',
+                    bus_reservation_path(reservation.bus_owner_id),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-xs btn-danger' %>
+            <% else %>
+              <%= reservation.user_id %> : <%= reservation.seat %> seats
+              
+                  <%= link_to 'Cancel Reservation',
+                      bus_reservation_path(reservation.user_id),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+            <% end %>
+
         </li>
       <% end %>
   <% end %>

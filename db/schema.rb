@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(version: 2019_07_31_112216) do
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "reservation_date"
     t.bigint "bus_id"
-    t.bigint "user_id"
+    t.integer "user_id"
+    t.integer "bus_owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seat"
     t.index ["bus_id"], name: "index_reservations_on_bus_id"
-    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -67,5 +67,4 @@ ActiveRecord::Schema.define(version: 2019_07_31_112216) do
 
   add_foreign_key "buses", "bus_owners"
   add_foreign_key "reservations", "buses"
-  add_foreign_key "reservations", "users"
 end
