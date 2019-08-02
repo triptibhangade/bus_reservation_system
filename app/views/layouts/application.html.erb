@@ -29,7 +29,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        
+
         <% if current_user.present? %> 
 
           <a class="navbar-brand" href="/"> BusReservationSystem </a>
@@ -66,7 +66,21 @@
             <% end %>
           </div>
 
-        <% else %>         
+        <% else %>
+
+            <%= menu_group pull: :right do %>
+              <%= drop_down "Sign In" do %>
+                <%= menu_item "Customer", user_login_path %>
+                <%= menu_item "Bus Owner",  bus_owner_login_path %>
+              <% end %>
+            <% end %>
+
+            <%= menu_group pull: :right do %>
+              <%= drop_down "Sign Up" do %>
+                <%= menu_item "Customer", user_signup_path %>
+                <%= menu_item "Bus Owner",  bus_owner_signup_path %>
+              <% end %>
+            <% end %>
         
           <a class="navbar-brand" href="/"> BusReservationSystem </a>
           <a class="navbar-brand" href="#">  </a>
@@ -87,21 +101,6 @@
             <%= menu_group pull: :right do %>
               <%= menu_item "Bus Owner Sign In", bus_owner_login_path %>
             <% end %>
-
-            <%#= menu_group pull: :right do %>
-              <%#= select_tag "people", options_for_select(@people, "id", "name") %>
-              <%#= drop_down "Bus Owner" do %>
-              <%#= menu_item "Sign In", new_user_session_path %>
-                <%#= menu_item "Sign Up",  new_user_registration_path %>
-              <%# end %>
-            <%# end %>
-
-            <%#= menu_group pull: :right do %>
-              <%#= drop_down "Bus Owner" do %>
-                <%#= menu_item "Sign In", new_user_session_path %>
-                <%#= menu_item "Sign Up",  new_user_registration_path %>
-              <%# end %>
-            <%# end %>
 
           </div>
 
