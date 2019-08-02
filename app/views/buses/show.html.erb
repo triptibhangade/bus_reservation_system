@@ -23,7 +23,7 @@
             <%= reservation.bus_owner_id %> : <%= reservation.seat %> seats
             
                 <%= link_to 'Cancel Reservation',
-                    bus_reservation_path(reservation.bus_owner_id),
+                    bus_reservation_path(reservation),
                     :method => :delete,
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-xs btn-danger' %>

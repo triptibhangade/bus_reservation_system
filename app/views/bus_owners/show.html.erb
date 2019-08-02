@@ -12,7 +12,14 @@
 <div>
   <h3>My Buses</h3>
   <% @my_buses.each do |bus| %>
-      <a href="buses/<%=bus.id%>"><%= bus.name %></a> : <%= bus.source %> - <%= bus.destination %><br>
+      <li>
+        <a href="buses/<%=bus.id%>"><%= bus.name %></a> : <%= bus.source %> - <%= bus.destination %>
+        <%= link_to "Remove buses",
+                  bus_path(bus),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-xs btn-danger' %>
+      </li>
   <% end %>
 </div>
 &nbsp
