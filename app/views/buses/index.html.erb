@@ -4,13 +4,14 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-
+<!-- ================================================ -->
 <%= form_tag buses_path, :method => 'get' do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
+<!-- =============================================== -->
 <table class="table table-striped">
   <thead>
     <tr>
