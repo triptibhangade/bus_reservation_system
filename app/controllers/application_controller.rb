@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def change_path
+    params[:path]
+    redirect_to params[:path]
+  end
+
   protected
 
   def configure_permitted_parameters
