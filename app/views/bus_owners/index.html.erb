@@ -18,12 +18,10 @@
         <td>
           <% if bus_owner_active?(bus_owner) %>
             <%= link_to 'Suspend', bus_owner_index_suspend_path(bus_owner) , :class => 'btn btn-xs btn-warning' %>
-            <%= link_to 'Reject',  bus_owner_index_reject_path(bus_owner), :method => :delete, :class => 'btn btn-xs btn-danger' %>
+            <%= link_to 'Reject', bus_owner_index_suspend_path(bus_owner), :class => 'btn btn-xs btn-danger' %>
           <% else %>
-          <!-- active: "active", pending: "pending", suspend: "suspend", ignore: "ignore" -->
             <%= link_to 'Active', bus_owner_index_active_path(bus_owner) , :class => 'btn btn-xs btn-primary' %>
-            <%#= link_to 'Reject',  bus_owner_index_reject_path(bus_owner), :method => :delete, :class => 'btn btn-xs btn-danger' %>
-            <%= link_to "Reject", registration_path(bus_owner), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
+            <%= link_to "Reject", bus_owner_index_suspend_path(bus_owner), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
           <% end %>
         </td>
       </tr>
