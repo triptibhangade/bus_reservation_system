@@ -15,7 +15,9 @@
       <th><%= model_class.human_attribute_name(:available_seats) %></th>
       <% if current_user || current_bus_owner %>
         <th><%= model_class.human_attribute_name(:reservation) %></th>
-        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% if current_bus_owner %>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% end %>
       <% end %>
     </tr>
   </thead>
@@ -31,13 +33,15 @@
             <td> <%= link_to 'Book Seat',new_bus_reservation_path(bus),
                                    :class => 'btn btn-default btn-xs' %></td>
             <td>
+            <% if current_bus_owner %>
               <% if current_bus_owner.id == bus.bus_owner_id %>
                 <%= link_to "Show Reservations" ,
-                              bus_path(bus), :class => 'btn btn-default btn-xs' %>
-                              <%else%>
+                              bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
+              <% else %>
                 <%= link_to "Show Reservations" ,
                               bus_path(bus), :class => 'btn btn-default btn-xs disabled'  %>
-              <% end %>       
+              <% end %>  
+            <% end %>     
             </td>
           <% end %>
         </tr>

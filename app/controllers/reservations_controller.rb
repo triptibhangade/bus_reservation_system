@@ -1,11 +1,11 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  before_action :set_bus, only: [:new, :create]
+  before_action :set_bus, only: [:index, :new, :create]
 
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = @bus.reservations
   end
 
   # GET /reservations/1
