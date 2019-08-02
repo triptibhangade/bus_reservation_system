@@ -23,12 +23,13 @@
           <%# if current_bus_owner.present? %>
             <%# if current_bus_owner.id == @bus.bus_owner_id %>
              <%# if current_user.present? || current_bus_owner.present? %>
-
+            <%#if reservation.user == current_bus_owner%>
               <%= link_to 'Cancel Reservation',
                   bus_reservation_path(reservation.user.id),
                   :method => :delete,
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-xs btn-danger' %>
+            <%#end %>
             <%# end %>
           <%# end %>
         </li>

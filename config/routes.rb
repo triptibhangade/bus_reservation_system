@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-    resources :buses do
-      resources :reservations
-    end
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "buses#index"
+
+  resources :buses do
+    resources :reservations
+  end
   
   devise_scope :user do
     get 'user_login', to: 'users/sessions#new'
@@ -10,9 +13,7 @@ Rails.application.routes.draw do
     get 'profile_edit', to: 'users/registrations#edit'
     get 'profile', to: 'users#show'
     delete 'profile_deactivate', to: 'users#destroy'
-    
   end
-  
 
   devise_scope :bus_owner do
     get 'bus_owner_login', to: 'bus_owners/sessions#new'
@@ -28,7 +29,5 @@ Rails.application.routes.draw do
 
   devise_for :bus_owners
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "buses#index"
 
 end

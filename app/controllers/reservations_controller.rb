@@ -27,6 +27,8 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = @bus.reservations.new(reservation_params)
+    @reservation.user_id = set_user_id_into_params
+  
 
     respond_to do |format|
       if @reservation.save
@@ -72,7 +74,10 @@ class ReservationsController < ApplicationController
 
     def set_user_id_into_params
       if current_user
-        params[:reservation][:user_id] = current_user.id if params[:reservation]
+        current_user.id
+      else
+        current_bus_owner.id 
+
       end
       # if current_bus_owner
       #    params[:reservation][:user_id] = current_bus_owner.id if params[:reservation]
@@ -85,6 +90,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:reservation_date, :bus_id, :user_id, :seat)
+      params.require(:reservation).permit(:reservation_date, :bus_id, :seat)
     end
 end
