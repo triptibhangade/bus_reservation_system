@@ -108,6 +108,7 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
+        <% if !current_user.present? %>
         <!-- -------------------- Sidebar -------------------- -->
         <div class="col-lg-3">
           <div class="well sidebar-nav">
@@ -120,6 +121,7 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
+        <% end %>
       </div><!--/row-->
 
       <footer>
