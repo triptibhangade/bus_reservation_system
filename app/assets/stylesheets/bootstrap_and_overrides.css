@@ -4,21 +4,23 @@
   Static version of css will use Glyphicons sprites by default
   =require twitter-bootstrap-static/sprites
 */
-
+/*-------------------- Danger Button --------------------*/
 .btn-danger {
     color: #fff!important;
     background-color: #d9534f;
     border-color: #d43f3a;
 }
 
+.btn-danger:hover, .btn-danger:focus, .btn-danger.focus, .btn-danger:active, .btn-danger.active, .open>.dropdown-toggle.btn-danger {
+    color: #000 !important;
+}
+/*-------------------- Primary Button --------------------*/
 .btn-primary {
     color: #fff!important;
     background-color: #428bca;
     border-color: #357ebd;
 }
-.btn-danger:hover, .btn-danger:focus, .btn-danger.focus, .btn-danger:active, .btn-danger.active, .open>.dropdown-toggle.btn-danger {
-    color: #000 !important;
-    }
+
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
     color: #000 !important;
 }
