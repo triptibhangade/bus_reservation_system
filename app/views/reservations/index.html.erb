@@ -20,10 +20,11 @@
     <tbody>
       <% @reservations.each do |reservation| %>
         <tr>
-          <td><%= reservation.reservation_date.to_date %></td>
+          <td><%= reservation_date(reservation) %></td>
           <td><%= reservation.bus.name %></td>
           <td><%= customer_name(reservation) %></td>
-          <td><%=l reservation.created_at.to_date %></td>
+          <td><%= date_of_booking(reservation) %></td>
+          <%# binding.pry %>
           <td><%= reservation.seat %></td>
           <%#binding.pry%>
         </tr>
