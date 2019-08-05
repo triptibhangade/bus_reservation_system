@@ -41,8 +41,13 @@
           <td><%= bus.total_no_of_seats %></td>
           <td><%= seat_count(bus) %></td>
           <% if current_user || current_bus_owner %>
-            <td> <%= link_to 'Book Seat',new_bus_reservation_path(bus),
+            <% if !seat_count(bus).zero? %>
+              <td> <%= link_to 'Book Seat',new_bus_reservation_path(bus),
                                    :class => 'btn btn-default btn-xs' %></td>
+            <% else %>
+               <td> <%= link_to 'Seat Full',buses_path,
+                                   :class => 'btn btn-danger btn-xs disabled' %></td>
+            <% end %>
             <td>
             <!-- -------------------- Only For Bus Owner -------------------- -->
             <% if current_bus_owner %>
