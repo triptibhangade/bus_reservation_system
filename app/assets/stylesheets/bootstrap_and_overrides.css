@@ -24,3 +24,8 @@
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
     color: #000 !important;
 }
+/*-------------------- Search Button --------------------*/
+.col-md-4 {
+    width: 33.33333333%;
+    padding: 75px 0px 0px 25px !important;
+}
