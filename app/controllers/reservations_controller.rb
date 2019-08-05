@@ -29,8 +29,8 @@ class ReservationsController < ApplicationController
     @reservation.user_id = get_user_id
     @reservation.bus_owner_id = get_bus_owner_id
 
-    if @reservation.seat > @bus.total_no_of_seats
-      flash[:error] = "We have only #{@bus.total_no_of_seats} Seats "
+    if @reservation.seat > @bus.total_no_of_seats || @reservation.seat > seat_full(@bus, @reservation)
+      flash[:error] = "We have only #{seat_full(@bus, @reservation)} Seats "
       redirect_to new_bus_reservation_path
     else
       respond_to do |format|

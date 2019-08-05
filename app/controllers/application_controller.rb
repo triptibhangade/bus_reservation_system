@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
+  def seat_full(bus, reservation)
+    seat_count = 0
+    bus.reservations.each do |reservation|
+      seat_count = seat_count + reservation.seat 
+    end
+    bus.total_no_of_seats - (seat_count - reservation.seat)
+  end
+
   protected
   # -------------------- Device Params --------------------
   def configure_permitted_parameters
