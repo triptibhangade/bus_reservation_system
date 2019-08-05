@@ -87,11 +87,11 @@
           <div class="navbar-collapse collapse navbar-responsive-collapse">  
             <!-- -------------------- Bus Owner Sign In/Sign Up -------------------- -->
             <%= menu_group pull: :right do %>
-              <%= menu_item "Sign Up",  bus_owner_signup_path, :class => 'btn btn-default' %>
+              <%= menu_item "Sign Up",  user_signup_path, :class => 'btn btn-default' %>
             <% end %>
         
             <%= menu_group pull: :right do %>
-              <%= menu_item "Sign In", bus_owner_login_path, :class => 'btn btn-default' %>
+              <%= menu_item "Sign In", user_login_path, :class => 'btn btn-default' %>
             <% end %>
 
           </div>
@@ -103,24 +103,24 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-10">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <% if !(current_user.present? || current_bus_owner.present?) %>
+        <%# if !(current_user.present? || current_bus_owner.present?) %>
         <!-- -------------------- Sidebar -------------------- -->
-        <div class="col-lg-3">
+        <!-- <div class="col-lg-2">
           <div class="well sidebar-nav">
             <h3 align="center">Customer</h3>
             <ul class="nav nav-list">
               <li>&nbsp</li>
-              <!-- -------------------- Customer Sign In/Sign Up -------------------- -->
+              -------------------- Customer Sign In/Sign Up --------------------
               <li><%= link_to "Log In", user_login_path, :class => 'btn btn-danger' %></li>
               <li><%= link_to "Sign Up", user_signup_path, :class => 'btn btn-primary'  %></li>
             </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <% end %>
+          </div>/.well 
+        </div>/span-->
+        <%# end %>
       </div><!--/row-->
 
       <footer>

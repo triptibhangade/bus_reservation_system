@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
-<!-- -------------------- Eroors -------------------- -->
+<!-- -------------------- Errors -------------------- -->
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @bus_owner.name %></dd>
@@ -43,6 +43,6 @@
   <%= link_to t('.back', :default => t("helpers.links.back")),
                 buses_path, :class => 'btn btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                 profile_edit_path, :class => 'btn btn-default' %>
+                 bus_owner_profile_edit_path, :class => 'btn btn-default' %>
   <%= link_to "Deactivate My Account", registration_path(@bus_owner), :class => 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
 </div>
