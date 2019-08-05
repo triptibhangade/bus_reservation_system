@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   private
+  # -------------------- Customer Reservations --------------------
   def user_reservations
     @user_reservations = current_user.reservations
   end

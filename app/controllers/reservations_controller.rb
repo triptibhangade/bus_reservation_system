@@ -73,24 +73,19 @@ class ReservationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
       if current_user
+        # -------------------- Customer--------------------
         @reservation = Reservation.find_by(user_id: current_user.id)
       else
+        # -------------------- Bus Owner--------------------
         @reservation = Reservation.find_by(bus_owner_id: current_bus_owner.id)
       end
     end
-
-    
 
     def set_bus
       @bus = Bus.find(params[:bus_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reservation_params
-      params.require(:reservation).permit(:reservation_date, :bus_id, :seat)
-    end
-
-
+    # -------------------- Customer --------------------
     def get_user_id
       if current_user
         current_user.id
@@ -99,6 +94,7 @@ class ReservationsController < ApplicationController
       end
     end
 
+    # -------------------- Bus Owner --------------------
     def get_bus_owner_id
       if current_bus_owner
         current_bus_owner.id
@@ -106,5 +102,9 @@ class ReservationsController < ApplicationController
         nil
       end
     end
-    
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def reservation_params
+      params.require(:reservation).permit(:reservation_date, :bus_id, :seat)
+    end
 end
