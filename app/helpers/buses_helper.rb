@@ -1,4 +1,5 @@
 module BusesHelper
+  # -------------------- Available Seat --------------------
   def seat_count(bus)
     seat_count = 0
     bus.reservations.each do |reservation|
