@@ -5,7 +5,12 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    @busses = Bus.all
+    if params[:search]
+      # binding.pry
+      @busses = Bus.where("name like ?", "%#{params[:search]}%")
+    else
+      @busses = Bus.all
+    end
   end
 
   # GET /buses/1
@@ -61,7 +66,7 @@ class BusesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bus
