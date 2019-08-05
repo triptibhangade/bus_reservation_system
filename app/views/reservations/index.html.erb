@@ -10,9 +10,10 @@
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:reservation_date) %></th>
-        <th><%= model_class.human_attribute_name(:bus_id) %></th>
+        <th><%= model_class.human_attribute_name(:bus_name) %></th>
         <th><%= model_class.human_attribute_name(:user_id) %></th>
-        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%= model_class.human_attribute_name(:date_of_booking) %></th>
+        <th><%= model_class.human_attribute_name(:number_of_booked_seats) %></th>
       </tr>
     </thead>
     <!-- -------------------- Reservatoions -------------------- -->
@@ -20,9 +21,11 @@
       <% @reservations.each do |reservation| %>
         <tr>
           <td><%= reservation.reservation_date.to_date %></td>
-          <td><%= reservation.bus_id %></td>
+          <td><%= reservation.bus.name %></td>
           <td><%= reservation.bus_owner_id %></td>
           <td><%=l reservation.created_at.to_date %></td>
+          <td><%= reservation.seat %></td>
+          <%#binding.pry%>
         </tr>
       <% end %>
     </tbody>
