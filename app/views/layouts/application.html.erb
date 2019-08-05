@@ -29,7 +29,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-
+        <!-- -------------------- Customer Sign In -------------------- -->
         <% if current_user.present? %> 
 
           <a class="navbar-brand" href="/"> BusReservationSystem </a>
@@ -51,7 +51,7 @@
             <% end %>
 
           </div>
-
+        <!-- -------------------- Bus Owner Sign In -------------------- -->
         <% elsif current_bus_owner.present? %>
 
           <a class="navbar-brand" href="/"> BusReservationSystem </a>
@@ -65,17 +65,8 @@
               <%= menu_item current_bus_owner.name, bus_owner_profile_path %>
             <% end %>
           </div>
-
+        <!-- -------------------- Sign Out -------------------- -->
         <% else %>
-            <!-- ================================= -->
-           <!--  <select>
-              <option>Customer</option>
-              <option value="bus_owner">Bus Owner</option>
-            </select> -->
-           <!-- =========================================== -->
-            
-          
-
             <%#= menu_group pull: :right do %>
               <%#= drop_down "Sign In" do %>
                 <%#= menu_item "Customer", user_login_path %>
@@ -95,7 +86,7 @@
           <a class="navbar-brand" href="/"> BusReservationSystem </a>
           <a class="navbar-brand" href="#">  </a>
           <div class="navbar-collapse collapse navbar-responsive-collapse">  
-
+            <!-- -------------------- Bus Owner Sign In/Sign Up -------------------- -->
             <%= menu_group pull: :right do %>
               <%= menu_item "Sign Up",  bus_owner_signup_path, :class => 'btn btn-default' %>
             <% end %>
@@ -103,14 +94,6 @@
             <%= menu_group pull: :right do %>
               <%= menu_item "Sign In", bus_owner_login_path, :class => 'btn btn-default' %>
             <% end %>
-
-            <%#= menu_group pull: :right do %>
-              <%#= menu_item "Bus Owner Sign Up", bus_owner_signup_path %>
-            <% #end %>
-        
-            <%#= menu_group pull: :right do %>
-              <%#= menu_item "Bus Owner Sign In", bus_owner_login_path %>
-            <%# end %>
 
           </div>
 
@@ -125,11 +108,13 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
+        <!-- -------------------- Sidebar -------------------- -->
         <div class="col-lg-3">
           <div class="well sidebar-nav">
             <h3 align="center">Customer</h3>
             <ul class="nav nav-list">
               <li>&nbsp</li>
+              <!-- -------------------- Customer Sign In/Sign Up -------------------- -->
               <li><%= link_to "Log In", user_login_path, :class => 'btn btn-danger' %></li>
               <li><%= link_to "Sign Up", user_signup_path, :class => 'btn btn-primary'  %></li>
             </ul>

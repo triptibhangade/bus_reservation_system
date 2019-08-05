@@ -10,12 +10,14 @@
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
+  <!-- -------------------- Bus Owner List -------------------- -->
   <tbody>
     <% @bus_owners.each do |bus_owner| %>
       <tr>
         <td><%= bus_owner.name %></td>
         <td><%= bus_owner.email %></td>
         <td>
+          <!-- -------------------- Bus Owner Activa/Suspend/Reject Button -------------------- -->
           <% if bus_owner_active?(bus_owner) %>
             <%= link_to 'Suspend', bus_owner_index_suspend_path(bus_owner) , :class => 'btn btn-xs btn-warning' %>
             <%= link_to 'Reject', bus_owner_index_suspend_path(bus_owner), :class => 'btn btn-xs btn-danger' %>

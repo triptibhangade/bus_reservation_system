@@ -1,5 +1,5 @@
 <%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
-
+  <!-- -------------------- Errors -------------------- -->
   <% if @user.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -14,7 +14,7 @@
       </div>
     </div>
   <% end %>
-
+  <!-- -------------------- Customer Form -------------------- -->
   <div class="form-group">
     <%= f.label :email, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -22,6 +22,7 @@
     </div>
     <%=f.error_span(:email) %>
   </div>
+
   <div class="form-group">
     <%= f.label :encrypted_password, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -29,6 +30,7 @@
     </div>
     <%=f.error_span(:encrypted_password) %>
   </div>
+
   <div class="form-group">
     <%= f.label :reset_password_token, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -36,6 +38,7 @@
     </div>
     <%=f.error_span(:reset_password_token) %>
   </div>
+
   <div class="form-group">
     <%= f.label :reset_password_sent_at, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -43,6 +46,7 @@
     </div>
     <%=f.error_span(:reset_password_sent_at) %>
   </div>
+
   <div class="form-group">
     <%= f.label :remember_created_at, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -58,4 +62,5 @@
                 users_path, :class => 'btn btn-default' %>
     </div>
   </div>
+  
 <% end %>

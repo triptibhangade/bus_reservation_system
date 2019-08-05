@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
-
+<!-- -------------------- Eroors -------------------- -->
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @bus_owner.name %></dd>
@@ -22,8 +22,7 @@
       </li>
   <% end %>
 </div>
-
-
+<!-- -------------------- Bus Owner Reservation -------------------- -->
 <% if !@bus_owner.reservations.blank?%>
     <h3>Reservations</h3>
     <% @bus_owner.reservations.each do |reservation| %>
@@ -38,12 +37,8 @@
       </li>
     <% end %>
 <%end%>
-
-
-
-
-
 &nbsp
+<!-- -------------------- Buttons -------------------- -->
 <div>
   <%= link_to t('.back', :default => t("helpers.links.back")),
                 buses_path, :class => 'btn btn-default'  %>

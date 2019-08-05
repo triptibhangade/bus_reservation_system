@@ -6,6 +6,7 @@
   </div>
 
   <table class="table table-striped">
+
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:reservation_date) %></th>
@@ -14,6 +15,7 @@
         <th><%= model_class.human_attribute_name(:created_at) %></th>
       </tr>
     </thead>
+    <!-- -------------------- Reservatoions -------------------- -->
     <tbody>
       <% @reservations.each do |reservation| %>
         <tr>
@@ -23,12 +25,12 @@
           <td><%=l reservation.created_at.to_date %></td>
         </tr>
       <% end %>
- 
-
     </tbody>
+
   </table>
 
 <% else %>
   <h1> We have no Reservations </h1>
 <% end %>
+
 <%= link_to 'Back', buses_path, :class => 'btn btn-default' %>

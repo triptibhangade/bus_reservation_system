@@ -31,6 +31,7 @@
       <% end %>
     </tr>
   </thead>
+  <!-- -------------------- Bus List -------------------- -->
   <tbody>
     <% @busses.each do |bus| %>
       <% if bus.bus_owner.status == 'active' %>
@@ -43,6 +44,7 @@
             <td> <%= link_to 'Book Seat',new_bus_reservation_path(bus),
                                    :class => 'btn btn-default btn-xs' %></td>
             <td>
+            <!-- -------------------- Only For Bus Owner -------------------- -->
             <% if current_bus_owner %>
               <% if current_bus_owner.id == bus.bus_owner_id %>
                 <%= link_to "Show Reservations" ,

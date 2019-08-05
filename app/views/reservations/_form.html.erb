@@ -1,5 +1,6 @@
 <%= form_for [@bus, @reservation], :html => { :class => "form-horizontal reservation" } do |f| %>
 
+  <!-- -------------------- Error -------------------- -->
   <% if @reservation.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -14,7 +15,7 @@
       </div>
     </div>
   <% end %>
-
+  <!-- -------------------- Reservation Form -------------------- -->
   <div class="form-group">
     <%= f.label :reservation_date, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -40,6 +41,8 @@
   </div>
 
 <% end %>
+
+<!-- -------------------- Window Time Out 5 Min -------------------- -->
 
 <script type="text/javascript">
   setTimeout(function(){ window.location = "/" }, 300000);
