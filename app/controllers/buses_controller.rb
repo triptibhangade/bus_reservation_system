@@ -9,7 +9,7 @@ class BusesController < ApplicationController
       @busses = Bus.where("source LIKE :source OR destination = :destination",
       {:source => "#{params[:source_search]}%", :destination => params[:destination_search]})
     else
-      @busses = Bus.all
+      redirect_to root_path
     end
   end
 
