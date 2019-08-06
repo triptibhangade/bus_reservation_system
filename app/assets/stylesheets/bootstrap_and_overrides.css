@@ -29,3 +29,21 @@
     width: 33.33333333%;
     padding: 75px 0px 0px 25px !important;
 }
+
+.block {
+    background: #f9f9f9;
+    padding: 0px 20px 30px 20px;
+    margin-bottom: 25px;
+}
+
+.block:hover{
+  background: #afafaf;
+  border-top-style: double;
+  border-right-style: ridge;
+  border-bottom-style: ridge;
+  border-left-style: double;
+}
+
+.row-md-12 {
+    padding: 10px 0px 75px 0px;
+}

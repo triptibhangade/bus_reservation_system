@@ -26,7 +26,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
     }
 
     .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
-    padding: 40px 50px 30px 50px;
+    padding: 75px 20px 60px 10px;
     line-height: 1.42857143;
     vertical-align: top;
     border-top: 1px solid #ddd;

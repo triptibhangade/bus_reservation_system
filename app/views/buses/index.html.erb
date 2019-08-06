@@ -1,17 +1,51 @@
 <%- model_class = Bus -%>
-<div class ="row">
+<!-- <div class ="row">
   <div class="page-header col-md-8">
-    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+    <h1><%#=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
   </div>
   <div class="pull-right col-md-4">
-    <%= form_tag bus_search_path(@busses), :method => 'get' do %>
+    <%#= form_tag bus_search_path(@busses), :method => 'get' do %>
       <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search" %>
+        <%#= text_field_tag :search, params[:search] %>
+        <%#= submit_tag "Search" %>
       </p>
-    <% end %>
+    <%# end %>
   </div>
-</div>
+</div> -->
+<% @busses.each do |bus| %>
+  <div class="row block">
+    <div class="row-md-12 row">
+      <div class="col-md-4">
+        <%= bus.name %>
+      </div>
+      <div class="col-md-4">
+       <%= bus.source %> - <%= bus.destination %>
+      </div>
+      <div class="col-md-4">
+        Available seats : <%= seat_count(bus) %>
+      </div>
+    </div>
+    <div class="row-md-4 row">
+      <div class="col-md-10 animation">
+        Water Bottle |
+        Blankets |
+        Pillow |
+        Charging Point |
+        Personal TV |
+        Movie |
+        Emergency Contact Number |
+        Reading Light
+      </div>
+      <div class="col-md-2">
+        <% if !seat_count(bus).zero? %>
+          <%= link_to 'Book Seat',new_bus_reservation_path(bus),
+                                   :class => 'btn btn-default btn-xs' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>
