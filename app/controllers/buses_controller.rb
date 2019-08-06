@@ -6,8 +6,7 @@ class BusesController < ApplicationController
   # GET /buses.json
   def index
     if !params[:source_search].blank? || !params[:destination_search].blank?
-      @busses = Bus.where("source LIKE :source OR destination = :destination",
-      {:source => "#{params[:source_search]}%", :destination => params[:destination_search]})
+      @busses = Bus.search(params[:source_search], params[:destination_search])
     else
       redirect_to root_path
     end

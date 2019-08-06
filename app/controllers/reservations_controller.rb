@@ -1,7 +1,8 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
   before_action :set_bus, only: [:index, :new, :create]
-  before_action :required_signin, only:[:new,:create,:destroy]
+  before_action :required_user_signin, only:[:new,:create,:destroy]
+  before_action :required_bus_owner_signin, only:[:new,:create,:destroy]
 
   # GET /reservations
   # GET /reservations.json

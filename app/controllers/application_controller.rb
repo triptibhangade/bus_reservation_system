@@ -1,16 +1,31 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # --------------------------- Required Sign In -----------------------
-  def required_signin
-    unless current_user
+  # --------------------------- Required User Sign In -----------------------
+  def required_user_signin
+    unless current_user && current_bus_owner
       flash[:error] = "Please Sign In Properly"
       redirect_to root_path
     end
   end
   
-  # ------------------------------ Required Sign Out ------------------------
-  def required_signout
-    if current_user
+  # ------------------------------ Required User Sign Out ------------------------
+  def required_user_signout
+    if current_user && current_bus_owner
+      flash[:error] = "Please Sign out Properly"
+      redirect_to root_path
+    end
+  end
+  # --------------------------- Required Bus Owner Sign In -----------------------
+  def required_bus_owner_signin
+    unless current_bus_owner && current_user
+      flash[:error] = "Please Sign In Properly"
+      redirect_to root_path
+    end
+  end
+  
+  # ------------------------------ Required Bus Owner Sign Out ------------------------
+  def required_bus_owner_signout
+    if current_bus_owner && current_user
       flash[:error] = "Please Sign out Properly"
       redirect_to root_path
     end

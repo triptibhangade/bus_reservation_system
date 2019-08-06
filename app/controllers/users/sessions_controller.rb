@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  before_action :required_signout, only:[:new, :create]
-  before_action :required_signin, only:[:destroy]
+  before_action :required_user_signout, only:[:new, :create]
+  before_action :required_user_signin, only:[:destroy]
 
   # before_action :confirequired_signoutgure_sign_in_params, only: [:create]
 
