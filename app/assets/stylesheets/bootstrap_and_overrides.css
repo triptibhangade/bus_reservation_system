@@ -37,18 +37,19 @@
 }
 
 .block:hover{
-  background: #afafaf;
-  border-top-style: double;
+  background: #e0e0e0;
+  /*border-top-style: double;
   border-right-style: ridge;
   border-bottom-style: ridge;
-  border-left-style: double;
+  border-left-style: double;*/
+      box-shadow: 20px 20px 20px 0px #616161;
 }
 
 .row-md-12 {
     padding: 10px 0px 75px 0px;
 }
 
-.my_buses_show {
+.my_buses_show:hover {
     background: #f8f8f8;
     border-style: inset;
     padding-bottom: 25px !important;

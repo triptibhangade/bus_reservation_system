@@ -2,7 +2,7 @@
   <h1 class="center">
     Bus Resevation System
   </h1>
-  <%= form_tag bus_search_path(@busses), :method => 'get' do %>
+  <%= form_tag search_path(@busses), :method => 'get' do %>
       <p class="center">
         From <%= text_field_tag :source_search, params[:source_search], placeholder:"From" %>
         TO <%= text_field_tag :destination_search, params[:destination_search], placeholder:"To" %>
