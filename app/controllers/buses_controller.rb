@@ -6,7 +6,6 @@ class BusesController < ApplicationController
   # GET /buses.json
   def index
     if params[:search]
-      # binding.pry
       @busses = Bus.where("name like ?", "%#{params[:search]}%")
     else
       @busses = Bus.all

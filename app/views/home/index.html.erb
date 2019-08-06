@@ -1,1 +1,13 @@
-<h1>Bus Resevation System</h1>
+<div class="home">
+  <h1 class="center">
+    Bus Resevation System
+  </h1>
+  <%= form_tag bus_search_path(@busses), :method => 'get' do %>
+      <p>
+        <%= text_field_tag :source_search, params[:source_search], placeholder:"From" %>
+        <%= text_field_tag :destination_search, params[:destination_search], placeholder:"To" %>
+        <%= date_field_tag :date_search, params[:date_search] %>
+        <%= submit_tag "Search" %>
+      </p>
+  <% end %>
+</div>

@@ -11,14 +11,20 @@ module ApplicationHelper
   def bus_owner_reject?(bus_owner)
     bus_owner.status == 'reject'
   end
-  # -------------------- User Profile Icon --------------------
-  def customer_icon(current_user)
-    if current_user.role == 'admin'
-      
-    else
-    end
+  
+  def date_of_booking(reservation)
+    reservation.created_at.to_date.strftime("%d-%m-%Y")
   end
-  # -------------------- Bus Owner Profile Icon --------------------
-  def bus_owner_icon(current_bus_owner)
+
+  def day_of_booking(reservation)
+    reservation.created_at.to_date.strftime("%A")
+  end
+
+  def reservation_date(reservation)
+    reservation.reservation_date.strftime("%d-%m-%Y")
+  end
+
+  def reservation_day(reservation)
+    reservation.reservation_date.strftime("%A")
   end
 end
