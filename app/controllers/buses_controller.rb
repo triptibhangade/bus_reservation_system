@@ -5,7 +5,6 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    binding.pry
     if !params[:source_search].blank? || !params[:destination_search].blank?
       @busses = Bus.where("source LIKE :source OR destination = :destination",
       {:source => "#{params[:source_search]}%", :destination => params[:destination_search]})
