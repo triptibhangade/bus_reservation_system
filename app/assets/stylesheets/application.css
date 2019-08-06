@@ -15,7 +15,7 @@
  */
 .home{
 	align-content: center;
-	padding: 150px 83px 150px 290px;
+	padding: 150px 83px 150px 185px;
 }
 .center{
 	text-align: center;
@@ -24,3 +24,11 @@
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
     line-height: 15px;
     }
+
+    .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 40px 50px 30px 50px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
