@@ -12,6 +12,7 @@
     <%# end %>
   </div>
 </div> -->
+<!-- -------------------- Bus List -------------------- -->
 <% @busses.each do |bus| %>
   <div class="row block">
     <div class="row-md-12 row">
@@ -26,15 +27,26 @@
       </div>
     </div>
     <div class="row-md-4 row">
-      <div class="col-md-10 animation">
+      <div class="col-md-8 animation">
         Water Bottle |
         Blankets |
         Pillow |
         Charging Point |
-        Personal TV |
         Movie |
         Emergency Contact Number |
         Reading Light
+      </div>
+      <div class="col-md-2">
+        <!-- -------------------- Only For Bus Owner -------------------- -->
+        <% if current_bus_owner %>
+          <% if current_bus_owner.id == bus.bus_owner_id %>
+            <%= link_to "Show Reservations" ,
+                          bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
+          <% else %>
+            <%= link_to "Show Reservations" ,
+                          bus_path(bus), :class => 'btn btn-default btn-xs disabled'  %>
+          <% end %>  
+        <% end %>     
       </div>
       <div class="col-md-2">
         <% if !seat_count(bus).zero? %>
@@ -45,62 +57,6 @@
     </div>
   </div>
 <% end %>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th>
-        <%= model_class.human_attribute_name(:source) %> 
-          to
-        <%= model_class.human_attribute_name(:destination)%>
-      </th>
-      <th><%= model_class.human_attribute_name(:total_no_of_seats) %></th>
-      <th><%= model_class.human_attribute_name(:available_seats) %></th>
-      <% if current_user || current_bus_owner %>
-        <th><%= model_class.human_attribute_name(:reservation) %></th>
-        <% if current_bus_owner %>
-          <th><%=t '.actions', :default => t("helpers.actions") %></th>
-        <% end %>
-      <% end %>
-    </tr>
-  </thead>
-  <!-- -------------------- Bus List -------------------- -->
-  <tbody>
-    <% @busses.each do |bus| %>
-      <% if bus.bus_owner.status == 'active' %>
-        <tr>
-          <td><%= bus.name %></td>
-          <td><%= bus.source %> - <%= bus.destination %></td>
-          <td><%= bus.total_no_of_seats %></td>
-          <td><%= seat_count(bus) %></td>
-          <% if current_user || current_bus_owner %>
-            <% if !seat_count(bus).zero? %>
-              <td> <%= link_to 'Book Seat',new_bus_reservation_path(bus),
-                                   :class => 'btn btn-default btn-xs' %></td>
-            <% else %>
-               <td> <%= link_to 'Seat Full',buses_path,
-                                   :class => 'btn btn-danger btn-xs disabled' %></td>
-            <% end %>
-            <td>
-            <!-- -------------------- Only For Bus Owner -------------------- -->
-            <% if current_bus_owner %>
-              <% if current_bus_owner.id == bus.bus_owner_id %>
-                <%= link_to "Show Reservations" ,
-                              bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
-              <% else %>
-                <%= link_to "Show Reservations" ,
-                              bus_path(bus), :class => 'btn btn-default btn-xs disabled'  %>
-              <% end %>  
-            <% end %>     
-            </td>
-          <% end %>
-        </tr>
-      <% end%>
-    <% end %>
-  </tbody>
-</table>
-
 
 <% if current_bus_owner && current_bus_owner.status == "active" %>
   <%= link_to t('.new', :default => t("helpers.links.new")),

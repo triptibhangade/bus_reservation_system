@@ -27,7 +27,7 @@
 /*-------------------- Search Button --------------------*/
 .col-md-4 {
     width: 33.33333333%;
-    padding: 75px 0px 0px 25px !important;
+    padding: 25px 0px 0px 25px !important;
 }
 
 .block {
@@ -46,4 +46,11 @@
 
 .row-md-12 {
     padding: 10px 0px 75px 0px;
+}
+
+.my_buses_show {
+    background: #f8f8f8;
+    border-style: inset;
+    padding-bottom: 25px !important;
+    padding-block-start: 20px !important;
 }
