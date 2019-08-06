@@ -27,7 +27,7 @@
 /*-------------------- Search Button --------------------*/
 .col-md-4 {
     width: 33.33333333%;
-    padding: 25px 0px 0px 25px !important;
+        padding: 10px 0px 20px 30px !important;
 }
 
 .block {
@@ -42,7 +42,7 @@
   border-right-style: ridge;
   border-bottom-style: ridge;
   border-left-style: double;*/
-      box-shadow: 20px 20px 20px 0px #616161;
+  box-shadow: 20px 20px 20px 0px #616161;
 }
 
 .row-md-12 {
@@ -50,10 +50,10 @@
 }
 
 .my_buses_show:hover {
-    background: #f8f8f8;
-    border-style: inset;
+    background: #d3d3d3;
+    /*border-style: inset;
     padding-bottom: 25px !important;
-    padding-block-start: 20px !important;
+    padding-block-start: 20px !important;*/
     box-shadow: inset -5px -4px 9px 0px gray;
 }
 .row{
