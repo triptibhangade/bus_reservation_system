@@ -9,12 +9,12 @@ class ApplicationController < ActionController::Base
   end
   
   # ------------------------------ Required Sign Out ------------------------
-  # def required_signout
-  #   if current_user
-  #     flash[:error] = "Please Sign out Properly"
-  #     redirect_to root_path
-  #   end
-  # end
+  def required_signout
+    if current_user
+      flash[:error] = "Please Sign out Properly"
+      redirect_to root_path
+    end
+  end
 
   def seat_full(bus, reservation)
     seat_count = 0

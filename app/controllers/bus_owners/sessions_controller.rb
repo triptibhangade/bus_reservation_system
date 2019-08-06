@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class BusOwners::SessionsController < Devise::SessionsController
+  before_action :required_signout, only:[:new, :create]
+  before_action :required_signin, only:[:destroy]
+  
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
