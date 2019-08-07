@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_112216) do
+ActiveRecord::Schema.define(version: 2019_08_07_082246) do
 
   create_table "bus_owners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,7 +37,20 @@ ActiveRecord::Schema.define(version: 2019_07_31_112216) do
     t.datetime "updated_at", null: false
     t.string "source"
     t.string "destination"
+    t.string "slug"
     t.index ["bus_owner_id"], name: "index_buses_on_bus_owner_id"
+    t.index ["slug"], name: "index_buses_on_slug", unique: true
+  end
+
+  create_table "friendly_id_slugs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, length: { slug: 70, scope: 70 }
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", length: { slug: 140 }
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -49,6 +62,14 @@ ActiveRecord::Schema.define(version: 2019_07_31_112216) do
     t.datetime "updated_at", null: false
     t.integer "seat"
     t.index ["bus_id"], name: "index_reservations_on_bus_id"
+  end
+
+  create_table "seats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "seat_no"
+    t.bigint "reservation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_seats_on_reservation_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -67,4 +88,5 @@ ActiveRecord::Schema.define(version: 2019_07_31_112216) do
 
   add_foreign_key "buses", "bus_owners"
   add_foreign_key "reservations", "buses"
+  add_foreign_key "seats", "reservations"
 end

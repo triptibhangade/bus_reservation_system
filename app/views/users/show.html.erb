@@ -23,9 +23,9 @@
     <% @user.reservations.each do |reservation| %>
       <div class="col-md-4 my_buses_show">
         Bus : <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a><br>
+        Route : <%= reservation.bus.source %> - <%= reservation.bus.destination %><br>
         Reservation : <%=reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>
         Seats : <%=reservation.seat %> Seats <br><br>
-        <%#= link_to 'Edit Reservation', edit_bus_reservation_path(reservation.bus.id, reservation.id), :class => 'btn btn-xs btn-default' %>
         <%= link_to 'Cancel Reservation',
                     bus_reservation_path(reservation.user_id, reservation.id),
                     :method => :delete, 
