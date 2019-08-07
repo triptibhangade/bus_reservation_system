@@ -24,3 +24,10 @@
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
     line-height: 15px;
     }
+.seat {
+	padding: 0px 0px 15px 10px;
+}
+.col-lg-4.col {
+    border-style: ridge;
+    padding: 11px 8px 0px 0px;
+}

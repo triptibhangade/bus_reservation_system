@@ -31,7 +31,7 @@
 <div class="row">
   <% @my_buses.each do |bus| %>
   <div class="col-md-4 my_buses_show">
-    Bus Name : <a href="buses/<%=bus.id%>"><%= bus.name %></a> <br><br>
+    Bus Name : <a href="buses/<%=bus.id%>"><%= bus.name %></a> <br>
     Route : <%= bus.source %> - <%= bus.destination %> <br><br>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                   edit_bus_path(bus), :class => 'btn btn-xs btn-default' %>
