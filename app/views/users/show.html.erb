@@ -9,39 +9,30 @@
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @user.email %></dd>
 </dl>
-<hr>
-  <!-- -------------------- Customer Reservations -------------------- -->
-  <% if !@user.reservations.blank? %>
-    <h3> My Reservations</h3>
-    <table class="table">
-      <tr>
-        <th>Date</th>
-        <th>Bus Name</th>
-        <th>Reservation Date</th>
-        <th>Seats</th>
-        <th>Action</th>
-      </tr>
-      <% @user.reservations.each do |reservation| %>
-      <tr>
-        <td><%= date_of_booking(reservation) %></td>
-        <td><a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a></td>
-        <td><%=reservation_date(reservation)%> ( <%=reservation_day(reservation) %> )</td>
-        <td><%=reservation.seat %> Seats</td>
-        <td><%= link_to 'Cancel Reservation',
-                      bus_reservation_path(reservation.user_id, reservation.id),
-                      :method => :delete, 
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  <%end%>
-
-<hr>
 <!-- -------------------- Buttons -------------------- -->
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              buses_path, :class => 'btn btn-default'  %>
+              buses_path, :class => 'btn btn-xs btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-               profile_edit_path, :class => 'btn btn-default' %>
-<%= link_to "Deactivate My Account", registration_path(@user), :class => 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
+               profile_edit_path, :class => 'btn btn-xs btn-default' %>
+<%= link_to "Deactivate My Account", registration_path(@user), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
+<hr>
+<!-- -------------------- Customer Reservations -------------------- -->
+<% if !@user.reservations.blank? %>
+  <h3>My Reservations</h3>
+  <div class="row">
+    <% @user.reservations.each do |reservation| %>
+      <div class="col-md-4 my_buses_show">
+        Bus : <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a><br>
+        Reservation : <%=reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>
+        Seats : <%=reservation.seat %> Seats <br><br>
+        <%= link_to 'Edit Reservation', edit_bus_reservation_path(reservation.bus.id, reservation), :class => 'btn btn-xs btn-default' %>
+        <%= link_to 'Cancel Reservation',
+                    bus_reservation_path(reservation.user_id, reservation.id),
+                    :method => :delete, 
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-xs btn-danger' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<hr>
