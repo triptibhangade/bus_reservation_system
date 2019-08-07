@@ -59,3 +59,7 @@
 .row{
       width: 1180px;
 }
+/*-------------------- Bus Count --------------------*/
+.col-md-2.bus_count {
+    padding: 40px 0px 0px 0px;
+}
