@@ -19,7 +19,10 @@
   <div class="form-group">
     <%= f.label :reservation_date, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.date_field :reservation_date, :class => 'form-control' %>
+
+      <%= f.date_field :reservation_date, :class => 'form-control'
+      # ,:value=> f.object.reservation_date
+      %>
     </div>
     <%=f.error_span(:reservation_date) %>
   </div>
@@ -39,7 +42,6 @@
                 buses_path, :class => 'btn btn-default' %>
     </div>
   </div>
-
 <% end %>
 
 <!-- -------------------- Window Time Out 5 Min -------------------- -->

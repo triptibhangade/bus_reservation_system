@@ -27,6 +27,7 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
+      binding.pry
     @reservation = @bus.reservations.new(reservation_params)
     @reservation.user_id = get_user_id
     @reservation.bus_owner_id = get_bus_owner_id
@@ -34,17 +35,25 @@ class ReservationsController < ApplicationController
     if @reservation.seat > seat_full(@bus, @reservation)
       flash[:error] = "Seat Not Available for this particular date, Please choose other date or bus..."
       redirect_to new_bus_reservation_path
+
     elsif @reservation.seat > @bus.total_no_of_seats
       flash[:error] = "We have only #{seat_full(@bus, @reservation)} Seats Available..."
       redirect_to new_bus_reservation_path
-    elsif past_time(@reservation)
-      flash[:error] = "Past date is not accepted"
+
+    elsif past_date
+      flash[:error] = "Past date is not accepted, Please choose another date"
       redirect_to new_bus_reservation_path
+
+    elsif over_fifteen_days
+      flash[:error] = "Please choose date under 15 days"
+      redirect_to new_bus_reservation_path
+
     else
       respond_to do |format|
         if @reservation.save
           format.html { redirect_to buses_path, notice: 'Reservation was successfully created.' }
           format.json { render :show, status: :created, location: @reservation }
+
         else
           format.html { render :new }
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
@@ -109,6 +118,14 @@ class ReservationsController < ApplicationController
       else
         nil
       end
+    end
+    # -------------------- Past Date Reservation --------------------
+    def past_date
+      @reservation.reservation_date < Date.today
+    end
+    # -------------------- Under 15 days Reservation --------------------
+    def over_fifteen_days
+      15.days.from_now < @reservation.reservation_date
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -39,10 +39,6 @@ class ApplicationController < ActionController::Base
     bus.total_no_of_seats - (seat_count - reservation.seat)
   end
 
-  def past_time(reservation)
-    reservation.reservation_date < Date.today
-  end
-
   protected
   # -------------------- Device Params --------------------
   def configure_permitted_parameters
