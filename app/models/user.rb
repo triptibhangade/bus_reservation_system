@@ -10,6 +10,8 @@ class User < ApplicationRecord
   enum role: {admin: "admin", customer: "customer"}
   # -------------------- Associations --------------------
   has_many :reservations
+  has_many :seats,
+            :through => :reservations
   # -------------------- Validations --------------------
   validates :name, presence:true
 end

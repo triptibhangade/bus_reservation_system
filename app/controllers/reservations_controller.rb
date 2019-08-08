@@ -27,7 +27,7 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-      binding.pry
+    fail
     @reservation = @bus.reservations.new(reservation_params)
     @reservation.user_id = get_user_id
     @reservation.bus_owner_id = get_bus_owner_id
@@ -84,6 +84,10 @@ class ReservationsController < ApplicationController
       format.html { redirect_to buses_url, notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def book_seat
+    #binding.pry
   end
 
   private

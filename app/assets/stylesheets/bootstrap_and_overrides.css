@@ -64,8 +64,12 @@
     padding: 40px 0px 0px 0px;
 }
 .my-btn-xs, .btn-group-xs>.btn {
-    padding: 0px 30px;
+    padding: 0px 22px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
+}
+
+.col-md-3.seat {
+    padding: 7px 0px 15px 5px;
 }

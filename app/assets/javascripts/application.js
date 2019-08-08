@@ -10,6 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery_nested_form
+
+//= require jquery
+//= require jquery_nested_form
+
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
