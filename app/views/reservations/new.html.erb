@@ -6,33 +6,15 @@
  -->
 
 <%= nested_form_for [@bus, @reservation] do |reservation| %>
- <!--  <div class="form-group">
-    <%#= reservation.label :reservation_date, :class => 'control-label col-lg-2' %>
+  <div class="form-group">
+    <%= reservation.label :reservation_date, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%#= reservation.date_field :reservation_date, :class => 'form-control'
+      <%= reservation.date_field :reservation_date, :class => 'form-control'
       # ,:value=> f.object.reservation_date
       %>
     </div>
-    <%#= reservation.error_span(:reservation_date) %>
-  </div> -->
-  <div>
-    &nbsp
-    &nbsp
-  </div>
-  <div class="form-group">
-    <%= reservation.label :upper_seat, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= reservation.fields_for :seat do |seat| %>
-        <div class="col-lg-4 col">
-          <% (1..(@bus.total_no_of_seats/2)).each_with_index do |seat,i|%>
-            <div class="col-md-3 seat">
-              <%= link_to i+1, book_seat_path(:seat => "#{seat}"), :class=> 'btn my-btn-xs book_seat btn-primary', :id => i+1 %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+    <%= reservation.error_span(:reservation_date) %>
+  </div> 
   <div>
     &nbsp
     &nbsp
@@ -40,17 +22,34 @@
   <div class="form-group">
     <%= reservation.label :lower_seat, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <!-- ------------------- Nested Form For Seat ------------------- -->
       <%= reservation.fields_for :seat do |seat| %>
         <div class="col-lg-4 col">
           <% (1..(@bus.total_no_of_seats/2)).each_with_index do |seat,i|%>
             <div class="col-md-3 seat">
-              <%= link_to i+1, book_seat_path(:seat => "#{seat}"), :class=> 'book_seat btn my-btn-xs btn-primary', :id => i+1 %>
+              <%= link_to i+1, book_seat_path(:seat => "#{seat}"), :class=> 'btn my-btn-xs book_seat btn-primary', :id => i+1, remote:true %>
             </div>
           <% end %>
         </div>
       <% end %>
-
+    </div>
+  </div>
+  <div>
+    &nbsp
+    &nbsp
+  </div>
+  <div class="form-group">
+    <%= reservation.label :upper_seat, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <!-- ------------------- Nested Form For Seat ------------------- -->
+      <%= reservation.fields_for :seat do |seat| %>
+        <div class="col-lg-4 col"> 
+          <% ((@bus.total_no_of_seats/2)...@bus.total_no_of_seats).each_with_index do |seat,i|%>
+            <div class="col-md-3 seat">
+              <%= link_to i+9, book_seat_path(:seat => "#{seat}"), :class=> 'book_seat btn my-btn-xs btn-primary', :id => i+1 %>
+             </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div>

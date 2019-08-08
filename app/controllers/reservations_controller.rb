@@ -17,7 +17,9 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
+    session[:seat_no] = []
     @reservation = @bus.reservations.new
+    @reservation.build_seat
   end
 
   # GET /reservations/1/edit
@@ -30,28 +32,33 @@ class ReservationsController < ApplicationController
     @reservation = @bus.reservations.new(reservation_params)
     @reservation.user_id = get_user_id
     @reservation.bus_owner_id = get_bus_owner_id
-    # @reservation.reservation_date = params[:format]
 
-    if @reservation.seat > seat_full(@bus, @reservation)
-      flash[:error] = "Seat Not Available for this particular date, Please choose other date or bus..."
-      redirect_to new_bus_reservation_path
+    session[:seat_no].each do |seat|
+       @reservation.seats.build(seat_no: seat.to_i)
+    end
 
-    elsif @reservation.seat > @bus.total_no_of_seats
-      flash[:error] = "We have only #{seat_full(@bus, @reservation)} Seats Available..."
-      redirect_to new_bus_reservation_path
+    @reservation.seat = session[:seat_no].count
 
-    elsif past_date
-      flash[:error] = "Past date is not accepted, Please choose another date"
-      redirect_to new_bus_reservation_path
+    # if @reservation.seat > seat_full(@bus, @reservation)
+    #   flash[:error] = "Seat Not Available for this particular date, Please choose other date or bus..."
+    #   redirect_to new_bus_reservation_path
 
-    elsif over_fifteen_days
-      flash[:error] = "Please choose date under 15 days"
-      redirect_to new_bus_reservation_path
+    # # elsif @reservation.seat > @bus.total_no_of_seats
+    # #   flash[:error] = "We have only #{seat_full(@bus, @reservation)} Seats Available..."
+    # #   redirect_to new_bus_reservation_path
 
-    else
+    # elsif past_date
+    #   flash[:error] = "Past date is not accepted, Please choose another date"
+    #   redirect_to new_bus_reservation_path
+
+    # elsif over_fifteen_days
+    #   flash[:error] = "Please choose date under 15 days"
+    #   redirect_to new_bus_reservation_path
+
+    # else
       respond_to do |format|
         if @reservation.save
-          format.html { redirect_to buses_path, notice: 'Reservation was successfully created.' }
+          format.html { redirect_to root_path, notice: "Seat book successfully in #{@bus.name} with #{@reservation.seat} Seats..." }
           format.json { render :show, status: :created, location: @reservation }
 
         else
@@ -59,7 +66,8 @@ class ReservationsController < ApplicationController
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
         end
       end
-    end
+    # end
+
   end
 
   # PATCH/PUT /reservations/1
@@ -87,9 +95,7 @@ class ReservationsController < ApplicationController
   end
 
   def book_seat
-    seat = params[:seat]
-    # binding.pry
-    # seats.push(seat)
+    seat = session[:seat_no].push(params[:seat])
   end
 
   private
