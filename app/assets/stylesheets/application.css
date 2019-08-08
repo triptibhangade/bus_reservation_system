@@ -31,3 +31,6 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
     border-style: ridge;
     padding: 11px 0px 0px 0px;
 }
+.no_result_found {
+    padding: 0px 0px 0px 245px;
+}

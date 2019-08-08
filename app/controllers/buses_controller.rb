@@ -5,9 +5,10 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    if !params[:source_search].blank? || !params[:destination_search].blank?
+    if check_search_params
       buses
     else
+      flash[:error] = "Please fill proper details for search..."
       redirect_to root_path
     end
   end
@@ -64,6 +65,10 @@ class BusesController < ApplicationController
       format.html { redirect_to buses_url, notice: 'Bus was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def check_search_params
+    !params[:source_search].blank? && !params[:destination_search].blank? && !params[:date_search].blank?
   end
 
   private

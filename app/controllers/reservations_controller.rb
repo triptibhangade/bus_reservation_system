@@ -27,10 +27,10 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-
     @reservation = @bus.reservations.new(reservation_params)
     @reservation.user_id = get_user_id
     @reservation.bus_owner_id = get_bus_owner_id
+    # @reservation.reservation_date = params[:format]
 
     if @reservation.seat > seat_full(@bus, @reservation)
       flash[:error] = "Seat Not Available for this particular date, Please choose other date or bus..."

@@ -1,59 +1,69 @@
 <%- model_class = Bus -%>
+<%= link_to "back", root_path, :class => 'btn btn-xs btn-default'%>
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-md-8">
     <h1>
       <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
     </h1>
-  </div>
+  </div>  
   <!-- -------------------- Searched Buses Count -------------------- -->
   <div class="col-md-2 bus_count">
-    <%= @buses.count %> Buses found
+    <b> <%= @buses.count %> Buses found </b>
+  </div>
+  <!-- -------------------- Searched Buses for date -------------------- -->
+  <div class="col-md-2 bus_count">
+    <b>Reservation for : <%= params[:date_search]%> </b>
   </div>
 </div>
-
 <!-- -------------------- Bus List -------------------- -->
-<% @buses.each do |bus| %>
-  <div class="row block">
-    <div class="row-md-12 row">
-      <div class="col-md-4">
-        <%= bus.name %>
+<% if !@buses.blank? %>
+  <% @buses.each do |bus| %>
+    <div class="row block">
+      <div class="row-md-12 row">
+        <div class="col-md-4">
+          <%= bus.name %>
+        </div>
+        <div class="col-md-4">
+         <%= bus.source %> - <%= bus.destination %>
+        </div>
+        <div class="col-md-4">
+          Available seats : <%= seat_count(bus) %>
+        </div>
       </div>
-      <div class="col-md-4">
-       <%= bus.source %> - <%= bus.destination %>
-      </div>
-      <div class="col-md-4">
-        Available seats : <%= seat_count(bus) %>
+      <div class="row-md-4 row">
+        <div class="col-md-8 animation">
+          Water Bottle |
+          Blankets |
+          Pillow |
+          Charging Point |
+          Movie |
+          Emergency Contact Number |
+          Reading Light
+        </div>
+        <div class="col-md-2">
+          <!-- -------------------- Only For Bus Owner -------------------- -->
+          <% if current_bus_owner %>
+            <% if current_bus_owner.id == bus.bus_owner_id %>
+              <%= link_to "Show Reservations" ,
+                            bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
+            <% else %>
+              <%= link_to "Show Reservations" ,
+                            bus_path(bus), :class => 'btn btn-default btn-xs disabled'  %>
+            <% end %>  
+          <% end %>     
+        </div>
+        <div class="col-md-2">
+          <% if !seat_count(bus).zero? %>
+            <%= link_to 'Book Seat',new_bus_reservation_path(bus, params[:date_search]),
+                                     :class => 'btn btn-default btn-xs' %>
+          <% end %>
+        </div>
       </div>
     </div>
-    <div class="row-md-4 row">
-      <div class="col-md-8 animation">
-        Water Bottle |
-        Blankets |
-        Pillow |
-        Charging Point |
-        Movie |
-        Emergency Contact Number |
-        Reading Light
-      </div>
-      <div class="col-md-2">
-        <!-- -------------------- Only For Bus Owner -------------------- -->
-        <% if current_bus_owner %>
-          <% if current_bus_owner.id == bus.bus_owner_id %>
-            <%= link_to "Show Reservations" ,
-                          bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
-          <% else %>
-            <%= link_to "Show Reservations" ,
-                          bus_path(bus), :class => 'btn btn-default btn-xs disabled'  %>
-          <% end %>  
-        <% end %>     
-      </div>
-      <div class="col-md-2">
-        <% if !seat_count(bus).zero? %>
-          <%= link_to 'Book Seat',new_bus_reservation_path(bus),
-                                   :class => 'btn btn-default btn-xs' %>
-        <% end %>
-      </div>
-    </div>
+  <% end %>
+<% else %>
+  <div class="no_result_found">
+    <h1> <%= image_tag("no_result_found.jpeg")%> </h1>
   </div>
 <% end %>
 

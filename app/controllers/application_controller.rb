@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-
+  # -------------------- Available Seat By Date --------------------
   def seat_count(bus)
     seat_count = 0
     bus.reservations.each do |reservation|
@@ -52,11 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def buses
-    if !params[:source_search].blank? || !params[:destination_search].blank?
-      @buses = Bus.search(params[:source_search], params[:destination_search])
-    else
-      redirect_to root_path
-    end
+    @buses = Bus.search(params[:source_search], params[:destination_search])
   end
 
 
