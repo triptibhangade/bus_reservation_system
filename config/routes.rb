@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'search' => "buses#index"
 
   get 'book_seat' => "reservations#book_seat"
+  
   resources :buses do
     resources :reservations do
       resources :seats

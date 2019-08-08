@@ -27,7 +27,7 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-    fail
+
     @reservation = @bus.reservations.new(reservation_params)
     @reservation.user_id = get_user_id
     @reservation.bus_owner_id = get_bus_owner_id
@@ -87,7 +87,9 @@ class ReservationsController < ApplicationController
   end
 
   def book_seat
-    #binding.pry
+    seat = params[:seat]
+    binding.pry
+    seats.push(seat)
   end
 
   private
