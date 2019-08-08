@@ -31,6 +31,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def seat_count(bus)
+    seat_count = 0
+    bus.reservations.each do |reservation|
+      if reservation.reservation_date.strftime("%Y-%m-%d") == params[:date_search]
+        seat_count = seat_count + reservation.seat 
+      end
+    end
+    bus.total_no_of_seats - seat_count
+  end
+
+  helper_method :seat_count
+
   def seat_full(bus, reservation)
     seat_count = 0
     bus.reservations.each do |reservation|
@@ -38,6 +50,16 @@ class ApplicationController < ActionController::Base
     end
     bus.total_no_of_seats - (seat_count - reservation.seat)
   end
+
+  def buses
+    if !params[:source_search].blank? || !params[:destination_search].blank?
+      @buses = Bus.search(params[:source_search], params[:destination_search])
+    else
+      redirect_to root_path
+    end
+  end
+
+
 
   protected
   # -------------------- Device Params --------------------
