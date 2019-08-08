@@ -88,8 +88,8 @@ class ReservationsController < ApplicationController
 
   def book_seat
     seat = params[:seat]
-    binding.pry
-    seats.push(seat)
+    # binding.pry
+    # seats.push(seat)
   end
 
   private
