@@ -25,7 +25,13 @@
         Bus : <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a><br>
         Route : <%= reservation.bus.source %> - <%= reservation.bus.destination %><br>
         Reservation : <%=reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>
-        Seats : <%=reservation.seat %> Seats <br><br>
+        Seats :
+
+                <% reservation.seats.each do |seat| %>
+                <%= link_to seat.seat_no, root_path,:class=> 'btn my-btn-xs btn-primary disabled' %>
+                <% end %>
+
+        <br><br>
         <%= link_to 'Cancel Reservation',
                     bus_reservation_path(reservation.user_id, reservation.id),
                     :method => :delete, 
