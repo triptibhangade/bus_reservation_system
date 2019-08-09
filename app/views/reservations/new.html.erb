@@ -5,7 +5,7 @@
 <%#= render :partial => 'form' %>
  -->
 
-<%= nested_form_for [@bus, @reservation] do |reservation| %>
+<%= nested_form_for [@bus, @reservation], html: {bus_id: @bus.id } do |reservation|  %>
   <div class="form-group">
     <%= reservation.label :reservation_date, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -19,8 +19,7 @@
     &nbsp
     &nbsp
   </div>
-  <%= reservation.fields_for :seat do |seat| %>
-    <div class="row center">
+    <div class="row center ">
       <div class="row-md-8">
         <div class="col-md-6">
           <b> Lower </b>
@@ -29,27 +28,26 @@
           <b> Upper </b>
         </div>
       </div>
-      <div class="row-md-8">
-        <% (1..4).each_with_index do |seat,i| %>
-          <div class="col-md-3 seat">
-            <%# binding.pry%>
-            <% if check_seat_booked(@bus, i+1) %>
-                <%= link_to i+1, book_seat_path(:seat => "#{seat}"), :class=> 'btn my-btn-xs book_seat btn-danger disabled', :id => i+1, remote:true %>
-            <% else %>
-              <%= link_to i+1, book_seat_path(:seat => "#{seat}"), :class=> 'btn my-btn-xs book_seat btn-primary', :id => i+1, remote:true %>
-            <% end %>
-          </div>
+      <div class="row-md-8 show_seat">
+        <% if :reservation_date %>
+          <% (1..(@bus.total_no_of_seats)).each_with_index do |seat,i| %>
+            <div class="col-md-3 seat">
+              <%# if check_seat_booked?(@bus,i+1) %>
+                  <%#= link_to i+1, book_seat_path(:seat => "#{seat}"), :class=> 'btn my-btn-xs book_seat btn-danger disabled', :id => i+1, remote:true %>
+              <%# else %>
+                <%= link_to i+1, book_seat_path(seat: "#{seat}"), class: 'btn my-btn-xs book_seat btn-primary', id: i+1, remote:true, disable: false %>
+              <%# end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
-  <% end %>
 
-  <div>
+  <!-- <div>
     &nbsp
     &nbsp
-    &nbsp
-    &nbsp
-  </div>
+  </div> -->
+
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= reservation.submit nil, :class => 'btn btn-xs btn-primary'%>

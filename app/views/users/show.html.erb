@@ -11,7 +11,7 @@
 </dl>
 <!-- -------------------- Buttons -------------------- -->
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              buses_path, :class => 'btn btn-xs btn-default'  %>
+              root_path, :class => 'btn btn-xs btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
                profile_edit_path, :class => 'btn btn-xs btn-default' %>
 <%= link_to "Deactivate My Account", registration_path(@user), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>

@@ -19,7 +19,6 @@ class ReservationsController < ApplicationController
   def new
     session[:seat_no] = []
     @reservation = @bus.reservations.new
-    @reservation.build_seat
   end
 
   # GET /reservations/1/edit
@@ -51,11 +50,11 @@ class ReservationsController < ApplicationController
     #   flash[:error] = "Past date is not accepted, Please choose another date"
     #   redirect_to new_bus_reservation_path
 
-    # elsif over_fifteen_days
-    #   flash[:error] = "Please choose date under 15 days"
-    #   redirect_to new_bus_reservation_path
+    if over_fifteen_days
+      flash[:error] = "Please choose date under 15 days"
+      redirect_to new_bus_reservation_path
 
-    # else
+    else
       respond_to do |format|
         if @reservation.save
           format.html { redirect_to root_path, notice: "Seat book successfully in #{@bus.name} with #{@reservation.seat} Seats..." }
@@ -66,7 +65,7 @@ class ReservationsController < ApplicationController
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
         end
       end
-    # end
+    end
 
   end
 
@@ -95,7 +94,11 @@ class ReservationsController < ApplicationController
   end
 
   def book_seat
-    seat = session[:seat_no].push(params[:seat])
+    if session[:seat_no].include?(params[:seat])
+      seat = session[:seat_no].delete(params[:seat])
+    else  
+      seat = session[:seat_no].push(params[:seat])
+    end
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_095054) do
+ActiveRecord::Schema.define(version: 2019_08_09_060051) do
 
   create_table "bus_owners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2019_08_08_095054) do
     t.bigint "reservation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "reserved", default: false
     t.index ["reservation_id"], name: "index_seats_on_reservation_id"
   end
 
