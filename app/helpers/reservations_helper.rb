@@ -9,4 +9,10 @@ module ReservationsHelper
       bus_owner.name
     end
   end
+  # -------------------- Check Seat Booked Or Not --------------------
+  def check_seat_booked(bus, i)
+    bus.reservations.each do |reservation|
+      reservation.seats.pluck(:seat_no).include?(i)
+    end
+  end
 end
