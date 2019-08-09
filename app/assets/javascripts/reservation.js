@@ -1,5 +1,5 @@
 // --------------------------------- Book Seat --------------------------------
-$(document).ready(function(){
+$( document ).on('turbolinks:load', function() {
   book_seat();
   show_seat();
 })
@@ -23,6 +23,7 @@ book_seat = function(){
 }
 
 // --------------------------------- Datewise Seat --------------------------------
+
   show_seat = function(){
     $(".show_seat").hide();
     $(document).on('change', '#reservation_reservation_date', function(){ 
