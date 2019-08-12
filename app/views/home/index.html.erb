@@ -2,12 +2,5 @@
   <h1 class="center">
     Bus Resevation System
   </h1>
-  <%= form_tag search_path(@busses), :method => 'get' do %>
-      <p class="center">
-        <b>From : </b><%= text_field_tag :source_search, params[:source_search], placeholder:"From" %> 
-        <b>TO : </b><%= text_field_tag :destination_search, params[:destination_search], placeholder:"To" %> 
-        <b>Date : </b><%= date_field_tag :date_search, params[:date_search], {:min=> Date.today} %> 
-        <%= submit_tag "Search" %>
-      </p>
-  <% end %>
+<%= link_to "Next", buses_path %>
 </div>

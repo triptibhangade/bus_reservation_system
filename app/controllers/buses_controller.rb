@@ -8,8 +8,7 @@ class BusesController < ApplicationController
     if check_search_params
       buses
     else
-      flash[:error] = "Please fill proper details for search..."
-      redirect_to root_path
+      @buses = Bus.all
     end
   end
 
