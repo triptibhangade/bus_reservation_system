@@ -27,7 +27,6 @@ book_seat = function(){
   show_seat = function(){
     $(".show_seat").hide();
     $(document).on('change', '#reservation_reservation_date', function(){ 
-      $(".show_seat").show();
       var date = this.value;
       var bus_id = $("#new_reservation").attr('bus_id');
       var params = {
@@ -38,16 +37,7 @@ book_seat = function(){
       $.ajax({
         method: "GET",
         url: "/buses/"+bus_id+"/reservations/new",
-        type: "script",
-        data: params,
-
-        success: function(){
-
-        },
-        error: function(){
-        },
-        complete: function(){
-        }
+        data: params
       });
     });
   }

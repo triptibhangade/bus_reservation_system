@@ -1,0 +1,20 @@
+<div class="row-md-8">
+  <div class="col-md-6">
+    <b> Lower </b>
+  </div>
+  <div class="col-md-6">
+    <b> Upper </b>
+  </div>
+</div>
+
+<div class="row-md-8">
+    <% (1..(@bus.total_no_of_seats)).each_with_index do |seat| %>
+      <div class="col-md-3 seat">
+        <% if date_wise_seat_booked?(params[:date], seat) %>
+          <%= link_to seat, book_seat_path(seat: "#{seat}"), class: 'btn my-btn-xs book_seat btn-danger disabled', :id => seat, remote:true %>
+        <% else %>
+          <%= link_to seat, book_seat_path(seat: "#{seat}"), class: 'btn my-btn-xs book_seat btn-primary', id: seat, remote:true, disable: false %>
+        <% end %>
+      </div>
+    <% end %>
+</div>

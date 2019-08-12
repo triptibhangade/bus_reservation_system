@@ -19,6 +19,10 @@ class ReservationsController < ApplicationController
   def new
     session[:seat_no] = []
     @reservation = @bus.reservations.new
+    respond_to do |format|
+      format.js {}
+      format.html {}
+    end
   end
 
   # GET /reservations/1/edit
