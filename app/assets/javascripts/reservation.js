@@ -42,10 +42,9 @@ book_seat = function(){
         data: params,
 
         success: function(){
-          alert('ajax request')
+
         },
         error: function(){
-          alert('error')
         },
         complete: function(){
         }
