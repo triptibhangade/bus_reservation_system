@@ -34,6 +34,7 @@ book_seat = function(){
         bus_id: bus_id,
         date: date
       };
+
       $.ajax({
         method: "GET",
         url: "/buses/"+bus_id+"/reservations/new",
@@ -41,8 +42,10 @@ book_seat = function(){
         data: params,
 
         success: function(){
+          alert('ajax request')
         },
         error: function(){
+          alert('error')
         },
         complete: function(){
         }

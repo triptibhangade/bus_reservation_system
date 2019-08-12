@@ -55,8 +55,6 @@ class ApplicationController < ActionController::Base
     @buses = Bus.search(params[:source_search], params[:destination_search])
   end
 
-
-
   protected
   # -------------------- Device Params --------------------
   def configure_permitted_parameters

@@ -19,7 +19,6 @@ class ReservationsController < ApplicationController
   def new
     session[:seat_no] = []
     @reservation = @bus.reservations.new
-    
   end
 
   # GET /reservations/1/edit
@@ -34,7 +33,7 @@ class ReservationsController < ApplicationController
     @reservation.bus_owner_id = get_bus_owner_id
 
     session[:seat_no].each do |seat|
-       @reservation.seats.build(seat_no: seat.to_i)
+       @reservation.seats.build(seat_no: seat.to_i, reserved: true)
     end
 
     @reservation.seat = session[:seat_no].count
