@@ -46,9 +46,9 @@ class ReservationsController < ApplicationController
     #   flash[:error] = "Seat Not Available for this particular date, Please choose other date or bus..."
     #   redirect_to new_bus_reservation_path
 
-    # # elsif @reservation.seat > @bus.total_no_of_seats
-    # #   flash[:error] = "We have only #{seat_full(@bus, @reservation)} Seats Available..."
-    # #   redirect_to new_bus_reservation_path
+    # elsif @reservation.seat > @bus.total_no_of_seats
+    #   flash[:error] = "We have only #{seat_full(@bus, @reservation)} Seats Available..."
+    #   redirect_to new_bus_reservation_path
 
     # elsif past_date
     #   flash[:error] = "Past date is not accepted, Please choose another date"
