@@ -5,10 +5,10 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    if check_search_params
-      buses
-    else
-      @buses = Bus.all
+    buses
+    respond_to do |format|
+      format.js {}
+      format.html {}
     end
   end
 
