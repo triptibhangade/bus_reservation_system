@@ -12,7 +12,7 @@
 }
 
 .btn-danger:hover, .btn-danger:focus, .btn-danger.focus, .btn-danger:active, .btn-danger.active, .open>.dropdown-toggle.btn-danger {
-    color: #000 !important;
+    color: #fff !important;
 }
 /*-------------------- Primary Button --------------------*/
 .btn-primary {
