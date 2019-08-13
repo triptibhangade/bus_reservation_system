@@ -49,7 +49,7 @@
 <% if !@bus_owner.reservations.blank? %>
   <h3>My Reservations</h3>
   <div class="row">
-    <% @bus_owner.reservations.each do |reservation| %>
+    <% for reservation in (@bus_owner.reservations).to_a.reverse %>
       <div class="col-md-4 my_buses_show">
         Bus : <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a> <br>
         Reservation : <%= reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>

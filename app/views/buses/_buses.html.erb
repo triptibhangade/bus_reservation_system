@@ -12,9 +12,9 @@
     </div>
   <% end %>
   <!-- -------------------- Searched Buses Count -------------------- -->
-  <!-- <div class="col-md-2 bus_count">
-    <b> <%#= @buses.count %> Buses found </b>
-  </div> -->
+  <div class="col-md-2 bus_count">
+    <b> <%= @buses.count %> Buses found </b>
+  </div>
   
 </div>
 <!-- -------------------- Bus List -------------------- -->
@@ -29,7 +29,9 @@
          <%= bus.source %> - <%= bus.destination %>
         </div>
         <div class="col-md-4">
-          Available seats : <%= seat_count(bus) %>
+          <% if !available_seat(bus).zero? %>
+            Available seats : <%= available_seat(bus) %>
+          <% end %>
         </div>
       </div>
       <div class="row-md-4 row">
@@ -55,9 +57,12 @@
           <% end %>     
         </div>
         <div class="col-md-2">
-          <% if !seat_count(bus).zero? %>
+          <% if !available_seat(bus).zero? %>
             <%= link_to 'Book Seat',new_bus_reservation_path(bus),
                                      :class => 'btn btn-default btn-xs' %>
+          <% else %>
+            <%= link_to 'Seat Not Availavle',new_bus_reservation_path(bus),
+                                     :class => 'btn btn-default btn-xs disabled' %>
           <% end %>
         </div>
       </div>

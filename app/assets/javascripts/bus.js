@@ -9,7 +9,6 @@ buses = function(){
     var params = {
       date: date
     };
-    debugger
     $.ajax({
       method: "GET",
       url: "/buses",

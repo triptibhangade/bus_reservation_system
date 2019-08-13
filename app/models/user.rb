@@ -14,4 +14,5 @@ class User < ApplicationRecord
             :through => :reservations
   # -------------------- Validations --------------------
   validates :name, presence:true
+
 end

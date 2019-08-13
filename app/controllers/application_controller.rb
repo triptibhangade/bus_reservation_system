@@ -31,25 +31,25 @@ class ApplicationController < ActionController::Base
     end
   end
   # -------------------- Available Seat By Date --------------------
-  def seat_count(bus)
-    seat_count = 0
+  def available_seat(bus)
+    available_seat_count = 0
     bus.reservations.each do |reservation|
-      if reservation.reservation_date.strftime("%Y-%m-%d") == params[:date_search]
-        seat_count = seat_count + reservation.seat 
+      if reservation.reservation_date.strftime("%Y-%m-%d") == params[:date]
+        available_seat_count = available_seat_count + reservation.seat 
       end
     end
-    bus.total_no_of_seats - seat_count
+    bus.total_no_of_seats - available_seat_count
   end
 
-  helper_method :seat_count
+  helper_method :available_seat
 
-  def seat_full(bus, reservation)
-    seat_count = 0
-    bus.reservations.each do |reservation|
-      seat_count = seat_count + reservation.seat 
-    end
-    bus.total_no_of_seats - (seat_count - reservation.seat)
-  end
+  # def seat_full(bus, reservation)
+  #   seat_count = 0
+  #   bus.reservations.each do |reservation|
+  #     seat_count = seat_count + reservation.seat 
+  #   end
+  #   bus.total_no_of_seats - (seat_count - reservation.seat)
+  # end
 
   def buses
     @buses = Bus.search(params[:source_search], params[:destination_search])
