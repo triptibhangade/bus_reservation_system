@@ -33,7 +33,7 @@
 
         <br><br>
         <%= link_to 'Cancel Reservation',
-                    bus_reservation_path(reservation.user_id, reservation.id),
+                    bus_reservation_path(reservation.bus_id, reservation),
                     :method => :delete, 
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-xs btn-danger' %>

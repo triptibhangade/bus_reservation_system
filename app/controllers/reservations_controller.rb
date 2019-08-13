@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: [:show, :edit, :update]
+  before_action :find_reservation, only: [:destroy]
   before_action :set_bus, only: [:index, :new, :create]
   # before_action :required_user_signin, only:[:new,:create,:destroy]
   # before_action :required_bus_owner_signin, only:[:new,:create,:destroy]
@@ -115,6 +116,10 @@ class ReservationsController < ApplicationController
         # -------------------- Bus Owner--------------------
         @reservation = Reservation.find_by(bus_owner_id: current_bus_owner.id)
       end
+    end
+
+    def find_reservation
+      @reservation = Reservation.find(params[:id])
     end
 
     def set_bus
