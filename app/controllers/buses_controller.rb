@@ -5,6 +5,7 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
+    # binding.pry
     buses
     respond_to do |format|
       format.js {}
@@ -74,10 +75,6 @@ class BusesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bus
       @bus = Bus.find(params[:id])
-    end
-
-    def set_reservation
-      @reservation = Reservation.find(params[:id])
     end
 
     def bus_reservations

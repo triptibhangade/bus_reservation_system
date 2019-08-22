@@ -19,11 +19,11 @@
         <td>
           <!-- -------------------- Bus Owner Activa/Suspend/Reject Button -------------------- -->
           <% if bus_owner_active?(bus_owner) %>
-            <%= link_to 'Suspend', bus_owner_index_suspend_path(bus_owner) , :class => 'btn btn-xs btn-warning' %>
-            <%= link_to 'Reject', bus_owner_index_suspend_path(bus_owner), :class => 'btn btn-xs btn-danger' %>
+            <%= link_to 'Suspend', suspend_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-warning' %>
+            <%= link_to 'Reject', suspend_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger' %>
           <% else %>
-            <%= link_to 'Active', bus_owner_index_active_path(bus_owner) , :class => 'btn btn-xs btn-primary' %>
-            <%= link_to "Reject", bus_owner_index_suspend_path(bus_owner), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
+            <%= link_to 'Active', active_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-primary' %>
+            <%= link_to "Reject", suspend_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
           <% end %>
         </td>
       </tr>

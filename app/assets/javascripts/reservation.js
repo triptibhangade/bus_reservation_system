@@ -1,6 +1,7 @@
 $( document ).on('turbolinks:load', function() {
   book_seat();
   show_seat();
+  reservation_timer();
 })
 
 // --------------------------------- Book Seat --------------------------------
@@ -38,5 +39,10 @@ show_seat = function(){
       data: params
     });
   });
+}
+
+// --------------------------------- 5 Min Timer for Reservation --------------------------------
+reservation_timer = function(){
+    $('.timer').startTimer();
 }
 // --------------------------------------------------------------------------------------

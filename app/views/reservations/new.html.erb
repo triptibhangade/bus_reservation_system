@@ -1,3 +1,11 @@
+<%- model_class = Reservation -%>
+<div class="row">
+  <div class="col-md-6">
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  </div>  
+    <h1 class='timer' data-minutes-left= 5></h1>
+</div>
+
 <%= nested_form_for [@bus, @reservation], html: {bus_id: @bus.id } do |reservation|  %>
   <div class="form-group">
     <%= reservation.label :reservation_date, :class => 'control-label col-lg-2' %>
@@ -17,8 +25,6 @@
     <%= render 'reserve_seats' %>
   </div>
 
-  <%#= available_seat(bus) %>
-
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= reservation.submit nil, :class => 'btn btn-xs btn-primary'%>
@@ -28,7 +34,13 @@
   </div>
 <% end %>
 
-<!-- -------------------- Window Time Out 5 Min -------------------- -->
+
 <script type="text/javascript">
+
+  // -------------------- Window Time Out 5 Min --------------------
   setTimeout(function(){ window.location = "/" }, 300000);
+
+  // -------------------- 5 Min Timer for Reservation --------------------
+  // $('.timer').startTimer();
+  
 </script>

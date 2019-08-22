@@ -1,4 +1,4 @@
-/*
+/*indore
   =require twitter-bootstrap-static/bootstrap
 
   Static version of css will use Glyphicons sprites by default
@@ -75,4 +75,7 @@
 }
 .row-md-8 {
     padding: 0px 141px 0px 98px;
+}
+.col-md-6.bus_count {
+    padding: 40px 0px 0px 440px;
 }

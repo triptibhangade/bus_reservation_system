@@ -3,8 +3,17 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "buses#index"
   get 'search' => "buses#index"
-
   get 'book_seat' => "reservations#book_seat"
+
+  namespace :admin do
+    resources :bus_owner do
+      member do
+        get 'active'
+        get 'suspend'
+        delete 'reject'
+      end
+    end
+  end
   
   resources :buses do
     resources :reservations do
@@ -26,10 +35,7 @@ Rails.application.routes.draw do
     get 'bus_owner_profile_edit', to: 'bus_owners/registrations#edit'
     get 'bus_owner_profile', to: 'bus_owners#show'
     get 'bus_owner_index', to: 'bus_owners#index'
-    get 'bus_owner_index_active', to: 'bus_owners#active'
-    get 'bus_owner_index_suspend', to: 'bus_owners#suspend'
-    delete 'bus_owner_index_reject', to: 'bus_owners#reject'
-    delete 'bus_owner_profile_deactivate', to: 'users#destroy'
+    delete 'bus_owner_profile_deactivate', to: 'bus_owners#destroy'
   end
 
   devise_for :bus_owners

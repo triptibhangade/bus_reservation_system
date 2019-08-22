@@ -1,24 +1,36 @@
 <%- model_class = Bus -%>
-<div class="row">
-  <div class="col-md-8">
-    <h1>
-      <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
-    </h1>
-  </div>  
-  <% if !params[:date_search].nil? %>
-  <!-- -------------------- Searched Buses for date -------------------- -->
-    <div class="col-md-2 bus_count">
-      <b>Reservation for : <%= params[:date_search]%> </b>
-    </div>
-  <% end %>
-  <!-- -------------------- Searched Buses Count -------------------- -->
-  <div class="col-md-2 bus_count">
-    <b> <%= @buses.count %> Buses found </b>
-  </div>
-  
-</div>
-<!-- -------------------- Bus List -------------------- -->
 <% if !@buses.blank? %>
+  <div class="row">
+    <% if !params[:date_search].nil? %>
+      <!-- -------------------- Bus Heading -------------------- -->
+      <div class="col-md-8">
+        <h1>
+          <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
+        </h1>
+      </div>   
+    <!-- -------------------- Searched Buses for date -------------------- -->
+      <div class="col-md-2 bus_count">
+        <b>Reservation for : <%= params[:date_search]%> </b>
+      </div>
+    <!-- -------------------- Searched Buses Count -------------------- -->
+      <div class="col-md-2 bus_count">
+        <b> <%= @buses.count %> Buses found </b>
+      </div>
+    <% else %>
+      <!-- -------------------- Bus Heading -------------------- -->
+      <div class="col-md-6">
+        <h1>
+          <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
+        </h1>
+      </div> 
+      <!-- -------------------- Searched Buses Count if Date is not given -------------------- -->
+      <div class="col-md-6 bus_count">
+        <b> <%= @buses.count %> Buses found </b>
+      </div>
+    <% end %>
+    
+  </div>
+<!-- -------------------- Bus List if Date is not given -------------------- -->
   <% @buses.each do |bus| %>
     <div class="row block">
       <div class="row-md-12 row">

@@ -2,8 +2,7 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update]
   before_action :find_reservation, only: [:destroy]
   before_action :set_bus, only: [:index, :new, :create]
-  # before_action :required_user_signin, only:[:new,:create,:destroy]
-  # before_action :required_bus_owner_signin, only:[:new,:create,:destroy]
+  before_action :required_signin, only:[:new,:create,:destroy]
 
   # GET /reservations
   # GET /reservations.json
@@ -54,22 +53,23 @@ class ReservationsController < ApplicationController
     # elsif past_date
     #   flash[:error] = "Past date is not accepted, Please choose another date"
     #   redirect_to new_bus_reservation_path
-
     if over_fifteen_days
       flash[:error] = "Please choose date under 15 days"
       redirect_to new_bus_reservation_path
 
-    else
+    elsif !@reservation.seat.zero? && !@reservation.reservation_date.nil?
       respond_to do |format|
         if @reservation.save
           format.html { redirect_to root_path, notice: "Seat book successfully in #{@bus.name} with #{@reservation.seat} Seats..." }
           format.json { render :show, status: :created, location: @reservation }
-
         else
           format.html { render :new }
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
         end
       end
+    else
+      flash[:error] = "Please choose date and seat properly..."
+      redirect_to new_bus_reservation_path
     end
 
   end
@@ -143,13 +143,17 @@ class ReservationsController < ApplicationController
         nil
       end
     end
+    
     # -------------------- Past Date Reservation --------------------
     def past_date
       @reservation.reservation_date < Date.today
     end
+
     # -------------------- Under 15 days Reservation --------------------
     def over_fifteen_days
-      15.days.from_now < @reservation.reservation_date
+      if @reservation.reservation_date
+        15.days.from_now < @reservation.reservation_date
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

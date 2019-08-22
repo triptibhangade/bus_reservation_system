@@ -3,16 +3,19 @@ $( document ).on('turbolinks:load', function() {
 })
 
 buses = function(){
-  $(".buses").hide();
-  $(document).on('change', '#date_search', function(){ 
-    var date = this.value;
+  // $(".buses").hide();
+  $(document).on('change', '#search', function(){ 
+    var date = $("#date_search").val();
+    var source = $("#source_search").val();
+    var destination = $("#destination_search").val();
     var params = {
-      date: date
+      date: date,
+      source: source,
+      destination: destination
     };
     $.ajax({
       method: "GET",
-      url: "/buses",
-      type: 'script',
+      url: "/",
       data: params
     });
   });
