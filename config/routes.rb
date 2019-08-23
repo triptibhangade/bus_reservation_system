@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   namespace :bus_owners do
-    get 'show'
+    get 'profile' => "bus_owners#show"
     resources :buses do
       member do
         get "show"

@@ -64,7 +64,7 @@
                                     method: :delete %>
             <% end %>
             <%= menu_group pull: :right do %>
-              <%= menu_item current_bus_owner.name, bus_owners_show_path %>
+              <%= menu_item current_bus_owner.name, bus_owners_profile_path %>
             <% end %>
 
             <% if current_bus_owner && current_bus_owner.status == "active" %>
