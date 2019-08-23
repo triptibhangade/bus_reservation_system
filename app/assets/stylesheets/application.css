@@ -42,3 +42,11 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
     font-size: 25px;
     padding: 15px 0px 11px 275px;
 }
+/*--------------------------------- Resevation Booking ---------------------------------*/
+p.green_colored {
+    color: green;
+}
+
+p.red_colored {
+    color: red;
+}

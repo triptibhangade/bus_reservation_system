@@ -23,7 +23,7 @@
     <tbody>
       <% @reservations.each do |reservation| %>
         <tr>
-          <td><%= customer_name(reservation) %></td>
+          <td><%= reservation.reservable.name %></td>
           <td><%= reservation.bus.name %></td>
           <td><%= reservation_date(reservation) %> ( <%= reservation_day(reservation) %> )</td>
           <td>
@@ -35,9 +35,9 @@
           <td><%= date_of_booking(reservation) %></td>
           <td>
             <% if reservation.status == true %>
-              booked 
+              <p class="green_colored">Booked</p>
             <% else %>
-              cancelled 
+              <p class="red_colored">Cancelled</p>
             <% end %>
           </td>
         </tr>

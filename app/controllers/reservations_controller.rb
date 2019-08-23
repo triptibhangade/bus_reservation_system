@@ -1,8 +1,7 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update]
-  before_action :find_reservation, only: [:destroy]
   before_action :set_bus, only: [:index, :new, :create]
-  before_action :required_signin, only:[:new,:create,:destroy]
+  before_action :find_reservation, only: [:cancel]
+  before_action :required_signin, only:[:new,:create,:cancel]
 
   # GET /reservations
   # GET /reservations.json
@@ -32,31 +31,16 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-    @reservation = find_customer.reservations.new(reservation_params)
+    @reservation = customer.reservations.new(reservation_params)
     @reservation.bus_id = @bus.id
-    binding.pry
+
     session[:seat_no].each do |seat|
        @reservation.seats.build(seat_no: seat.to_i, reserved: true)
     end
 
     @reservation.seat = session[:seat_no].count
 
-    # if @reservation.seat > seat_full(@bus, @reservation)
-    #   flash[:error] = "Seat Not Available for this particular date, Please choose other date or bus..."
-    #   redirect_to new_bus_reservation_path
-
-    # elsif @reservation.seat > @bus.total_no_of_seats
-    #   flash[:error] = "We have only #{seat_full(@bus, @reservation)} Seats Available..."
-    #   redirect_to new_bus_reservation_path
-
-    # elsif past_date
-    #   flash[:error] = "Past date is not accepted, Please choose another date"
-    #   redirect_to new_bus_reservation_path
-    if over_fifteen_days
-      flash[:error] = "Please choose date under 15 days"
-      redirect_to new_bus_reservation_path
-
-    elsif !@reservation.seat.zero? && !@reservation.reservation_date.nil?
+    if !@reservation.seat.zero? && !@reservation.reservation_date.nil?
       respond_to do |format|
         if @reservation.save
           format.html { redirect_to root_path, notice: "Seat book successfully in #{@bus.name} with #{@reservation.seat} Seats..." }
@@ -90,7 +74,9 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def cancel
+     binding.pry
     @reservation.update(status: false)
+    @reservation.seats.update(reserved: false)
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Reservation was successfully cancelled.' }
       format.json { head :no_content }
@@ -107,42 +93,21 @@ class ReservationsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_reservation
-      if current_user
-        # -------------------- Customer--------------------
-        @reservation = Reservation.find_by(user_id: current_user.id)
-      else
-        # -------------------- Bus Owner--------------------
-        @reservation = Reservation.find_by(bus_owner_id: current_bus_owner.id)
-      end
-    end
-
-    def find_reservation
-      @reservation = Reservation.find(params[:id])
-    end
-
+    # -------------------- Find Bus --------------------
     def set_bus
       @bus = Bus.find(params[:bus_id])
     end
 
-    # -------------------- Customer --------------------
-    def find_customer
+    def find_reservation
+      @reservation = Reservation.find(params[:id]) 
+    end
+
+    # -------------------- Find Customer --------------------
+    def customer
       if current_user
         current_user
       elsif current_bus_owner
         current_bus_owner
-      end
-    end
-    
-    # -------------------- Past Date Reservation --------------------
-    def past_date
-      @reservation.reservation_date < Date.today
-    end
-
-    # -------------------- Under 15 days Reservation --------------------
-    def over_fifteen_days
-      if @reservation.reservation_date
-        15.days.from_now < @reservation.reservation_date
       end
     end
 

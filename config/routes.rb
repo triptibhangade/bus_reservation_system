@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "buses#index"
   get 'search' => "buses#index"
   get 'book_seat' => "reservations#book_seat"
+  get 'cancel_reservation/:id' => "reservations#cancel", as: :cancel_reservation
 
   namespace :admin do
     resources :bus_owners do

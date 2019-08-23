@@ -12,8 +12,8 @@ module ReservationsHelper
   
   # ---------------------- Datewise seat booked or not ----------------------
   def date_wise_seat_booked?(date, seat)
-    seats = Seat.joins(:reservation).where(reservations: {reservation_date: date})
-    seat_nos = seats.map(&:seat_no)
+    seats = @bus.seats.joins(:reservation).where(reservations: {reservation_date: date})
+    seat_nos = seats.where(reserved: true).map(&:seat_no)
     seat_nos.include?(seat)
   end
 

@@ -3,7 +3,7 @@ module BusesHelper
   def available_seat(bus)
     available_seat_count = 0
     bus.reservations.each do |reservation|
-      if reservation.reservation_date.strftime("%Y-%m-%d") == params[:date_search]
+      if reservation.reservation_date.strftime("%Y-%m-%d") == params[:date_search] && reservation.status == true
         available_seat_count = available_seat_count + reservation.seat 
       end
     end
