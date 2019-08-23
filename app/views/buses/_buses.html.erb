@@ -85,9 +85,3 @@
     <h1> <%= image_tag("no_result_found.jpeg")%> </h1>
   </div>
 <% end %>
-
-<% if current_bus_owner && current_bus_owner.status == "active" %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_bus_path,
-              :class => 'btn btn-primary' %>
-<% end %>

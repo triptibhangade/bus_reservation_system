@@ -43,7 +43,7 @@
             <%= menu_group pull: :right do %>
               <%= menu_item current_user.name, profile_path %>
             <% end %>
-
+          
             <% if current_user.role == 'admin'%>
               <%= menu_group pull: :right do %>
                 <%= menu_item "Bus Owner List", admin_bus_owners_path %>
@@ -62,6 +62,12 @@
             <% end %>
             <%= menu_group pull: :right do %>
               <%= menu_item current_bus_owner.name, bus_owner_profile_path %>
+            <% end %>
+
+            <% if current_bus_owner && current_bus_owner.status == "active" %>
+              <%= menu_group pull: :right do %>
+                <%= menu_item 'Add Bus', new_bus_path %>
+              <% end %>
             <% end %>
           </div>
         <!-- -------------------- Sign Out -------------------- -->
