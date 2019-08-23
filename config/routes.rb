@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'cancel_reservation/:id' => "reservations#cancel", as: :cancel_reservation
 
   namespace :admin do
+    get 'customers' => "users#index"
+    get 'profile' => "users#show"
     resources :bus_owners do
       member do
         get 'show'
@@ -18,6 +20,15 @@ Rails.application.routes.draw do
     resources :reservations do
       member do
         get 'cancel'
+      end
+    end
+  end
+
+  namespace :bus_owners do
+    get 'show'
+    resources :buses do
+      member do
+        get "show"
       end
     end
   end
@@ -40,7 +51,7 @@ Rails.application.routes.draw do
     get 'bus_owner_login', to: 'bus_owners/sessions#new'
     get 'bus_owner_signup', to: 'bus_owners/registrations#new'
     get 'bus_owner_profile_edit', to: 'bus_owners/registrations#edit'
-    get 'bus_owner_profile', to: 'bus_owners#show'
+    # get 'bus_owner_profile', to: 'bus_owners#show'
     get 'bus_owner_index', to: 'bus_owners#index'
     delete 'bus_owner_profile_deactivate', to: 'bus_owners#destroy'
   end
