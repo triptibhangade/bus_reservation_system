@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_22_133359) do
+ActiveRecord::Schema.define(version: 2019_08_23_084632) do
 
   create_table "bus_owners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -56,13 +56,14 @@ ActiveRecord::Schema.define(version: 2019_08_22_133359) do
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "reservation_date"
     t.bigint "bus_id"
-    t.integer "user_id"
-    t.integer "bus_owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seat"
     t.boolean "status", default: true
+    t.string "reservable_type"
+    t.bigint "reservable_id"
     t.index ["bus_id"], name: "index_reservations_on_bus_id"
+    t.index ["reservable_type", "reservable_id"], name: "index_reservations_on_reservable_type_and_reservable_id"
   end
 
   create_table "seats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

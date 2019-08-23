@@ -32,7 +32,6 @@ class Admin::BusOwnersController < ApplicationController
   private
   # -------------------- Bus Owner Buses --------------------
   def set_bus_owner
-    binding.pry
     @bus_owner = BusOwner.find(params[:id])
   end
 end

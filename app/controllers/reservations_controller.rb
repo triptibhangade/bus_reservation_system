@@ -32,11 +32,9 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-    @reservation = @bus.reservations.new(reservation_params)
-    @reservation.user_id = get_user_id
-    @reservation.bus_owner_id = get_bus_owner_id
-    @reservation.status = true
-
+    @reservation = find_customer.reservations.new(reservation_params)
+    @reservation.bus_id = @bus.id
+    binding.pry
     session[:seat_no].each do |seat|
        @reservation.seats.build(seat_no: seat.to_i, reserved: true)
     end
@@ -128,20 +126,11 @@ class ReservationsController < ApplicationController
     end
 
     # -------------------- Customer --------------------
-    def get_user_id
+    def find_customer
       if current_user
-        current_user.id
-      else
-        nil
-      end
-    end
-
-    # -------------------- Bus Owner --------------------
-    def get_bus_owner_id
-      if current_bus_owner
-        current_bus_owner.id
-      else
-        nil
+        current_user
+      elsif current_bus_owner
+        current_bus_owner
       end
     end
     
