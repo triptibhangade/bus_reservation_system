@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :bus_owners do
       member do
+        get 'show'
         get 'active'
         get 'suspend'
         delete 'reject'

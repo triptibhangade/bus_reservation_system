@@ -16,7 +16,7 @@
   <tbody>
     <% @bus_owners.each do |bus_owner| %>
       <tr>
-        <td><a href=""><%= bus_owner.name %></a></td>
+        <td><a href="/admin/bus_owners/<%= bus_owner.id %>"><%= bus_owner.name %></a></td>
         <td><%= bus_owner.email %></td>
         <td><%= bus_owner.gst_no %></td>
         <td><%= bus_owner.license %></td>

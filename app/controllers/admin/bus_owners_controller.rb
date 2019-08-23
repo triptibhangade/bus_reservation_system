@@ -1,13 +1,12 @@
 class Admin::BusOwnersController < ApplicationController
-  before_action :my_buses, only: [:show]
-  before_action :set_bus_owner, only:[:active, :suspend, :reject]
+
+  before_action :set_bus_owner, only:[:active, :suspend, :reject, :show]
   
   def index
     @bus_owners = BusOwner.all
   end
 
   def show
-    @bus_owner = current_bus_owner
   end
   # -------------------- Bus Owner Active --------------------
   def active
@@ -32,11 +31,8 @@ class Admin::BusOwnersController < ApplicationController
 
   private
   # -------------------- Bus Owner Buses --------------------
-  def my_buses
-    @my_buses = current_bus_owner.buses
-  end
-
   def set_bus_owner
+    binding.pry
     @bus_owner = BusOwner.find(params[:id])
   end
 end

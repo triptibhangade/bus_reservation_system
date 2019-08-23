@@ -1,0 +1,72 @@
+<%- model_class = BusOwner -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+<!-- -------------------- Bus Owner Deatails -------------------- -->
+<dl class="dl-horizontal">
+  <% binding.pry %>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @bus_owner.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @bus_owner.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:license) %>:</strong></dt>
+  <dd><%= @bus_owner.license %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gst_no) %>:</strong></dt>
+  <dd><%= @bus_owner.gst_no %></dd>
+</dl>
+<!-- -------------------- Buttons -------------------- -->
+<div>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                root_path, :class => 'btn btn-xs btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                 bus_owner_profile_edit_path, :class => 'btn btn-xs btn-default' %>
+  <%= link_to "Deactivate My Account", registration_path(@bus_owner),
+                        :class => 'btn btn-xs btn-danger',
+                        data: { confirm: "Are you sure?" }, 
+                        method: :delete %>
+</div>
+<hr>
+<!-- -------------------- Bus Owner Buses -------------------- -->
+<h3>My Buses</h3>
+<%# if !@my_buses.blank? %>
+<div class="row">
+  <% @bus_owner.buses.each do |bus| %>
+  <div class="col-md-4 my_buses_show">
+    Bus Name : <a href="buses/<%=bus.id%>"><%= bus.name %></a> <br>
+    Route : <%= bus.source %> - <%= bus.destination %> <br><br>
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_bus_path(bus), :class => 'btn btn-xs btn-default' %>
+    <%= link_to "Remove bus",
+                  bus_path(bus),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-xs btn-danger' %>
+  </div>
+  <% end %>
+</div>
+<%# end %>
+
+<!-- -------------------- Bus Owner Reservation -------------------- -->
+<%# if !@bus_owner.reservations.blank? %>
+  <!-- <h3>My Reservations</h3>
+    div class="row">
+    <%# for reservation in (@bus_owner.reservations).to_a.reverse %>
+      <div class="col-md-4 my_buses_show">
+        Bus : <a href="/buses/<%#= reservation.bus.id %>"><%#= reservation.bus.name %> </a> <br>
+        Reservation : <%#= reservation_date(reservation)%> ( <%#=reservation_day(reservation) %> ) <br>
+        Seats :
+
+                <%# reservation.seats.each do |seat| %>
+                <%#= link_to seat.seat_no, root_path,:class=> 'btn my-btn-xs btn-primary disabled' %>
+                <%# end %>
+
+        <br><br>
+        <%#= link_to 'Cancel Reservation',
+                    bus_reservation_path(reservation.bus_id, reservation.id),
+                    :method => :delete, 
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-xs btn-danger' %>
+      </div>
+    <%# end %>
+  </div> -->
+<%# end %>

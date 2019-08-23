@@ -8,10 +8,11 @@ class BusOwner < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # -------------------- Status of Bus Owner --------------------
-  enum status: {active: "active", pending: "pending", suspend: "suspend", ignore: "ignore" }
+  enum status: {active: "active", pending: "pending", suspend: "suspend" }
   # -------------------- Associations --------------------
   has_many :buses
-  has_many :reservations
+  has_many :reservations, as: :reservable
+
   # -------------------- Validations --------------------
   validates :name, :license, :gst_no, presence:true
 end
