@@ -10,7 +10,7 @@
   <div class="form-group">
     <%= reservation.label :reservation_date, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= reservation.date_field :reservation_date, :class => 'form-control', min: Date.today
+      <%= reservation.date_field :reservation_date, :class => 'form-control', min: Date.today, max:14.days.from_now
       # ,:value=> reservation.object.reservation_date
       %>
     </div>
