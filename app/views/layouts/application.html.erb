@@ -46,7 +46,10 @@
 
             <% if current_user.role == 'admin'%>
               <%= menu_group pull: :right do %>
-                <%= menu_item "Bus Owner List", bus_owner_index_path %>
+                <%= menu_item "Bus Owner List", admin_bus_owners_path %>
+              <% end %>
+              <%= menu_group pull: :right do %>
+                <%= menu_item "Reservation List", admin_reservations_path %>
               <% end %>
             <% end %>
           </div>
@@ -100,20 +103,6 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <%# if !(current_user.present? || current_bus_owner.present?) %>
-        <!-- -------------------- Sidebar -------------------- -->
-        <!-- <div class="col-lg-2">
-          <div class="well sidebar-nav">
-            <h3 align="center">Customer</h3>
-            <ul class="nav nav-list">
-              <li>&nbsp</li>
-              -------------------- Customer Sign In/Sign Up --------------------
-              <li><%= link_to "Log In", user_login_path, :class => 'btn btn-danger' %></li>
-              <li><%= link_to "Sign Up", user_signup_path, :class => 'btn btn-primary'  %></li>
-            </ul>
-          </div>/.well 
-        </div>/span-->
-        <%# end %>
       </div><!--/row-->
 
       <footer>

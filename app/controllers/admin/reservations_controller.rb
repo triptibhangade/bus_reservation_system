@@ -1,13 +1,14 @@
-class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update]
-  before_action :find_reservation, only: [:destroy]
-  before_action :set_bus, only: [:index, :new, :create]
-  before_action :required_signin, only:[:new,:create,:destroy]
+class Admin::ReservationsController < ApplicationController
+  # before_action :set_reservation, only: [:show, :edit, :update]
+  # before_action :find_reservation, only: [:destroy]
+  # # before_action :set_bus, only: [:index, :new, :create]
+  # before_action :required_signin, only:[:new,:create,:destroy]
+  before_action :find_reservation, only:[:cancel]
 
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = @bus.reservations
+    @reservations = Reservation.all
   end
 
   # GET /reservations/1
@@ -35,7 +36,6 @@ class ReservationsController < ApplicationController
     @reservation = @bus.reservations.new(reservation_params)
     @reservation.user_id = get_user_id
     @reservation.bus_owner_id = get_bus_owner_id
-    @reservation.status = true
 
     session[:seat_no].each do |seat|
        @reservation.seats.build(seat_no: seat.to_i, reserved: true)
@@ -100,6 +100,7 @@ class ReservationsController < ApplicationController
   end
 
   def book_seat
+    binding.pry
     if session[:seat_no].include?(params[:seat])
       seat = session[:seat_no].delete(params[:seat])
     else  

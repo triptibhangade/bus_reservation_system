@@ -2,7 +2,7 @@
     <p class="center">
       <b>From : </b><%= text_field_tag :source_search %> 
       <b>TO : </b><%= text_field_tag :destination_search %> 
-      <b>Date : </b><%= date_field_tag :date_search, :min=> Date.today, required:true %> 
+      <b>Date : </b><%= date_field_tag :date_search,{:min=> Date.today}, required:true %> 
       <%= button_tag "Search",id:"search" %>
     </p>
 <% end %>

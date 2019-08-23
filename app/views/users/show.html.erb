@@ -17,10 +17,10 @@
 <%= link_to "Deactivate My Account", registration_path(@user), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
 <hr>
 <!-- -------------------- Customer Reservations -------------------- -->
-<% if !@user.reservations.blank? %>
+<% if reservation_status(@user) %>
   <h3>My Reservations</h3>
   <div class="row">
-    <% for reservation in (@user.reservations).to_a.reverse %>
+    <% for reservation in (reservation_status(@user)).to_a.reverse %>
       <div class="col-md-4 my_buses_show">
         <small><i>Booked on : <%= reservation.created_at.strftime("%d/%m/%Y %H:%M%P")  %></i></small><br>
       <b>
@@ -34,10 +34,7 @@
                 <% end %>
       </b>
         <br><br>
-        <%= link_to 'Cancel Reservation',
-                    bus_reservation_path(reservation.bus_id, reservation),
-                    :method => :delete, 
-                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+        <%= link_to 'Cancel Reservation', cancel_admin_reservation_path(reservation),
                     :class => 'btn btn-xs btn-danger' %>
       </div>
     <% end %>

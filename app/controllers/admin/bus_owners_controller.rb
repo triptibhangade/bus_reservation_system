@@ -1,4 +1,4 @@
-class BusOwnersController < ApplicationController
+class Admin::BusOwnersController < ApplicationController
   before_action :my_buses, only: [:show]
   before_action :set_bus_owner, only:[:active, :suspend, :reject]
   
@@ -37,6 +37,6 @@ class BusOwnersController < ApplicationController
   end
 
   def set_bus_owner
-    @bus_owner = BusOwner.find(params[:format])
+    @bus_owner = BusOwner.find(params[:id])
   end
 end

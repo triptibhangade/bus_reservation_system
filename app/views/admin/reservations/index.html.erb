@@ -12,8 +12,11 @@
         <th><%= model_class.human_attribute_name(:customer_name) %></th>
         <th><%= model_class.human_attribute_name(:bus_name) %></th>
         <th><%= model_class.human_attribute_name(:reservation) %></th>
-        <th><%= model_class.human_attribute_name(:seats) %></th>
+        <th><%= model_class.human_attribute_name(:seat_no) %></th>
+        <th><%= model_class.human_attribute_name(:total_seats) %></th>
         <th><%= model_class.human_attribute_name(:date_of_booking) %></th>
+        <th><%= model_class.human_attribute_name(:status) %></th>
+       
       </tr>
     </thead>
     <!-- -------------------- Reservatoions -------------------- -->
@@ -23,8 +26,20 @@
           <td><%= customer_name(reservation) %></td>
           <td><%= reservation.bus.name %></td>
           <td><%= reservation_date(reservation) %> ( <%= reservation_day(reservation) %> )</td>
+          <td>
+            <% reservation.seats.each do |seat|%>
+              <%= seat.seat_no %> &nbsp
+            <% end %>
+          </td>
           <td><%= reservation.seat %></td>
           <td><%= date_of_booking(reservation) %></td>
+          <td>
+            <% if reservation.status == true %>
+              booked 
+            <% else %>
+              cancelled 
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

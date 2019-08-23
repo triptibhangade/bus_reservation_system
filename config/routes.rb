@@ -6,11 +6,16 @@ Rails.application.routes.draw do
   get 'book_seat' => "reservations#book_seat"
 
   namespace :admin do
-    resources :bus_owner do
+    resources :bus_owners do
       member do
         get 'active'
         get 'suspend'
         delete 'reject'
+      end
+    end
+    resources :reservations do
+      member do
+        get 'cancel'
       end
     end
   end

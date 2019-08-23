@@ -7,6 +7,8 @@
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:gst_no) %></th>
+      <th><%= model_class.human_attribute_name(:lisence) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -14,16 +16,18 @@
   <tbody>
     <% @bus_owners.each do |bus_owner| %>
       <tr>
-        <td><%= bus_owner.name %></td>
+        <td><a href=""><%= bus_owner.name %></a></td>
         <td><%= bus_owner.email %></td>
+        <td><%= bus_owner.gst_no %></td>
+        <td><%= bus_owner.license %></td>
         <td>
           <!-- -------------------- Bus Owner Activa/Suspend/Reject Button -------------------- -->
           <% if bus_owner_active?(bus_owner) %>
-            <%= link_to 'Suspend', suspend_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-warning' %>
-            <%= link_to 'Reject', suspend_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger' %>
+            <%= link_to 'Suspend', suspend_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-warning', remote:true %>
+            <%= link_to 'Reject', suspend_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger', remote:true %>
           <% else %>
-            <%= link_to 'Active', active_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-primary' %>
-            <%= link_to "Reject", suspend_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
+            <%= link_to 'Active', active_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-primary', remote:true %>
+            <%= link_to "Reject", suspend_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete, remote:true %>
           <% end %>
         </td>
       </tr>
