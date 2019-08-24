@@ -54,3 +54,11 @@ p.red_colored {
 .col-md-6.count {
     padding: 25px 0px 0px 265px;
 }
+a{
+    color: #000;
+}
+a:hover {
+    color: blue;
+    background-color: #fff0;
+    text-decoration: none;
+}

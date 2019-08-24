@@ -74,7 +74,6 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def cancel
-     binding.pry
     @reservation.update(status: false)
     @reservation.seats.update(reserved: false)
     respond_to do |format|

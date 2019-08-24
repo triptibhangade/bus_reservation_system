@@ -35,7 +35,9 @@
       </b>
         <br><br>
         <%= link_to 'Cancel Reservation', cancel_reservation_path(reservation),
-                    :class => 'btn btn-xs btn-danger' %>
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-xs btn-danger' %>
       </div>
     <% end %>
   </div>
