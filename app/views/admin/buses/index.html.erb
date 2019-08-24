@@ -26,7 +26,7 @@
         <td><%= link_to "View Reservations", admin_customers_path(bus), :class => 'btn btn-xs btn-default '%></td>
         <td>
           <%= link_to "Remove Bus",
-                      admin_customers_path,
+                       admin_bus_path(bus),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
