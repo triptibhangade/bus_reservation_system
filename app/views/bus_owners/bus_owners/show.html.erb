@@ -34,9 +34,9 @@
     Bus Name : <a href="buses/<%=bus.id%>"><%= bus.name %></a> <br>
     Route : <%= bus.source %> - <%= bus.destination %> <br><br>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                  edit_bus_path(bus), :class => 'btn btn-xs btn-default' %>
+                  edit_bus_owners_bus_path(bus), :class => 'btn btn-xs btn-default' %>
     <%= link_to "Remove bus",
-                  bus_path(bus),
+                   bus_owners_bus_path(bus),
                   :method => :delete,
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-xs btn-danger' %>
@@ -62,7 +62,7 @@
 
         <br><br>
         <%= link_to 'Cancel Reservation',
-                    bus_reservation_path(reservation.bus_id, reservation.id),
+                   cancel_bus_owners_bus_reservation_path(reservation.bus_id, reservation.id),
                     :method => :delete, 
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-xs btn-danger' %>

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root to: "buses#index"
   get 'search' => "buses#index"
   get 'book_seat' => "reservations#book_seat"
-  get 'cancel_reservation/:id' => "reservations#cancel", as: :cancel_reservation
 
   namespace :admin do
     get 'customers' => "users#index"
@@ -28,10 +27,11 @@ Rails.application.routes.draw do
   namespace :bus_owners do
     get 'profile' => "bus_owners#show"
     resources :buses do
-      member do
-        get "show"
+      resources :reservations do
+        member do
+          delete 'cancel'
+        end
       end
-      resources :reservations
     end
   end
   
@@ -59,5 +59,6 @@ Rails.application.routes.draw do
 
   devise_for :bus_owners
   devise_for :users
+  # get 'cancel_reservation/:id' => "reservations#cancel", as: :cancel_reservation
 
 end
