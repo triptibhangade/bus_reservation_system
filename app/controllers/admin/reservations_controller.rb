@@ -83,6 +83,11 @@ class Admin::ReservationsController < ApplicationController
     end
   end
 
+  def reservations
+    @bus = Bus.find(params[:id])
+    @bus_reservations = @bus.reservations
+  end
+
   def book_seat
     if session[:seat_no].include?(params[:seat])
       seat = session[:seat_no].delete(params[:seat])

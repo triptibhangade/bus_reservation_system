@@ -23,7 +23,7 @@
         <td><%= bus.name %></td>
         <td><%= bus.source %> - <%= bus.destination %></td>
         <td><%= bus.total_no_of_seats %></td>
-        <td><%= link_to "View Reservations", admin_customers_path(bus), :class => 'btn btn-xs btn-default '%></td>
+        <td><%= link_to "View Reservations", reservations_admin_reservation_path(bus), :class => 'btn btn-xs btn-default '%></td>
         <td>
           <%= link_to "Remove Bus",
                        admin_bus_path(bus),

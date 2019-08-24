@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :reservations do
       member do
         delete 'cancel'
+        get 'reservations'
       end
     end
     resources :buses
@@ -60,6 +61,7 @@ Rails.application.routes.draw do
 
   devise_for :bus_owners
   devise_for :users
+  
   delete 'cancel_reservation/:id' => "reservations#cancel", as: :cancel_reservation
 
 end
