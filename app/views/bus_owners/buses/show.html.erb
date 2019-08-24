@@ -29,4 +29,35 @@
                   :class => 'btn btn-danger' %>
     <% end %>
   <% end %>
+
+  <% if !@bus_reservations.blank? %>
+    <h3>My Bus Reservations</h3>
+    <div class="row">
+      <% for reservation in (@bus_reservations).to_a.reverse %>
+        <div class="col-md-4 my_buses_show">
+          Customer Name : <%= reservation.reservable.name %> <br>
+          Bus : <%= reservation.bus.name %> <br>
+          Reservation : <%= reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>
+          Seats :
+                <% reservation.seats.each do |seat| %>
+                  <%= link_to seat.seat_no, root_path,:class=> 'btn my-btn-xs btn-primary disabled' %>
+                <% end %>
+          <br><br>
+          <% if reservation.status == true %>
+            <%= link_to 'Cancel Reservation',
+                        bus_reservation_path(reservation.bus_id, reservation.id),
+                        :method => :delete, 
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          <% else %>
+            <%= link_to 'Reservation Cancelled',
+                        bus_reservation_path(reservation.bus_id, reservation.id),
+                        :method => :delete, 
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger disabled' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

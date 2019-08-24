@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         get 'cancel'
       end
     end
+    resources :buses
   end
 
   namespace :bus_owners do
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
       member do
         get "show"
       end
+      resources :reservations
     end
   end
   
@@ -51,7 +53,6 @@ Rails.application.routes.draw do
     get 'bus_owner_login', to: 'bus_owners/sessions#new'
     get 'bus_owner_signup', to: 'bus_owners/registrations#new'
     get 'bus_owner_profile_edit', to: 'bus_owners/registrations#edit'
-    # get 'bus_owner_profile', to: 'bus_owners#show'
     get 'bus_owner_index', to: 'bus_owners#index'
     delete 'bus_owner_profile_deactivate', to: 'bus_owners#destroy'
   end

@@ -1,27 +1,31 @@
-<%- model_class = User -%>
+<%- model_class = Bus -%>
 <div class="row">
   <div class=" col-md-6">
-    <h1>Customers</h1>
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
   </div>
   <div class="col-md-6 count">
-    <h4><%= @users.count %> Customers</h4>
+    <h4><%= @buses.count %> Buses</h4>
   </div>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:route) %></th>
+      <th><%= model_class.human_attribute_name(:seats) %></th>
+      <th><%= model_class.human_attribute_name(:reservations) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
+    <% @buses.each do |bus| %>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
+        <td><%= bus.name %></td>
+        <td><%= bus.source %> - <%= bus.destination %></td>
+        <td><%= bus.total_no_of_seats %></td>
+        <td><%= link_to "View Reservations", admin_customers_path(bus), :class => 'btn btn-xs btn-default '%></td>
         <td>
-          <%= link_to "Deactivate Account",
+          <%= link_to "Remove Bus",
                       admin_customers_path,
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },

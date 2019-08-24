@@ -1,16 +1,9 @@
-class BusesController < ApplicationController
-  before_action :set_bus, only: [:show, :edit, :update, :destroy]
-  before_action :bus_reservations, only:[:show]
- 
+class Admin::BusesController < ApplicationController
+  
   # GET /buses
   # GET /buses.json
   def index
-    # binding.pry
-    buses
-    respond_to do |format|
-      format.js {}
-      format.html {}
-    end
+    @buses = Bus.all
   end
 
   # GET /buses/1

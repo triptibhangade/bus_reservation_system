@@ -61,7 +61,7 @@
           <% if current_bus_owner %>
             <% if current_bus_owner.id == bus.bus_owner_id %>
               <%= link_to "Show Reservations" ,
-                            bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
+                            bus_owners_bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
             <% else %>
               <%= link_to "Show Reservations" ,
                             bus_path(bus), :class => 'btn btn-default btn-xs disabled'  %>

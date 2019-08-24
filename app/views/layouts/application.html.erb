@@ -40,17 +40,29 @@
               <%= menu_item "Sign Out", destroy_user_session_path, method: :delete %>
             <% end %>
 
-            <%= menu_group pull: :right do %>
-              <%= menu_item current_user.name, admin_profile_path %>
+            <% if current_user.role == 'customer'%>
+              <%= menu_group pull: :right do %>
+                <%= menu_item current_user.name, profile_path %>
+              <% end %>
             <% end %>
           
             <% if current_user.role == 'admin'%>
               <%= menu_group pull: :right do %>
+                <%= menu_item current_user.name, admin_profile_path %>
+              <% end %>
+
+              <%= menu_group pull: :right do %>
                 <%= menu_item "Bus Owner List", admin_bus_owners_path %>
               <% end %>
+
               <%= menu_group pull: :right do %>
                 <%= menu_item "Customer List", admin_customers_path %>
               <% end %>
+
+              <%= menu_group pull: :right do %>
+                <%= menu_item "Bus List",  admin_buses_path %>
+              <% end %>
+
               <%= menu_group pull: :right do %>
                 <%= menu_item "Reservation List", admin_reservations_path %>
               <% end %>

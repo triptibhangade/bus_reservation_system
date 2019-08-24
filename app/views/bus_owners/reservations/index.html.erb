@@ -1,30 +1,44 @@
 <%- model_class = Reservation -%>
 <% if !@reservations.blank? %>
-
-  <div class="page-header">
-    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <div class="row">
+    <div class=" col-md-6">
+      <h1><%= @bus.name %></h1>
+    </div>
+    <div class="col-md-6 count">
+      <h4><%= @reservations.count %> Reservations</h4>
+    </div>
   </div>
-
   <table class="table table-striped">
-
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:customer_name) %></th>
-        <th><%= model_class.human_attribute_name(:bus_name) %></th>
         <th><%= model_class.human_attribute_name(:reservation) %></th>
-        <th><%= model_class.human_attribute_name(:seats) %></th>
+        <th><%= model_class.human_attribute_name(:seat_no) %></th>
+        <th><%= model_class.human_attribute_name(:total_booked_seats) %></th>
         <th><%= model_class.human_attribute_name(:date_of_booking) %></th>
+        <th><%= model_class.human_attribute_name(:status) %></th>
       </tr>
     </thead>
     <!-- -------------------- Reservatoions -------------------- -->
     <tbody>
       <% @reservations.each do |reservation| %>
         <tr>
-          <td><%= customer_name(reservation) %></td>
-          <td><%= reservation.bus.name %></td>
+          <td><%= reservation.reservable.name %></td>
           <td><%= reservation_date(reservation) %> ( <%= reservation_day(reservation) %> )</td>
+          <td>
+            <% reservation.seats.each do |seat|%>
+              <%= seat.seat_no %> &nbsp
+            <% end %>
+          </td>
           <td><%= reservation.seat %></td>
           <td><%= date_of_booking(reservation) %></td>
+          <td>
+            <% if reservation.status == true %>
+              <p class="green_colored">Booked</p>
+            <% else %>
+              <p class="red_colored">Cancelled</p>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
