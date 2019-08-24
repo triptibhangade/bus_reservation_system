@@ -34,9 +34,9 @@
       Bus Name : <%= bus.name %> <br>
       Route : <%= bus.source %> - <%= bus.destination %> <br><br>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                    edit_bus_path(bus), :class => 'btn btn-xs btn-default' %>
+                     edit_admin_bus_path(bus), :class => 'btn btn-xs btn-default' %>
       <%= link_to "Remove bus",
-                    bus_path(bus),
+                    admin_bus_path(bus),
                     :method => :delete,
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn btn-xs btn-danger' %>

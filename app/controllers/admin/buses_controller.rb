@@ -1,5 +1,5 @@
 class Admin::BusesController < ApplicationController
-  
+  before_action :set_bus
   # GET /buses
   # GET /buses.json
   def index
