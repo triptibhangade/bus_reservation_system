@@ -5,8 +5,7 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    # binding.pry
-    buses
+    @buses = Bus.search(params[:source_search], params[:destination_search])
     respond_to do |format|
       format.js {}
       format.html {}
@@ -31,7 +30,7 @@ class BusesController < ApplicationController
   # POST /buses.json
   def create
     @bus = Bus.new(bus_params)
-    @bus.bus_owner_id = current_bus_owner
+    @bus.bus_owner_id = current_bus_owner.id
 
     respond_to do |format|
       if @bus.save

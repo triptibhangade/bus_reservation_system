@@ -5,10 +5,20 @@ class Bus < ApplicationRecord
   has_many :seats,
             through: :reservations, dependent: :destroy
   # -------------------- Validations --------------------
-  validates :name, :registration_no, :total_no_of_seats, :source, :destination, presence:true
+  validates :name, :registration_no, :source, :destination, presence:true
+  validate :total_no_of_seats_is_divided_by_four
 
   def self.search(source_search, destination_search)
     where("source LIKE :source OR destination = :destination",
         {:source => "%#{source_search}%", :destination => "%#{destination_search}%"})
   end
+
+  private
+    def total_no_of_seats_is_divided_by_four
+      if total_no_of_seats.blank?
+        errors.add(:total_no_of_seats, "seats can\'t be blank")
+      elsif !(total_no_of_seats%4==0)
+        errors.add(:total_no_of_seats, "please give proper number of seats")
+      end
+    end
 end

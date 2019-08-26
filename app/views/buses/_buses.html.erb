@@ -14,6 +14,7 @@
       </div>
     <!-- -------------------- Searched Buses Count -------------------- -->
       <div class="col-md-2 bus_count">
+        <% binding.pry %>
         <b> <%= @buses.count %> Buses found </b>
       </div>
     <% else %>
@@ -32,53 +33,55 @@
   </div>
 <!-- -------------------- Bus List if Date is not given -------------------- -->
   <% @buses.each do |bus| %>
-    <div class="row block">
-      <div class="row-md-12 row">
-        <div class="col-md-4">
-          <%= bus.name %>
+    <% if bus.bus_owner.status == "active" %>
+      <div class="row block">
+        <div class="row-md-12 row">
+          <div class="col-md-4">
+            <a href="/buses/<%= bus.id %>"><%= bus.name %></a>
+          </div>
+          <div class="col-md-4">
+           <%= bus.source %> - <%= bus.destination %>
+          </div>
+          <div class="col-md-4">
+            <% if !available_seat(bus).zero? %>
+              Available seats : <%= available_seat(bus) %>
+            <% end %>
+          </div>
         </div>
-        <div class="col-md-4">
-         <%= bus.source %> - <%= bus.destination %>
-        </div>
-        <div class="col-md-4">
-          <% if !available_seat(bus).zero? %>
-            Available seats : <%= available_seat(bus) %>
-          <% end %>
-        </div>
-      </div>
-      <div class="row-md-4 row">
-        <div class="col-md-8 animation">
-          Water Bottle |
-          Blankets |
-          Pillow |
-          Charging Point |
-          Movie |
-          Emergency Contact Number |
-          Reading Light
-        </div>
-        <div class="col-md-2">
-          <!-- -------------------- Only For Bus Owner -------------------- -->
-          <% if current_bus_owner %>
-            <% if current_bus_owner.id == bus.bus_owner_id %>
-              <%= link_to "Show Reservations" ,
-                            bus_owners_bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
+        <div class="row-md-4 row">
+          <div class="col-md-8 animation">
+            Water Bottle |
+            Blankets |
+            Pillow |
+            Charging Point |
+            Movie |
+            Emergency Contact Number |
+            Reading Light
+          </div>
+          <div class="col-md-2">
+            <!-- -------------------- Only For Bus Owner -------------------- -->
+            <% if current_bus_owner %>
+              <% if current_bus_owner.id == bus.bus_owner_id %>
+                <%= link_to "Show Reservations" ,
+                              bus_owners_bus_reservations_path(bus), :class => 'btn btn-default btn-xs' %>
+              <% else %>
+                <%= link_to "Show Reservations" ,
+                              bus_path(bus), :class => 'btn btn-default btn-xs disabled'  %>
+              <% end %>  
+            <% end %>     
+          </div>
+          <div class="col-md-2">
+            <% if !available_seat(bus).zero? %>
+              <%= link_to 'Book Seat',new_bus_reservation_path(bus),
+                                       :class => 'btn btn-default btn-xs' %>
             <% else %>
-              <%= link_to "Show Reservations" ,
-                            bus_path(bus), :class => 'btn btn-default btn-xs disabled'  %>
-            <% end %>  
-          <% end %>     
-        </div>
-        <div class="col-md-2">
-          <% if !available_seat(bus).zero? %>
-            <%= link_to 'Book Seat',new_bus_reservation_path(bus),
-                                     :class => 'btn btn-default btn-xs' %>
-          <% else %>
-            <%= link_to 'Seat Not Availavle',new_bus_reservation_path(bus),
-                                     :class => 'btn btn-default btn-xs disabled' %>
-          <% end %>
+              <%= link_to 'Seat Not Availavle',new_bus_reservation_path(bus),
+                                       :class => 'btn btn-default btn-xs disabled' %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% else %>
   <div class="no_result_found">

@@ -9,7 +9,7 @@ module ApplicationHelper
   end
   # -------------------- Bus Owner Reject --------------------
   def bus_owner_reject?(bus_owner)
-    bus_owner.status == 'reject'
+    bus_owner.status == 'ignore'
   end
   
   def date_of_booking(reservation)
