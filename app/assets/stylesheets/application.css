@@ -50,6 +50,10 @@ p.green_colored {
 p.red_colored {
     color: red;
 }
+
+p.yellow_colored {
+    color: #c27303;
+}
 /*---------------------------------- List Count for Admin ---------------------------------*/
 .col-md-6.count {
     padding: 25px 0px 0px 265px;

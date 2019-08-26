@@ -10,6 +10,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:bus_owner_name) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:route) %></th>
       <th><%= model_class.human_attribute_name(:seats) %></th>
@@ -20,6 +21,18 @@
   <tbody>
     <% @buses.each do |bus| %>
       <tr>
+        <td>
+          <% if bus.bus_owner.status == "ignore" %>
+            <%= bus.bus_owner.name %><br>
+            <p class="red_colored">Rejected</p>
+          <% elsif bus.bus_owner.status == "pending" %>
+            <%= bus.bus_owner.name %><br>
+            <p class="yellow_colored">Suspend</p>
+          <% else %>
+            <%= bus.bus_owner.name %><br>
+            <p class="green_colored">Active</p>
+          <% end %>
+        </td>
         <td><%= bus.name %></td>
         <td><%= bus.source %> - <%= bus.destination %></td>
         <td><%= bus.total_no_of_seats %></td>

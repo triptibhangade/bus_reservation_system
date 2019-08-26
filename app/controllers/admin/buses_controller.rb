@@ -1,5 +1,5 @@
 class Admin::BusesController < ApplicationController
-  before_action :set_bus, only: [:edit]
+  before_action :set_bus, only: [:edit,:destroy]
   # GET /buses
   # GET /buses.json
   def index
@@ -56,7 +56,7 @@ class Admin::BusesController < ApplicationController
   def destroy
     @bus.destroy
     respond_to do |format|
-      format.html { redirect_to buses_url, notice: 'Bus was successfully destroyed.' }
+      format.html { redirect_to admin_buses, notice: 'Bus was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
