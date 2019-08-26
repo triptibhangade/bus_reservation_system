@@ -31,10 +31,11 @@ class BusOwners::BusesController < ApplicationController
   # POST /buses.json
   def create
     @bus = Bus.new(bus_params)
+    @bus.bus_owner_id = current_bus_owner
 
     respond_to do |format|
       if @bus.save
-        format.html { redirect_to @bus, notice: 'Bus was successfully created.' }
+        format.html { redirect_to buses_path, notice: 'Bus was successfully created.' }
         format.json { render :show, status: :created, location: @bus }
       else
         format.html { render :new }
