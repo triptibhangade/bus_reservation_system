@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :reservations do
         member do
           delete 'cancel'
+          get 'reservations'
         end
       end
     end

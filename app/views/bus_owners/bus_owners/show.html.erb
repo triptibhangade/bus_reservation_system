@@ -35,6 +35,8 @@
     Route : <%= bus.source %> - <%= bus.destination %> <br><br>
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                   edit_bus_owners_bus_path(bus), :class => 'btn btn-xs btn-default' %>
+    <%= link_to 'Reservations',
+                 bus_owners_bus_reservations_path(bus), :class => 'btn btn-xs btn-default' %>
     <%= link_to "Remove bus",
                    bus_owners_bus_path(bus),
                   :method => :delete,
