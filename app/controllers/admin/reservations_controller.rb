@@ -1,5 +1,5 @@
 class Admin::ReservationsController < ApplicationController
-
+  before_action :required_admin_signin
   before_action :set_bus, only: [:new, :create]
   before_action :find_reservation, only: [:cancel]
   before_action :required_signin, only:[:new,:create,:cancel]

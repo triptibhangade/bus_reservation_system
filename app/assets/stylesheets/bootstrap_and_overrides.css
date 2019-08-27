@@ -149,3 +149,9 @@ a.btn.btn-xs.btn-warning {
     border-color: #005a87;
     color: #005a87;
 }
+/*-------------------- Alert danger --------------------*/
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #a94442 !important;
+    color: #a94442;
+}
