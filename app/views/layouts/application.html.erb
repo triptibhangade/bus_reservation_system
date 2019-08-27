@@ -32,7 +32,6 @@
         </button>
           <a class="navbar-brand" href="/"> <%= image_tag("icon.jpg", size: "35x20", alt: "BusReservationSystem") %> </a>
           <a class="navbar-brand" href="/"> BusReservationSystem </a>
-          <a class="navbar-brand" href="#">  </a>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
           <!-- -------------------- Customer Sign In -------------------- -->
           <% if current_user.present? %>
@@ -101,14 +100,14 @@
               <%# end %>
             <%# end %>
 
-              <!-- =========================================== -->
-            <!-- -------------------- Bus Owner Sign In/Sign Up -------------------- -->
+            <!-- =========================================== -->
+            <!-- ---------------- Customer Sign In/Sign Up ---------------- -->
             <%= menu_group pull: :right do %>
-              <%= menu_item "Sign Up",  user_signup_path, :class => 'btn btn-default' %>
+              <%= menu_item "Sign Up",  user_signup_path %>
             <% end %>
         
             <%= menu_group pull: :right do %>
-              <%= menu_item "Sign In", user_login_path, :class => 'btn btn-default' %>
+              <%= menu_item "Sign In", user_login_path %>
             <% end %>
 
           </div>

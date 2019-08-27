@@ -13,14 +13,21 @@
  *= require_tree .
  *= require_self
  */
+ body{
+    background:  #f0f7fc;
+ }
  
 .home{
 	align-content: center;
 	padding: 150px 83px 150px 185px;
 }
-.center{
-	text-align: center;
-	padding: 0px 0px 45px 0px;
+.center {
+    text-align: center;
+    padding: 40px 0px 40px 140px;
+}
+.seat-center{
+    text-align: center;
+    padding: 0px 0px 45px 0px;
 }
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
     line-height: 15px;
@@ -65,4 +72,19 @@ a:hover {
     color: blue;
     background-color: #fff0;
     text-decoration: none;
+}
+button#search {
+    padding: 1px 25px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 15px 15px 15px 15px;
+    background: #c5e7ff;
+}
+button#search:hover {
+    padding: 1px 25px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 15px 15px 15px 15px;
+    background: #c5e7ff;
+    box-shadow: 4px 4px 20px 0px #428aca;
 }
