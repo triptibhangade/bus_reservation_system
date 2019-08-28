@@ -10,7 +10,7 @@ class BusOwner < ApplicationRecord
   enum status: {active: "active", pending: "pending", ignore: "ignore" }
   
   # -------------------- Associations --------------------
-  has_many :buses
+  has_many :buses, dependent: :destroy
   has_many :reservations, as: :reservable
 
   # -------------------- Validations --------------------

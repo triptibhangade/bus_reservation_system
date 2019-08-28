@@ -1,7 +1,7 @@
 class Bus < ApplicationRecord
   # -------------------- Association --------------------
   belongs_to :bus_owner
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   has_many :seats,
             through: :reservations, dependent: :destroy
             

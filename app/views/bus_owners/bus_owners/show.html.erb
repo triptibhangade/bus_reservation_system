@@ -19,7 +19,7 @@
                 root_path, :class => 'btn btn-xs btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
                  bus_owner_profile_edit_path, :class => 'btn btn-xs btn-default' %>
-  <%= link_to "Deactivate My Account", registration_path(@bus_owner),
+  <%= link_to "Deactivate My Account",  bus_owners_profile_deactivate_path,
                         :class => 'btn btn-xs btn-danger',
                         data: { confirm: "Are you sure?" }, 
                         method: :delete %>
