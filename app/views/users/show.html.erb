@@ -17,7 +17,7 @@
 <%= link_to "Deactivate My Account", registration_path(@user), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
 <hr>
 <!-- -------------------- Customer Reservations -------------------- -->
-<% if reservation_status(@user) %>
+<% if !reservation_status(@user).blank? %>
   <h3>My Reservations</h3>
   <div class="row">
     <% for reservation in (reservation_status(@user)).to_a.reverse %>

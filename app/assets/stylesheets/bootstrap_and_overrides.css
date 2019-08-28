@@ -117,10 +117,6 @@ a.btn.btn-xs.btn-warning {
 .row-md-12 {
     padding: 10px 0px 75px 0px;
 }
-.col-lg-10 {
-    width: 83.33333333%;
-    margin-top: 40px;
-}
 
 .my_buses_show:hover {
     background: #87c2f669;
@@ -168,4 +164,8 @@ a.btn.btn-xs.btn-warning {
     background-color: #f2dede;
     border-color: #a94442 !important;
     color: #a94442;
+}
+.col-lg-10 {
+    width: 83.33333333%;
+    margin-top: 40px;
 }
