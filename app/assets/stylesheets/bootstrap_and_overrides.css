@@ -29,8 +29,14 @@
     color: #fff;
     background-color: #519fe3;
 }
-/*-------------------- Button --------------------*/
 /*-------------------- Default Button --------------------*/
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    border-radius: 15px;
+}
+/*-------------------- Default-xs Button --------------------*/
 .btn-xs, .btn-group-xs>.btn {
     padding: 5px 10px;
     font-size: 12px;
@@ -145,7 +151,7 @@ a.btn.btn-xs.btn-warning {
 }
 /*-------------------- Alert success --------------------*/
 .alert-success {
-    background-color: #b8ddef;
+    background-color: #dff0d8;
     border-color: #005a87;
     color: #005a87;
 }
