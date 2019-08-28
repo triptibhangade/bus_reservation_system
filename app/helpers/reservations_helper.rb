@@ -16,9 +16,9 @@ module ReservationsHelper
     seat_nos = seats.where(reserved: true).map(&:seat_no)
     seat_nos.include?(seat)
   end
-
-  def reservation_status(user)
-    user.reservations.where(status: true)
+   # ---------------------- Active Reservations ----------------------
+  def reservation_status(customer)
+    customer.reservations.where(status: true)
   end
 
 end
