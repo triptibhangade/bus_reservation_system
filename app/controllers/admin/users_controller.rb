@@ -9,7 +9,7 @@ class Admin::UsersController < ApplicationController
     @user = current_user
   end
 
-   def destroy
+  def destroy
     @user = User.find(params[:id])
     @user.destroy
     respond_to do |format|
@@ -17,5 +17,4 @@ class Admin::UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 end

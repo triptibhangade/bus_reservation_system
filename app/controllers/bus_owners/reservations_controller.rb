@@ -9,11 +9,6 @@ class BusOwners::ReservationsController < ApplicationController
     @reservations = @bus.reservations
   end
 
-  # GET /reservations/1
-  # GET /reservations/1.json
-  def show
-  end
-
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def cancel
@@ -38,10 +33,5 @@ class BusOwners::ReservationsController < ApplicationController
 
     def find_reservation
       @reservation = Reservation.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reservation_params
-      params.require(:reservation).permit(:reservation_date, :bus_id, :seat)
     end
 end

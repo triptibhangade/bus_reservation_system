@@ -145,4 +145,8 @@ a.btn.btn-xs.btn-warning {
 .col-md-6.count {
     padding: 25px 0px 0px 265px;
 }
+.my-buses-show:hover {
+    background: #87c2f669;
+    box-shadow: inset -5px -5px 9px 0px #428bca;
+}
 /*--------------------------------------- end ---------------------------------------*/

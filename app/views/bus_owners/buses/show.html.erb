@@ -34,7 +34,7 @@
     <h3>My Bus Reservations</h3>
     <div class="row">
       <% for reservation in (@bus_reservations).to_a.reverse %>
-        <div class="col-md-4 my_buses_show">
+        <div class="col-md-4 my-buses-show">
           Customer Name : <%= reservation.reservable.name %> <br>
           Bus : <%= reservation.bus.name %> <br>
           Reservation : <%= reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>

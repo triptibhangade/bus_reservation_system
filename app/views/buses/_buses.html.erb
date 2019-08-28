@@ -1,7 +1,7 @@
 <%- model_class = Bus -%>
 <% if !@buses.blank? %>
   <div class="row">
-    <% if !params[:date_search].nil? %>
+    <% if !(params[:date_search].nil? || params[:date_search]=="")%>
       <!-- -------------------- Bus Heading -------------------- -->
       <div class="col-md-8">
         <h1>
@@ -24,9 +24,9 @@
         </h1>
       </div> 
       <!-- -------------------- Searched Buses Count if Date is not given -------------------- -->
-      <div class="col-md-6 bus_count">
-        <b> <%= @buses.count %> Buses found </b>
-      </div>
+      <!-- <div class="col-md-6 bus_count">
+        <b> <%#= @buses.count %> Buses found </b>
+      </div> -->
     <% end %>
     
   </div>

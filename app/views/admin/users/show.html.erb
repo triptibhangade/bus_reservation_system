@@ -21,7 +21,7 @@
   <h3>My Reservations</h3>
   <div class="row">
     <% for reservation in (reservation_status(@user)).to_a.reverse %>
-      <div class="col-md-4 my_buses_show">
+      <div class="col-md-4 my-buses-show">
         <small><i>Booked on : <%= reservation.created_at.strftime("%d/%m/%Y %H:%M%P")  %></i></small><br>
       <b>
         Bus : <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a><br>

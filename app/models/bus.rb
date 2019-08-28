@@ -4,14 +4,10 @@ class Bus < ApplicationRecord
   has_many :reservations
   has_many :seats,
             through: :reservations, dependent: :destroy
+            
   # -------------------- Validations --------------------
   validates :name, :registration_no, :source, :destination, presence:true
   validate :total_no_of_seats_is_divided_by_four
-
-  def self.search(source_search, destination_search)
-    where("source LIKE :source OR destination = :destination",
-        {:source => "%#{source_search}%", :destination => "%#{destination_search}%"})
-  end
 
   private
     def total_no_of_seats_is_divided_by_four

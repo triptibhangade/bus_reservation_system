@@ -1,17 +1,6 @@
 class BusOwners::BusesController < ApplicationController
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
   before_action :bus_reservations, only:[:show]
- 
-  # GET /buses
-  # GET /buses.json
-  def index
-    # binding.pry
-    buses
-    respond_to do |format|
-      format.js {}
-      format.html {}
-    end
-  end
 
   # GET /buses/1
   # GET /buses/1.json
@@ -66,10 +55,6 @@ class BusOwners::BusesController < ApplicationController
       format.html { redirect_to buses_url, notice: 'Bus was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def check_search_params
-    !params[:source_search].blank? && !params[:destination_search].blank? && !params[:date_search].blank?
   end
 
   private
