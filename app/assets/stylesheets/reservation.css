@@ -1,0 +1,32 @@
+/*--------------------------------- Seat ---------------------------------*/
+.seat {
+	padding: 0px 0px 15px 10px;
+}
+
+/*--------------------------------- Seats in a center ---------------------------------*/
+.seat-center{
+    text-align: center;
+    padding: 0px 0px 45px 0px;
+}
+
+/*--------------------------------- Resevation Timer ---------------------------------*/
+.timer {
+    display: -webkit-box;
+    color: #000000;
+    font-size: 25px;
+    padding: 15px 0px 11px 275px;
+}
+
+/*--------------------------------- Resevation Booking ---------------------------------*/
+p.green_colored {
+    color: green;
+}
+
+p.red_colored {
+    color: red;
+}
+
+p.yellow_colored {
+    color: #c27303;
+}
+/*--------------------------------- end ---------------------------------*/

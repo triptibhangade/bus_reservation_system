@@ -25,22 +25,12 @@
     text-align: center;
     padding: 40px 0px 40px 140px;
 }
-.seat-center{
-    text-align: center;
-    padding: 0px 0px 45px 0px;
-}
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
     line-height: 15px;
-    }
-.seat {
-	padding: 0px 0px 15px 10px;
 }
 .col-lg-4.col {
     border-style: ridge;
     padding: 11px 0px 0px 0px;
-}
-.no_result_found {
-    padding: 0px 0px 0px 245px;
 }
 /*--------------------------------- Resevation Timer ---------------------------------*/
 .timer {
