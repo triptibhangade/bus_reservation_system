@@ -16,44 +16,9 @@
  body{
     background:  #f0f7fc;
  }
- 
-.home{
-	align-content: center;
-	padding: 150px 83px 150px 185px;
-}
 .center {
     text-align: center;
     padding: 40px 0px 40px 140px;
-}
-input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
-    line-height: 15px;
-}
-.col-lg-4.col {
-    border-style: ridge;
-    padding: 11px 0px 0px 0px;
-}
-/*--------------------------------- Resevation Timer ---------------------------------*/
-.timer {
-    display: -webkit-box;
-    color: #000000;
-    font-size: 25px;
-    padding: 15px 0px 11px 275px;
-}
-/*--------------------------------- Resevation Booking ---------------------------------*/
-p.green_colored {
-    color: green;
-}
-
-p.red_colored {
-    color: red;
-}
-
-p.yellow_colored {
-    color: #c27303;
-}
-/*---------------------------------- List Count for Admin ---------------------------------*/
-.col-md-6.count {
-    padding: 25px 0px 0px 265px;
 }
 a{
     color: #000;
@@ -77,6 +42,9 @@ button#search:hover {
     border-radius: 15px 15px 15px 15px;
     background: #c5e7ff;
     box-shadow: 4px 4px 20px 0px #428aca;
+}
+input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
+    line-height: 15px;
 }
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
     line-height: 15px;
@@ -105,3 +73,4 @@ input, button, select, textarea {
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+/*--------------------------------------- end ---------------------------------------*/

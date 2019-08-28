@@ -30,7 +30,7 @@
   <h3>My Buses</h3>
   <div class="row">
     <% @my_buses.each do |bus| %>
-    <div class="col-md-4 my_buses_show">
+    <div class="col-md-4 my-buses-show">
       Bus Name : <a href="buses/<%=bus.id%>"><%= bus.name %></a> <br>
       Route : <%= bus.source %> - <%= bus.destination %> <br><br>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),

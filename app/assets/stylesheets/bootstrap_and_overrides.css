@@ -4,6 +4,8 @@
   Static version of css will use Glyphicons sprites by default
   =require twitter-bootstrap-static/sprites
 */
+
+/*------------------------------------- Navbar -------------------------------------*/
 .navbar-default {
     background-color: #428bca;
     border-color: #00498b;
@@ -32,14 +34,26 @@
     color: #fff;
     background-color: #519fe3;
 }
-/*-------------------- Default Button --------------------*/
+/*----------------------------------- Top Margin -----------------------------------*/
+.col-lg-10 {
+    width: 83.33333333%;
+    margin-top: 40px;
+}
+/*--------------------------------- Default Button ---------------------------------*/
 .btn-default {
     color: #333;
     background-color: #fff;
     border-color: #ccc;
     border-radius: 15px;
 }
-/*-------------------- Default-xs Button --------------------*/
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, 
+.btn-default.active, .open>.dropdown-toggle.btn-default {
+    color: #fff;
+    background-color: #52adfe;
+    border-color: #376d9d;
+    box-shadow: 0 0 20px 4px #46a9ff;
+}
+/*------------------------------- Default-xs Button -------------------------------*/
 .btn-xs, .btn-group-xs>.btn {
     padding: 5px 10px;
     font-size: 12px;
@@ -48,18 +62,12 @@
     background: #e3f0fc;
     /* box-shadow: 0px 0px 20px black; */
 }
-/*-------------------- Disable Default Button --------------------*/
-.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
-    color: #fff;
-    background-color: #52adfe;
-    border-color: #376d9d;
-    box-shadow: 0 0 20px 4px #46a9ff;
-}
+/*----------------------------- Disable Default Button -----------------------------*/
 .btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default, .btn-default.disabled:hover, .btn-default[disabled]:hover, fieldset[disabled] .btn-default:hover, .btn-default.disabled:focus, .btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus, .btn-default.disabled.focus, .btn-default[disabled].focus, fieldset[disabled] .btn-default.focus, .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active, .btn-default.disabled.active, .btn-default[disabled].active, fieldset[disabled] .btn-default.active {
     background-color: #e3f0fc;
     border-color: #ccc;
 }
-/*-------------------- Danger Button --------------------*/
+/*--------------------------------- Danger Button ---------------------------------*/
 .btn-danger {
     color: #fff!important;
     background-color: #d9534f;
@@ -71,7 +79,7 @@
     background: red;
     box-shadow: 0 0 20px red;
 }
-/*-------------------- Primary Button --------------------*/
+/*--------------------------------- Primary Button ---------------------------------*/
 .btn-primary {
     color: #fff!important;
     background-color: #428bca;
@@ -84,7 +92,7 @@
     border-color: #376d9d;
     box-shadow: 0 0 20px 4px #46a9ff;
 }
-/*-------------------- Warning Button --------------------*/
+/*--------------------------------- Warning Button ---------------------------------*/
 a.btn.btn-xs.btn-warning {
     color: black;
     background: #ec971f !important;
@@ -95,57 +103,15 @@ a.btn.btn-xs.btn-warning {
     border-color: #d58512;
     box-shadow: 0 0 20px #ff9500;
 }
-
-/*-------------------- Search Button --------------------*/
-.col-md-4 {
-    width: 33.33333333%;
-        padding: 10px 0px 20px 30px !important;
-}
-
-.block {
-    background: #f9f9f9;
-    padding: 0px 20px 30px 20px;
-    margin-bottom: 25px;
-        background: #e3f0fc;
-}
-
-.block:hover {
-    background: #83c4fe4f;
-    box-shadow: 20px 20px 20px 0px #b0daff
-}
-
-.row-md-12 {
-    padding: 10px 0px 75px 0px;
-}
-
-.my_buses_show:hover {
-    background: #87c2f669;
-    box-shadow: inset -5px -5px 9px 0px #428bca;
-}
-.row{
-      width: 1180px;
-}
-/*-------------------- Bus Count --------------------*/
+/*------------------------------------ Bus Count ------------------------------------*/
 .col-md-2.bus_count {
     padding: 40px 0px 0px 0px;
 }
-.my-btn-xs, .btn-group-xs>.btn {
-    padding: 0px 22px;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 3px;
-}
 
-.col-md-3.seat {
-    padding: 7px 0px 15px 5px;
-}
-.row-md-8 {
-    padding: 0px 141px 0px 98px;
-}
 .col-md-6.bus_count {
     padding: 40px 0px 0px 440px;
 }
-/*-------------------- Alert --------------------*/
+/*-------------------------------------- Alert --------------------------------------*/
 .alert {
     padding: 15px;
     margin-top: -10px;
@@ -165,7 +131,18 @@ a.btn.btn-xs.btn-warning {
     border-color: #a94442 !important;
     color: #a94442;
 }
-.col-lg-10 {
-    width: 83.33333333%;
-    margin-top: 40px;
+/*-------------------- Other bootstrap overriding --------------------*/
+.row{
+      width: 1180px;
 }
+.row-md-8 {
+    padding: 0px 141px 0px 98px;
+}
+.row-md-12 {
+    padding: 10px 0px 75px 0px;
+}
+/*------------------------------- List Count In Admin -----------------------------*/
+.col-md-6.count {
+    padding: 25px 0px 0px 265px;
+}
+/*--------------------------------------- end ---------------------------------------*/

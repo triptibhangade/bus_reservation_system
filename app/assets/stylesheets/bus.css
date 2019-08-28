@@ -1,3 +1,8 @@
+/*---------------------------------- Search Button ----------------------------------*/
+.col-md-4 {
+    width: 33.33333333%;
+       padding: 10px 0px 20px 30px !important;
+}
 .no_result_found {
     padding: 0px 0px 0px 112px;
 }
@@ -6,3 +11,15 @@
     width: 96.333333%;
     padding: 0px 0px 0px 165px;
 }
+/*------------------------------------ Bus List ------------------------------------*/
+.block {
+    background: #f9f9f9;
+    padding: 0px 20px 30px 20px;
+    margin-bottom: 25px;
+    background: #e3f0fc;
+}
+.block:hover {
+    background: #83c4fe4f;
+    box-shadow: 20px 20px 20px 0px #b0daff
+}
+/*--------------------------------------- end ---------------------------------------*/
