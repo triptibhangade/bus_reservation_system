@@ -1,5 +1,5 @@
 module BusesHelper
-  # -------------------- Available Seats In Particular Bus --------------------
+  # ------------------ Available Seats In Particular Bus ------------------
   def available_seat(bus)
     available_seat_count = 0
     bus.reservations.each do |reservation|
@@ -8,5 +8,9 @@ module BusesHelper
       end
     end
     bus.total_no_of_seats - available_seat_count
+  end
+  # -------------------- Active Bus Count --------------------
+  def buses_count(buses)
+    buses.where(status: "active").count
   end
 end

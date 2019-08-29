@@ -12,9 +12,10 @@
       <div class="col-md-2 bus_count">
         <b>Reservation for : <%= params[:date_search]%> </b>
       </div>
-    <!-- -------------------- Searched Buses Count -------------------- -->
+      <!-- -------------------- Searched Buses Count -------------------- -->
       <div class="col-md-2 bus_count">
-        <b> <%= @buses.count %> Buses found </b>
+
+        <b> <%= buses_count(@buses) %> Buses found </b>
       </div>
     <% else %>
       <!-- -------------------- Bus Heading -------------------- -->
@@ -24,9 +25,9 @@
         </h1>
       </div> 
       <!-- -------------------- Searched Buses Count if Date is not given -------------------- -->
-      <!-- <div class="col-md-6 bus_count">
-        <b> <%#= @buses.count %> Buses found </b>
-      </div> -->
+      <div class="col-md-6 bus_count">
+        <b> <%= buses_count(@buses) %> Buses found </b>
+      </div>
     <% end %>
     
   </div>

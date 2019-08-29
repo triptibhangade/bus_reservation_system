@@ -4,7 +4,10 @@ class Bus < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :seats,
             through: :reservations, dependent: :destroy
-            
+
+  # -------------------- Status of Bus Owner --------------------
+  enum status: {active: "active", suspend: "suspend" }
+
   # -------------------- Validations --------------------
   validates :name, :registration_no, :source, :destination, presence:true
   validate :total_no_of_seats_is_divided_by_four

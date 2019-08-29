@@ -10,6 +10,7 @@ class BusesController < ApplicationController
       format.js {}
       format.html {}
     end
+
   end
 
   # GET /buses/1

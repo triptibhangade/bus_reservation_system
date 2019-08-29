@@ -25,18 +25,8 @@
         <td><%= bus_owner.email %></td>
         <td><%= bus_owner.gst_no %></td>
         <td><%= bus_owner.license %></td>
-        <td>
-          <!-- -------------------- Bus Owner Activa/Suspend/Reject Button -------------------- -->
-          <% if bus_owner_reject?(bus_owner) %>
-            <%= link_to 'Active', active_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-primary', remote:true %>
-            <%= link_to "Rejected", reject_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger disabled', data: { confirm: "Are you sure?" }, method: :delete, remote:true %>
-          <% elsif bus_owner_active?(bus_owner) %>
-            <%= link_to 'Suspend', suspend_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-warning', remote:true %>
-            <%= link_to "Reject", reject_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete, remote:true %>
-          <% else %>
-            <%= link_to 'Active', active_admin_bus_owner_path(bus_owner) , :class => 'btn btn-xs btn-primary', remote:true %>
-            <%= link_to "Reject", reject_admin_bus_owner_path(bus_owner), :class => 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }, method: :delete, remote:true %>
-          <% end %>
+        <td class="bus_owner_status_<%= bus_owner.id %>">
+          <%= render 'bus_owner_status', :bus_owner => bus_owner %>
         </td>
       </tr>
     <% end %>
