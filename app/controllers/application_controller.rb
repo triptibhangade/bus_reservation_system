@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  # --------------------------- Required Admin Sign In -----------------------
+  def required_admin_signin?
+    unless current_user.try(:role)=="admin" || current_bus_owner
+      flash[:error] = "You are not admin"
+      redirect_to root_path
+    end
+  end
   # --------------------------- Required Sign In -----------------------
   def required_signin?
     unless current_user || current_bus_owner
