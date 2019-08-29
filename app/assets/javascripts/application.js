@@ -16,5 +16,6 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery.simple.timer
+//= require bootstrap-sprockets
 //= require_tree .
 
