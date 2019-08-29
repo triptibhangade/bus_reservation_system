@@ -82,9 +82,9 @@
               <%= menu_group pull: :right do %>
                 <%= menu_item 'Add Bus', new_bus_owners_bus_path %>
               <% end %>
-              <%= menu_group pull: :right do %>
-                <%= menu_item "Reservation List",  bus_owners_bus_reservations_path(current_bus_owner) %>
-              <% end %>
+              <%#= menu_group pull: :right do %>
+                <%#= menu_item "Reservation List",  bus_owners_bus_reservations_path(current_bus_owner) %>
+              <%# end %>
             <% end %>
           </div>
         <!-- -------------------- Sign Out -------------------- -->
@@ -104,7 +104,7 @@
             <%# end %>
 
             <!-- =========================================== -->
-            <!-- ---------------- Customer Sign In/Sign Up ---------------- -->
+            <!-- ------------- Customer Sign In/Sign Up ------------- -->
             <%= menu_group pull: :right do %>
               <%= menu_item "Sign Up",  user_signup_path %>
             <% end %>

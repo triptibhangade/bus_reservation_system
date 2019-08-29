@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     get 'user_signup', to: 'users/registrations#new'
     get 'profile_edit', to: 'users/registrations#edit'
     get 'profile', to: 'users#show'
+    get 'reservations', to: 'users#my_reservations'
     delete 'profile_deactivate', to: 'users#destroy'
   end
 
