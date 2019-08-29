@@ -1,4 +1,5 @@
 class BusOwners::BusOwnersController < ApplicationController
+  before_action :required_signed_in?
   before_action :set_bus_owner, only: [:show, :destroy]
 
   def show
@@ -27,6 +28,13 @@ class BusOwners::BusOwnersController < ApplicationController
   # -------------------- Find Bus Owner --------------------
   def set_bus_owner
     @bus_owner = current_bus_owner
+  end
+
+  def required_signed_in?
+    unless current_bus_owner
+      flash[:error] = "Please Sign In With Bus Owner..."
+      redirect_to root_path
+    end
   end
   
 end

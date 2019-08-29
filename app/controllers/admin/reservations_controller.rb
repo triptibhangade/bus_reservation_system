@@ -1,5 +1,5 @@
 class Admin::ReservationsController < ApplicationController
-  before_action :required_admin_signin
+  before_action :required_admin_signin?
   before_action :required_signin, only: [:cancel]
   before_action :find_reservation, only: [:cancel]
 

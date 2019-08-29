@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_bus, only: [ :new, :create]
   before_action :find_reservation, only: [:cancel]
-  before_action :required_signin, only:[:new,:create,:cancel]
+  before_action :required_signin?, only:[:new,:create,:cancel]
 
   # GET /reservations/1
   # GET /reservations/1.json

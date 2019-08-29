@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :required_signin?
 
   def show
     @user = current_user

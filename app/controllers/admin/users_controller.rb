@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :required_admin_signin
+  before_action :required_admin_signin?
   
   def index
     @users =  User.all.where(role: "customer")

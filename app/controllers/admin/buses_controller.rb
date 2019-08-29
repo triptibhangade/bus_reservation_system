@@ -1,5 +1,5 @@
 class Admin::BusesController < ApplicationController
-  before_action :required_admin_signin
+  before_action :required_admin_signin?
   before_action :set_bus, only: [:destroy]
   # GET /buses
   # GET /buses.json

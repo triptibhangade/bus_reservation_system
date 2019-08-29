@@ -1,7 +1,7 @@
 class BusOwners::ReservationsController < ApplicationController
+  before_action :required_signed_in?
   before_action :set_bus, only: [:index,:new, :create, :reservations]
   before_action :find_reservation, only: [:cancel]
-  before_action :required_signin, only:[:new,:create,:cancel]
 
   # GET /reservations
   # GET /reservations.json
@@ -33,5 +33,12 @@ class BusOwners::ReservationsController < ApplicationController
 
     def find_reservation
       @reservation = Reservation.find(params[:id])
+    end
+
+    def required_signed_in?
+      unless current_bus_owner
+        flash[:error] = "Please Sign In With Bus Owner..."
+        redirect_to root_path
+      end
     end
 end

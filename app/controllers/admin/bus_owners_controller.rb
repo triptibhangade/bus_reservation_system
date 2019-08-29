@@ -1,5 +1,5 @@
 class Admin::BusOwnersController < ApplicationController
-  before_action :required_admin_signin
+  before_action :required_admin_signin?
   before_action :set_bus_owner, only:[:active, :suspend, :reject, :show]
   
   def index

@@ -1,4 +1,5 @@
 class BusOwners::BusesController < ApplicationController
+  before_action :required_signed_in?
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
   before_action :bus_reservations, only:[:show]
 
@@ -65,6 +66,13 @@ class BusOwners::BusesController < ApplicationController
 
     def bus_reservations
       @bus_reservations = @bus.reservations
+    end
+
+    def required_signed_in?
+      unless current_bus_owner
+        flash[:error] = "Please Sign In With Bus Owner..."
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
