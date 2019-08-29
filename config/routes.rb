@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'customers' => "users#index"
     get 'profile' => "users#show"
+    get 'my_reservations' => "users#my_reservations"
     resources :bus_owners do
       member do
         get 'show'
