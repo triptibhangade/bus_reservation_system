@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   namespace :bus_owners do
     get 'profile' => "bus_owners#show"
+    get 'buses' => "bus_owners#my_buses"
+    get 'reservations' => "bus_owners#my_reservations"
     delete 'profile_deactivate' => "bus_owners#destroy"
     resources :buses do
       resources :reservations do

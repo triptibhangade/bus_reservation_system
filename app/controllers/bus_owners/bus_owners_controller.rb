@@ -1,5 +1,4 @@
 class BusOwners::BusOwnersController < ApplicationController
-  before_action :my_buses, only: [:show]
   before_action :set_bus_owner, only: [:show, :destroy]
 
   def show
@@ -14,13 +13,20 @@ class BusOwners::BusOwnersController < ApplicationController
     end
   end
 
+  # -------------------- Bus Owner Buses --------------------
+  def my_buses
+    @my_buses = current_bus_owner.buses
+  end
+
+  # ---------------------- Bus Owner Reservations ----------------------
+  def my_reservations
+    @reservations = current_bus_owner.reservations.where(status: true)
+  end
+
   private
   # -------------------- Find Bus Owner --------------------
   def set_bus_owner
     @bus_owner = current_bus_owner
   end
-  # -------------------- Bus Owner Buses --------------------
-  def my_buses
-    @my_buses = current_bus_owner.buses
-  end
+  
 end
