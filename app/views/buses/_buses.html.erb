@@ -71,7 +71,7 @@
           </div>
           <div class="col-md-2">
             <% if !available_seat(bus).zero? %>
-              <%= link_to 'Book Seat',new_bus_reservation_path(bus),
+              <%= link_to 'Book Seat',new_bus_reservation_path(bus, date: params[:date_search]),
                                        :class => 'btn btn-default btn-xs' %>
             <% else %>
               <%= link_to 'Seat Not Availavle',new_bus_reservation_path(bus),

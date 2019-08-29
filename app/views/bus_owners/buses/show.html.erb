@@ -21,7 +21,7 @@
   <% if current_bus_owner.present? %>
     <% if current_bus_owner.id == @bus.bus_owner_id %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                  edit_bus_path, :class => 'btn btn-default' %>
+                  edit_bus_owners_bus_path, :class => 'btn btn-default' %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                   bus_path,
                   :method => :delete,

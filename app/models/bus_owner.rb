@@ -11,7 +11,7 @@ class BusOwner < ApplicationRecord
   
   # -------------------- Associations --------------------
   has_many :buses, dependent: :destroy
-  has_many :reservations, as: :reservable
+  has_many :reservations, as: :reservable, dependent: :destroy
 
   # -------------------- Validations --------------------
   validates :name, :license, :gst_no, presence:true
