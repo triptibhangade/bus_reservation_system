@@ -12,22 +12,25 @@ class Admin::BusOwnersController < ApplicationController
   def active
     @bus_owner.update(status: "active")
     @bus_owner.buses.update(status: "active")
-    @bus_owner.save
-    flash[:notice] = "#{@bus_owner.name}'s Account is Activated"
+    if @bus_owner.save
+      flash[:notice] = "#{@bus_owner.name}'s Account is Activated"
+    end
   end
   # -------------------- Bus Owner Suspend --------------------
   def suspend
     @bus_owner.update(status:"pending")
     @bus_owner.buses.update(status: "suspend")
-    flash[:warning] = "#{@bus_owner.name}'s Account is Suspended"
-    @bus_owner.save
+    if @bus_owner.save
+      flash[:warning] = "#{@bus_owner.name}'s Account is Suspended"
+    end
   end
   # -------------------- Bus Owner Reject --------------------
   def reject
     @bus_owner.update(status:"ignore")
     @bus_owner.buses.update(status: "suspend")
-    flash[:error] = "#{@bus_owner.name}'s Account is Rejected"
-    @bus_owner.save
+    if @bus_owner.save
+      flash[:error] = "#{@bus_owner.name}'s Account is Rejected"
+    end
   end
 
   private
