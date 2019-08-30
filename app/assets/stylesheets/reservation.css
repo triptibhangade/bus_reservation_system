@@ -38,4 +38,8 @@ p.yellow_colored {
 label.my-control-label.col-lg-2 {
     padding: 50px 0px 0px 0px;
 }
+/*----------------------------------- Clickable -----------------------------------*/
+.clickable-row{
+    cursor: pointer;
+}
 /*--------------------------------------- end ---------------------------------------*/

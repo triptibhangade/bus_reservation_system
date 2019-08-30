@@ -34,7 +34,7 @@
 <!-- -------------------- Bus List if Date is not given -------------------- -->
   <% @buses.each do |bus| %>
     <% if bus.bus_owner.status == "active" %>
-      <div class="row block">
+      <div class="row block clickable-row" data-href='/buses/<%= bus.id %>/reservations/new'>
         <div class="row-md-12 row">
           <div class="col-md-4">
             <a href="/buses/<%= bus.id %>"><%= bus.name %></a>
