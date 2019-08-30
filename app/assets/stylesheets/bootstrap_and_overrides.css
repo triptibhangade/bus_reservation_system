@@ -40,10 +40,11 @@
     width: 83.33333333%;
     margin-top: 40px;
 }
+
 /*--------------------------------- Default Button ---------------------------------*/
 .btn-default {
     color: #333;
-    background-color: #fff;
+    background-color: #5cb3ff75;
     border-color: #ccc;
     border-radius: 15px;
 }
