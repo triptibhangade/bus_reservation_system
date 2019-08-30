@@ -9,18 +9,18 @@
   <h3>My Reservations</h3>
   <div class="row">
     <% for reservation in (@reservations).to_a.reverse %>
-      <div class="col-md-4 my-buses-show">
+      <div class="col-md-4 my-buses-show clickable-row" data-href="/buses/<%= reservation.bus.id %>"
         <small><i>Booked on : <%= reservation.created_at.strftime("%d/%m/%Y %H:%M%P")  %></i></small><br>
-      <b>
-        Bus : <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a><br>
-        Route : <%= reservation.bus.source %> - <%= reservation.bus.destination %><br>
-        Reservation : <%=reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>
-        Seats :
+        <b>
+          Bus : <%= reservation.bus.name %><br>
+          Route : <%= reservation.bus.source %> - <%= reservation.bus.destination %><br>
+          Reservation : <%=reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>
+          Seats :
 
-                <% reservation.seats.each do |seat| %>
-                <%= link_to seat.seat_no, root_path,:class=> 'btn my-btn-xs btn-primary disabled' %>
-                <% end %>
-      </b>
+                  <% reservation.seats.each do |seat| %>
+                  <%= link_to seat.seat_no, root_path,:class=> 'btn my-btn-xs btn-primary disabled' %>
+                  <% end %>
+        </b>
         <br><br>
         <%= link_to 'Cancel Reservation', cancel_reservation_path(reservation),
               :method => 'delete',
