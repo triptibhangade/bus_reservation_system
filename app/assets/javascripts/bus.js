@@ -1,4 +1,5 @@
 $( document ).on('turbolinks:load', function() {
+  clickableRow();
   buses();
 })
 // -------------------------------- Buses list --------------------------------
@@ -21,8 +22,8 @@ buses = function(){
 }
 
 // -------------------------------- Clickable Row --------------------------------
-jQuery(document).ready(function($) {
+clickableRow = function(){
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
-});
+}
