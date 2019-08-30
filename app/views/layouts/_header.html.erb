@@ -1,0 +1,78 @@
+<a class="navbar-brand" href="/"><%= image_tag("icon.png", size: "20x20", alt: "BusReservationSystem") %> </a>
+<a class="navbar-brand" href="/"> BusReservationSystem </a>
+<div class="navbar-collapse collapse navbar-responsive-collapse">
+  <!-- -------------------- Customer Sign In -------------------- -->
+  <% if current_user.present? %>
+    <%= menu_group pull: :right do %>
+      <%= menu_item "Sign Out", destroy_user_session_path, method: :delete %>
+    <% end %>
+    <% if current_user.role == 'customer'%>
+      <%= menu_group pull: :right do %>
+        <%= menu_item current_user.name, profile_path %>
+      <% end %>
+    <% end %>
+    <% if current_user.role == 'admin'%>
+      <%= menu_group pull: :right do %>
+        <%= menu_item current_user.name, admin_profile_path %>
+      <% end %>
+
+      <%= menu_group pull: :right do %>
+        <%= menu_item "Bus Owner List", admin_bus_owners_path %>
+      <% end %>
+
+      <%= menu_group pull: :right do %>
+        <%= menu_item "Customer List", admin_customers_path %>
+      <% end %>
+
+      <%= menu_group pull: :right do %>
+        <%= menu_item "Bus List",  admin_buses_path %>
+      <% end %>
+
+      <%= menu_group pull: :right do %>
+        <%= menu_item "Reservation List", admin_reservations_path %>
+      <% end %>
+    <% end %>
+  <!-- -------------------- Bus Owner Sign In -------------------- -->
+  <% elsif current_bus_owner.present? %>
+    <%= menu_group pull: :right do %>
+      <%= menu_item "Sign Out", destroy_bus_owner_session_path,
+                            method: :delete %>
+    <% end %>
+    <%= menu_group pull: :right do %>
+      <%= menu_item current_bus_owner.name, bus_owners_profile_path %>
+    <% end %>
+    <% if current_bus_owner && current_bus_owner.status == "active" %>
+      <%= menu_group pull: :right do %>
+        <%= menu_item 'Add Bus', new_bus_owners_bus_path %>
+      <% end %>
+      <%#= menu_group pull: :right do %>
+        <%#= menu_item "Reservation List",  bus_owners_bus_reservations_path(current_bus_owner) %>
+      <%# end %>
+    <% end %>
+  <!-- -------------------- Sign Out -------------------- -->
+  <% else %>
+    <%#= menu_group pull: :right do %>
+      <%#= drop_down "Sign In" do %>
+        <%#= menu_item "Customer", user_login_path %>
+        <%#= menu_item "Bus Owner",  bus_owner_login_path %>
+      <%# end %>
+    <%# end %>
+
+    <%#= menu_group pull: :right do %>
+      <%#= drop_down "Sign Up" do %>
+        <%#= menu_item "Customer", user_signup_path %>
+        <%#= menu_item "Bus Owner",  bus_owner_signup_path %>
+      <%# end %>
+    <%# end %>
+
+    <!-- =========================================== -->
+    <!-- ------------- Customer Sign In/Sign Up ------------- -->
+    <%= menu_group pull: :right do %>
+      <%= menu_item "Sign Up",  user_signup_path %>
+    <% end %>
+
+    <%= menu_group pull: :right do %>
+      <%= menu_item "Sign In", user_login_path %>
+    <% end %>
+  <% end %>
+</div>
