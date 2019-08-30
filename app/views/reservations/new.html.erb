@@ -1,40 +1,43 @@
 <%- model_class = Reservation -%>
+<div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>
+          <a href="/buses/<%= @bus.id %>"><%= @bus.name %></a><br>
+          <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>(<%= @bus.source %> - <%= @bus.destination %>)
+      </h2>
+    </div>  
+      <h1 class='timer' data-minutes-left= 5></h1>
+  </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-  </div>  
-    <h1 class='timer' data-minutes-left= 5></h1>
+  <%= nested_form_for [@bus, @reservation], html: {bus_id: @bus.id } do |reservation|  %>
+    <div class="form-group">
+      <%= reservation.label :reservation_date, :class => 'my-control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= reservation.date_field :reservation_date, :class => 'form-control', min: Date.today, max:14.days.from_now
+        # ,:value=> reservation.object.reservation_date
+        %>
+      </div>
+      <%= reservation.error_span(:reservation_date) %>
+    </div> 
+    <div>
+      &nbsp
+      &nbsp
+    </div>
+    <%# binding.pry %>
+    <div class="row seat-center buses show_seat">
+      <%= render 'reserve_seats' %>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= reservation.submit nil, :class => 'btn btn-xs btn-primary'%>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  buses_path, :class => 'btn btn-xs btn-default' %>
+      </div>
+    </div>
+  <% end %>
 </div>
-
-<%= nested_form_for [@bus, @reservation], html: {bus_id: @bus.id } do |reservation|  %>
-  <div class="form-group">
-    <%= reservation.label :reservation_date, :class => 'my-control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= reservation.date_field :reservation_date, :class => 'form-control', min: Date.today, max:14.days.from_now
-      # ,:value=> reservation.object.reservation_date
-      %>
-    </div>
-    <%= reservation.error_span(:reservation_date) %>
-  </div> 
-  <div>
-    &nbsp
-    &nbsp
-  </div>
-  <%# binding.pry %>
-  <div class="row seat-center buses show_seat">
-    <%= render 'reserve_seats' %>
-  </div>
-
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= reservation.submit nil, :class => 'btn btn-xs btn-primary'%>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                buses_path, :class => 'btn btn-xs btn-default' %>
-    </div>
-  </div>
-<% end %>
-
 
 <script type="text/javascript">
   // -------------------- Window Time Out 5 Min --------------------
