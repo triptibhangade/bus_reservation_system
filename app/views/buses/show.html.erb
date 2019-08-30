@@ -16,7 +16,7 @@
 <div>
   <!-- -------------------- Buttons -------------------- -->
   <%= link_to t('.back', :default => t("helpers.links.back")),
-                buses_path, :class => 'btn btn-default'  %>
+                new_bus_reservation_path(@bus), :class => 'btn btn-default'  %>
   <!-- -------------------- Only For Bus Owner -------------------- -->
   <% if current_bus_owner.present? %>
     <% if current_bus_owner.id == @bus.bus_owner_id %>
