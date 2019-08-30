@@ -2,14 +2,8 @@ $( document ).on('turbolinks:load', function() {
   book_seat();
   show_seat();
   reservation_timer();
-  disableBrowserBackButton(); 
 })
-// --------------------------------- Disable Browser Back Button Script --------------------------------
-disableBrowserBackButton = function(){
-  function preventBack(){window.history.forward();}
-  setTimeout("preventBack()", 0);
-  window.onunload=function(){null};
-}
+
 // --------------------------------- Book Seat --------------------------------
 book_seat = function(){
   $(document).on('click', '.book_seat', function() {

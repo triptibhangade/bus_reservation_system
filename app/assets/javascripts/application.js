@@ -19,3 +19,8 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+// ------------------ Disable Browser Back Button Script ------------------
+
+  function preventBack(){window.history.forward();}
+  setTimeout("preventBack()", 0);
+  window.onunload = function(){null};

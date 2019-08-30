@@ -1,13 +1,6 @@
 $( document ).on('turbolinks:load', function() {
   buses();
-  disableBrowserBackButton();
 })
-// ------------------ Disable Browser Back Button Script ------------------
-disableBrowserBackButton = function(){
-  function preventBack(){window.history.forward();}
-  setTimeout("preventBack()", 0);
-  window.onunload = function(){null};
-};
 // -------------------------------- Buses list --------------------------------
 buses = function(){
   $(document).on('change', '#search', function(){ 

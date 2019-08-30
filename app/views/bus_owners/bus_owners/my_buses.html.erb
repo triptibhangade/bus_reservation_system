@@ -11,8 +11,8 @@
   <h3>My Buses</h3>
   <div class="row">
     <% @my_buses.each do |bus| %>
-    <div class="col-md-4 my-buses-show">
-      Bus Name : <a href="buses/<%=bus.id%>"><%= bus.name %></a> <br>
+    <div class="col-md-4 my-buses-show clickable-row" data-href="/buses/<%=bus.id%>">
+      Bus Name : <%= bus.name %> <br>
       Route : <%= bus.source %> - <%= bus.destination %> <br><br>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_bus_owners_bus_path(bus), :class => 'btn btn-xs btn-default' %>
