@@ -11,8 +11,8 @@
   <h3>My Reservations</h3>
   <div class="row">
     <% for reservation in (@reservations).to_a.reverse %>
-      <div class="col-md-4 my-buses-show">
-        Bus : <a href="/buses/<%= reservation.bus.id %>"><%= reservation.bus.name %> </a> <br>
+      <div class="col-md-4 my-buses-show clickable-row" data-href="/buses/<%= reservation.bus.id %>">
+        Bus : <%= reservation.bus.name %> <br>
         Route : <%= reservation.bus.source %> - <%= reservation.bus.destination %> <br>
         Reservation : <%= reservation_date(reservation)%> ( <%=reservation_day(reservation) %> ) <br>
         Seats :
