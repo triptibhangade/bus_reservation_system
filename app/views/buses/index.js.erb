@@ -1,2 +1,6 @@
 $('.buses').html("<%= escape_javascript(render 'buses') %>");
 $(".buses").show();
+
+$(".clickable-row").click(function() {
+    window.location = $(this).data("href");
+});
