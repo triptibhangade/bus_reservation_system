@@ -5,7 +5,8 @@ class BusesController < ApplicationController
   # GET /buses
   # GET /buses.json
   def index
-    @buses = Bus.search(params[:source_search], params[:destination_search])
+    @buses = Bus.filter_by_source_and_destination(params[:source_search].try(:capitalize), params[:destination_search].try(:capitalize))
+    @buses = Bus.all unless @buses.any?
     respond_to do |format|
       format.js {}
       format.html {}

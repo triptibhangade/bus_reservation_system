@@ -10,7 +10,13 @@ class Bus < ApplicationRecord
 
   # -------------------- Validations --------------------
   validates :name, :registration_no, :source, :destination, presence:true
+  validates :source, presence: true, format: { with: /\A[a-z A-Z]+\z/,
+              message: "only allows capital letters" }
   validate :total_no_of_seats_is_divided_by_four
+  # -------------------- Search --------------------
+  scope :filter_by_source, -> (source) { where(source: source) }
+  scope :filter_by_destination, -> (destination) { where(destination: destination) }
+  scope :filter_by_source_and_destination, -> (source, destination) { filter_by_source(source).filter_by_destination(destination) }
 
   private
     def total_no_of_seats_is_divided_by_four
