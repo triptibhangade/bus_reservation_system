@@ -45,9 +45,9 @@
       <%= menu_group pull: :right do %>
         <%= menu_item 'Add Bus', new_bus_owners_bus_path %>
       <% end %>
-      <%#= menu_group pull: :right do %>
-        <%#= menu_item "Reservation List",  bus_owners_bus_reservations_path(current_bus_owner) %>
-      <%# end %>
+      <%= menu_group pull: :right do %>
+        <%= menu_item "Reservation List", bus_owners_all_reservations_path %>
+      <% end %>
     <% end %>
   <!-- -------------------- Sign Out -------------------- -->
   <% else %>
