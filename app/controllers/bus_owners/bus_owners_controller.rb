@@ -23,6 +23,13 @@ class BusOwners::BusOwnersController < ApplicationController
   def my_reservations
     @reservations = current_bus_owner.reservations.where(status: true)
   end
+  # ---------------------- Bus Owner All Buses Reservations ----------------------
+  def all_reservations
+    # binding.pry
+    @bus_ids = current_bus_owner.buses.map(&:id)
+
+    # @all_reservations = 
+  end
 
   private
   # -------------------- Find Bus Owner --------------------
