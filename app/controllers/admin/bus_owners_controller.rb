@@ -8,6 +8,9 @@ class Admin::BusOwnersController < ApplicationController
 
   def show
   end
+
+  def demo
+  end
   # -------------------- Bus Owner Active --------------------
   def active
     @bus_owner.update(status: "active")

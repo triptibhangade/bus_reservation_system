@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'customers' => "users#index"
     get 'profile' => "users#show"
     get 'my_reservations' => "users#my_reservations"
+    get 'demo' => "bus_owners#demo"
     resources :bus_owners do
       member do
         get 'show'
