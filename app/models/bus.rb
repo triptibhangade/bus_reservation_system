@@ -16,8 +16,20 @@ class Bus < ApplicationRecord
   
   # -------------------------------------------- Search --------------------------------------------
   scope :filter_by_source, -> (source) { where(source: source) }
+  # def self.filter_by_source(source)
+    # where(source: source)
+  # end
+
   scope :filter_by_destination, -> (destination) { where(destination: destination) }
+  # def self.filter_by_destination(destination)
+  #   where(destination: destination)
+  # end
+
   scope :filter_by_source_and_destination, -> (source, destination) { filter_by_source(source).filter_by_destination(destination) }
+
+  def self.filter_by_source_and_destination(source, destination)
+    filter_by_source(source).filter_by_destination(destination)
+  end
 
   private
     def total_no_of_seats_is_divided_by_four
